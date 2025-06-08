@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Calendar, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const EpisodesSection = () => {
   const episodes = [
@@ -85,13 +86,15 @@ const EpisodesSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-brand-mint text-brand-mint hover:bg-brand-mint hover:text-black"
-          >
-            View All Episodes
-          </Button>
+          <Link to="/episodes">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-brand-mint text-brand-mint hover:bg-brand-mint hover:text-black"
+            >
+              View All Episodes
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

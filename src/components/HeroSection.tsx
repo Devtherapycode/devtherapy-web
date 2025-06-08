@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Play, Youtube, Headphones } from 'lucide-react';
+import { Play, Youtube, Headphones, Archive } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
@@ -60,6 +60,17 @@ const HeroSection = () => {
               YouTube
             </Button>
           </a>
+
+          <Link to="/episodes">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-brand-mint/40 hover:border-brand-mint hover:bg-brand-mint/10 px-8 py-4 text-lg hover-lift"
+            >
+              <Archive className="mr-2 h-5 w-5" />
+              All Episodes
+            </Button>
+          </Link>
 
           <Link to="/shop">
             <Button 

@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, ExternalLink, Play } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+import zura from '@/assets/zuba.png';
 
 const GuestDetail = () => {
   const { guestId } = useParams();
@@ -12,7 +13,7 @@ const GuestDetail = () => {
       name: 'Zura Abelashvili',
       title: 'Graphics Engineer at Rockstar Games',
       tagline: 'Episode #7 – From Georgia to GTA VI',
-      image: '/lovable-uploads/31303238-7434-42a9-8892-5f332924e27a.png',
+      image: zura,
       bio: `Zura is a talented graphics engineer at Rockstar Games, where he works on cutting-edge visual technologies that power some of the most beloved games in the world. Originally from Georgia, Zura's journey into game development showcases the global nature of tech talent and the passion that drives innovation in gaming.
 
 In our conversation, Zura shares insights into the technical challenges of creating realistic graphics, the collaborative nature of game development, and what it's like to work on projects that millions of players will experience.`,

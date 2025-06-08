@@ -1,8 +1,8 @@
+import logo from '@/assets/logo.png';
 import { Button } from '@/components/ui/button';
 import { Archive, Headphones, Play, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
-import logo from '@/assets/logo.png';
 
 const HeroSection = () => {
   return (
@@ -24,7 +24,13 @@ const HeroSection = () => {
 
         {/* CTA Buttons */}
         <div className="mb-16 flex flex-col flex-wrap items-center justify-center gap-4 sm:flex-row">
-          <Button size="lg" className="hover-lift bg-brand-mint px-8 py-4 text-lg font-semibold text-black hover:bg-brand-mint-dark">
+          <Button
+            size="lg"
+            className="hover-lift bg-brand-mint px-8 py-4 text-lg font-semibold text-black hover:bg-brand-mint-dark"
+            onClick={() => {
+              document.getElementById('platform-links')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             <Play className="mr-2 h-5 w-5" />
             Listen Now
           </Button>

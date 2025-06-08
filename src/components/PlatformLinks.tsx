@@ -6,14 +6,38 @@ const PlatformLinks = () => {
     {
       name: 'Spotify',
       icon: '🎵',
-      url: '#',
+      url: 'https://tinyurl.com/devtherapy-spotify',
       color: 'bg-green-600 hover:bg-green-700',
     },
     {
       name: 'Apple Podcasts',
       icon: '🍎',
-      url: '#',
+      url: 'https://tinyurl.com/devtherapy-applemusic',
       color: 'bg-purple-600 hover:bg-purple-700',
+    },
+    {
+      name: 'Buzzsprout',
+      icon: '🎤',
+      url: 'https://tinyurl.com/devtherapy-buzzsrpout',
+      color: 'bg-orange-600 hover:bg-orange-700',
+    },
+    {
+      name: 'Amazon Music',
+      icon: '🎧',
+      url: 'https://tinyurl.com/devtherapy-amazon',
+      color: 'bg-yellow-600 hover:bg-yellow-700',
+    },
+    {
+      name: 'Pocket Casts',
+      icon: '📻',
+      url: 'https://tinyurl.com/devtherapy-pocketcast',
+      color: 'bg-pink-600 hover:bg-pink-700',
+    },
+    {
+      name: 'Deezer',
+      icon: '🎶',
+      url: 'https://tinyurl.com/devtherapy-deezer',
+      color: 'bg-blue-800 hover:bg-blue-900',
     },
     {
       name: 'Google Podcasts',

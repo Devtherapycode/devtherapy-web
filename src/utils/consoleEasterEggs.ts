@@ -11,18 +11,6 @@ const consoleMessages = [
     message: '🔥 Recommended Episode: #7 with Zura Abelashvili – GPUs, GTA VI, and Ray Tracing',
   },
   {
-    message: 'Psst... ever thought about being on the show? DM us on X (@devtherapy_io) 📧',
-  },
-  {
-    message: '"99 little bugs in the code, 99 bugs in the code..." 🎵',
-  },
-  {
-    message: '// TODO: Remember to take therapy breaks between debugging sessions',
-  },
-  {
-    message: "console.log('Hello fellow developer! May your builds be green and your coffee strong ☕')",
-  },
-  {
     message: "%cif (stressed === true) { listen('devtherapy'); }",
     style: "color: #3CE6B0; font-family: 'Courier New', monospace; background: rgba(60, 230, 176, 0.1); padding: 4px;",
   },

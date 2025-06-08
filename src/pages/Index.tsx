@@ -1,10 +1,8 @@
-import React from "react";
-import MatrixBackground from "@/components/MatrixBackground";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import EpisodesSection from "@/components/EpisodesSection";
-import PlatformLinks from "@/components/PlatformLinks";
-import Footer from "@/components/Footer";
+import AboutSection from '@/components/AboutSection';
+import EpisodesSection from '@/components/EpisodesSection';
+import Footer from '@/components/Footer';
+import HeroSection from '@/components/HeroSection';
+import PlatformLinks from '@/components/PlatformLinks';
 
 const Index = () => {
   return (

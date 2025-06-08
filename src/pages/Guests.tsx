@@ -1,10 +1,9 @@
-
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Search, ArrowRight } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Guests = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,7 +16,7 @@ const Guests = () => {
       bio: 'From Georgia to GTA VI - building the future of gaming graphics',
       image: '/lovable-uploads/31303238-7434-42a9-8892-5f332924e27a.png',
       episode: 'Episode #7',
-      tags: ['graphics', 'gaming', 'rockstar']
+      tags: ['graphics', 'gaming', 'rockstar'],
     },
     {
       id: 'sarah-chen',
@@ -26,7 +25,7 @@ const Guests = () => {
       bio: 'Scaling payment systems for millions of developers worldwide',
       image: '/placeholder.svg',
       episode: 'Episode #5',
-      tags: ['backend', 'payments', 'scaling']
+      tags: ['backend', 'payments', 'scaling'],
     },
     {
       id: 'alex-rodriguez',
@@ -35,7 +34,7 @@ const Guests = () => {
       bio: 'Building the metaverse infrastructure from the ground up',
       image: '/placeholder.svg',
       episode: 'Episode #3',
-      tags: ['frontend', 'vr', 'meta']
+      tags: ['frontend', 'vr', 'meta'],
     },
     {
       id: 'jamie-kim',
@@ -44,74 +43,61 @@ const Guests = () => {
       bio: 'Keeping your favorite shows streaming without a hitch',
       image: '/placeholder.svg',
       episode: 'Episode #1',
-      tags: ['devops', 'streaming', 'infrastructure']
-    }
+      tags: ['devops', 'streaming', 'infrastructure'],
+    },
   ];
 
-  const filteredGuests = guests.filter(guest =>
-    guest.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    guest.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    guest.bio.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredGuests = guests.filter(
+    (guest) =>
+      guest.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      guest.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      guest.bio.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
-    <div className="min-h-screen bg-background matrix-bg">
-      <div className="relative z-10 pt-20 pb-16">
-        <div className="max-w-6xl mx-auto px-4">
+    <div className="matrix-bg min-h-screen bg-background">
+      <div className="relative z-10 pb-16 pt-20">
+        <div className="mx-auto max-w-6xl px-4">
           {/* Intro Section */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 glow-text">
-              Meet the Minds Behind the Mic
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="mb-16 text-center">
+            <h1 className="glow-text mb-6 text-4xl font-bold md:text-6xl">Meet the Minds Behind the Mic</h1>
+            <p className="mx-auto max-w-3xl text-xl text-muted-foreground md:text-2xl">
               A growing list of engineers, creators, and thinkers who've joined us on Devtherapy.
             </p>
           </div>
 
           {/* Search Bar */}
-          <div className="max-w-md mx-auto mb-12">
+          <div className="mx-auto mb-12 max-w-md">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Search guests by name, company, or expertise..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-card/50 border-brand-mint/20 focus:border-brand-mint"
+                className="border-brand-mint/20 bg-card/50 pl-10 focus:border-brand-mint"
               />
             </div>
           </div>
 
           {/* Guest Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredGuests.map((guest) => (
-              <Card key={guest.id} className="bg-card/50 border-brand-mint/20 hover-lift group">
+              <Card key={guest.id} className="hover-lift group border-brand-mint/20 bg-card/50">
                 <CardContent className="p-6">
                   <div className="text-center">
                     <div className="relative mb-4">
-                      <img
-                        src={guest.image}
-                        alt={guest.name}
-                        className="w-24 h-24 rounded-full mx-auto object-cover border-2 border-brand-mint/20"
-                      />
+                      <img src={guest.image} alt={guest.name} className="mx-auto h-24 w-24 rounded-full border-2 border-brand-mint/20 object-cover" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-brand-mint transition-colors">
-                      {guest.name}
-                    </h3>
-                    <p className="text-brand-mint text-sm font-medium mb-2">
-                      {guest.title}
-                    </p>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                      {guest.bio}
-                    </p>
-                    <div className="text-xs text-muted-foreground mb-4">
-                      {guest.episode}
-                    </div>
+                    <h3 className="mb-2 text-xl font-semibold transition-colors group-hover:text-brand-mint">{guest.name}</h3>
+                    <p className="mb-2 text-sm font-medium text-brand-mint">{guest.title}</p>
+                    <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{guest.bio}</p>
+                    <div className="mb-4 text-xs text-muted-foreground">{guest.episode}</div>
                     <Link to={`/guests/${guest.id}`}>
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
-                        className="border-brand-mint/40 hover:border-brand-mint hover:bg-brand-mint/10 group-hover:border-brand-mint transition-all"
+                        className="border-brand-mint/40 transition-all hover:border-brand-mint hover:bg-brand-mint/10 group-hover:border-brand-mint"
                       >
                         View Profile
                         <ArrowRight className="ml-1 h-3 w-3" />
@@ -125,21 +111,15 @@ const Guests = () => {
 
           {/* No Results */}
           {filteredGuests.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground text-lg">
-                No guests found matching "{searchTerm}"
-              </p>
+            <div className="py-12 text-center">
+              <p className="text-lg text-muted-foreground">No guests found matching "{searchTerm}"</p>
             </div>
           )}
 
           {/* Back to Podcast */}
-          <div className="text-center mt-16">
+          <div className="mt-16 text-center">
             <Link to="/">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-brand-mint text-brand-mint hover:bg-brand-mint hover:text-black"
-              >
+              <Button variant="outline" size="lg" className="border-brand-mint text-brand-mint hover:bg-brand-mint hover:text-black">
                 Back to Podcast
               </Button>
             </Link>

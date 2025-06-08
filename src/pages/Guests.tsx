@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { ArrowRight, Search } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import zura from '@/assets/zura.png';
 
 const Guests = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,36 +15,9 @@ const Guests = () => {
       name: 'Zura Abelashvili',
       title: 'Graphics Engineer at Rockstar Games',
       bio: 'From Georgia to GTA VI - building the future of gaming graphics',
-      image: '/lovable-uploads/31303238-7434-42a9-8892-5f332924e27a.png',
+      image: zura,
       episode: 'Episode #7',
       tags: ['graphics', 'gaming', 'rockstar'],
-    },
-    {
-      id: 'sarah-chen',
-      name: 'Sarah Chen',
-      title: 'Staff Engineer at Stripe',
-      bio: 'Scaling payment systems for millions of developers worldwide',
-      image: '/placeholder.svg',
-      episode: 'Episode #5',
-      tags: ['backend', 'payments', 'scaling'],
-    },
-    {
-      id: 'alex-rodriguez',
-      name: 'Alex Rodriguez',
-      title: 'Tech Lead at Meta',
-      bio: 'Building the metaverse infrastructure from the ground up',
-      image: '/placeholder.svg',
-      episode: 'Episode #3',
-      tags: ['frontend', 'vr', 'meta'],
-    },
-    {
-      id: 'jamie-kim',
-      name: 'Jamie Kim',
-      title: 'Senior DevOps Engineer at Netflix',
-      bio: 'Keeping your favorite shows streaming without a hitch',
-      image: '/placeholder.svg',
-      episode: 'Episode #1',
-      tags: ['devops', 'streaming', 'infrastructure'],
     },
   ];
 

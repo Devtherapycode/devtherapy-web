@@ -19,8 +19,7 @@ In our conversation, Zura shares insights into the technical challenges of creat
       quote:
         "The most rewarding part of graphics engineering is seeing players get completely immersed in worlds we've helped create. Every optimization, every shader, every lighting effect contributes to that magic moment when reality and virtuality blend.",
       youtubeUrl: 'https://www.youtube.com/embed/ptPHTbQk_sA',
-      website: 'https://github.com/zura-dev',
-      linkedin: 'https://linkedin.com/in/zura-abelashvili',
+      linkedin: 'https://www.linkedin.com/in/zurab-abelashvili',
     },
   };
 
@@ -109,12 +108,6 @@ In our conversation, Zura shares insights into the technical challenges of creat
             <CardContent className="p-8">
               <h2 className="mb-6 text-2xl font-semibold text-brand-mint">Connect with {guest.name.split(' ')[0]}</h2>
               <div className="flex flex-wrap gap-4">
-                <a href={guest.website} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="border-brand-mint/40 hover:border-brand-mint hover:bg-brand-mint/10">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    GitHub
-                  </Button>
-                </a>
                 <a href={guest.linkedin} target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="border-brand-mint/40 hover:border-brand-mint hover:bg-brand-mint/10">
                     <ExternalLink className="mr-2 h-4 w-4" />

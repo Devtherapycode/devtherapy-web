@@ -1,4 +1,5 @@
 import { Youtube } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   return (
@@ -6,7 +7,7 @@ const Footer = () => {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex items-center gap-4">
-            <img src="/lovable-uploads/39d6eedb-3670-4520-b215-d52a3a1ba360.png" alt="Devtherapy Logo" className="h-8" />
+            <img src={logo} alt="Devtherapy Logo" className="h-8" />
             <span className="text-xl font-semibold text-brand-mint">devtherapy</span>
           </div>
 

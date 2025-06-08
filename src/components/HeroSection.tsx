@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Archive, Headphones, Play, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
+import logo from '@/assets/logo.png';
 
 const HeroSection = () => {
   return (
@@ -11,7 +12,7 @@ const HeroSection = () => {
         {/* Logo */}
         <div className="mb-14 flex items-center justify-center">
           <div className="overflow-hidden rounded-lg">
-            <img src="/lovable-uploads/39d6eedb-3670-4520-b215-d52a3a1ba360.png" alt="Devtherapy Logo" className="mx-auto h-32 md:h-40" />
+            <img src={logo} alt="Devtherapy Logo" className="mx-auto h-32 md:h-40" />
           </div>
         </div>
 

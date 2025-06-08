@@ -72,6 +72,16 @@ const HeroSection = () => {
             </Button>
           </Link>
 
+          <Link to="/guests">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-brand-mint/40 hover:border-brand-mint hover:bg-brand-mint/10 px-8 py-4 text-lg hover-lift"
+            >
+              Meet Our Guests
+            </Button>
+          </Link>
+
           <Link to="/shop">
             <Button 
               variant="outline" 

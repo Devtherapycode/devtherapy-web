@@ -64,7 +64,6 @@
     overflow: hidden;
   }
 
-
   .matrix-bg::before {
     content: '';
     position: absolute;

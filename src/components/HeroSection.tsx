@@ -33,7 +33,6 @@ const HeroSection = () => {
               </Button>
             </a>
 
-
             <a href="https://www.youtube.com/@Devtherapy" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="hover-lift border-red-500/40 px-8 py-4 text-lg hover:border-red-500 hover:bg-red-500/10">
                 <Youtube className="mr-2 h-5 w-5" />

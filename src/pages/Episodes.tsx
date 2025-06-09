@@ -174,7 +174,7 @@ const Episodes = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MatrixBackground />
+      <MatrixBackground fullScreen />
 
       <div className="relative z-10">
         {/* Header */}

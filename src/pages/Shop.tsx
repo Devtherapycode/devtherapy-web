@@ -87,7 +87,7 @@ const Shop = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MatrixBackground />
+      <MatrixBackground fullScreen />
 
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between border-b border-brand-mint/10 p-6">

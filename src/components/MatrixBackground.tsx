@@ -1,6 +1,11 @@
+import { cn } from '@/lib/utils';
 import { useEffect, useRef } from 'react';
 
-const MatrixBackground = () => {
+type MatrixBackgroundProps = {
+  fullScreen?: boolean;
+};
+
+const MatrixBackground = ({ fullScreen = false }: MatrixBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -49,7 +54,7 @@ const MatrixBackground = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full opacity-20" style={{ pointerEvents: 'none' }} />;
+  return <canvas ref={canvasRef} className={cn('inset-0 z-10 w-full opacity-20', fullScreen ? 'fixed' : 'absolute')} style={{ pointerEvents: 'none' }} />;
 };
 
 export default MatrixBackground;

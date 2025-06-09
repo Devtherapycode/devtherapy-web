@@ -1,25 +1,14 @@
+import MatrixBackground from '@/components/MatrixBackground';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { guests } from '@/server/data/guests';
 import { ArrowRight, Search } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import zura from '@/assets/zuba.png';
 
 const Guests = () => {
   const [searchTerm, setSearchTerm] = useState('');
-
-  const guests = [
-    {
-      id: 'zura-abelashvili',
-      name: 'Zura Abelashvili',
-      title: 'Graphics Engineer at Rockstar Games',
-      bio: 'From Georgia to GTA VI - building the future of gaming graphics',
-      image: zura,
-      episode: 'Episode #7',
-      tags: ['graphics', 'gaming', 'rockstar'],
-    },
-  ];
 
   const filteredGuests = guests.filter(
     (guest) =>
@@ -29,7 +18,8 @@ const Guests = () => {
   );
 
   return (
-    <div className="matrix-bg min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
+      <MatrixBackground fullScreen />
       <div className="relative z-10 pb-16 pt-20">
         <div className="mx-auto max-w-6xl px-4">
           {/* Intro Section */}

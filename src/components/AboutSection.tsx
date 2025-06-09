@@ -1,7 +1,24 @@
+import avtandil from '@/assets/hosts/avtandil.jpeg';
+import tornike from '@/assets/hosts/tornike.jpeg';
 import { Card, CardContent } from '@/components/ui/card';
-import { Brain, Code, Coffee } from 'lucide-react';
+import { Brain, Code, Coffee, ExternalLink } from 'lucide-react';
+import { Button } from './ui/button';
 
 const AboutSection = () => {
+  const hosts = [
+    {
+      name: 'Tornike Gomareli',
+      image: tornike,
+      linkedin: 'https://www.linkedin.com/in/tornikegomareli/',
+      description: 'Senior Software Engineer with 10+ years experience in full-stack development. Passionate about developer wellness.',
+    },
+    {
+      name: 'Avtandil Ushikishvili',
+      image: avtandil,
+      linkedin: 'https://www.linkedin.com/in/avtuney/',
+      description: 'Tech lead and mental health advocate. Specializes in building Enterprise Software.',
+    },
+  ];
   return (
     <section className="px-4 py-20">
       <div className="mx-auto max-w-6xl">
@@ -44,24 +61,23 @@ const AboutSection = () => {
         <div className="rounded-xl border border-brand-mint/10 bg-card/30 p-8">
           <h3 className="mb-6 text-center text-2xl font-semibold">Meet Your Hosts</h3>
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-brand-mint/20">
-                <div className="text-2xl">👨‍💻</div>
+            {hosts.map((host) => (
+              <div className="text-center">
+                <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-brand-mint/20">
+                  <img src={host.image} alt={host.name} className="h-full w-full rounded-full object-cover" />
+                </div>
+                <h4 className="mb-2 text-xl font-semibold">{host.name}</h4>
+                <p className="text-muted-foreground">{host.description}</p>
+                <div className="mt-2">
+                  <a href={host.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" className="border-brand-mint/40 hover:border-brand-mint hover:bg-brand-mint/10">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      LinkedIn
+                    </Button>
+                  </a>
+                </div>
               </div>
-              <h4 className="mb-2 text-xl font-semibold">Host One</h4>
-              <p className="text-muted-foreground">
-                Senior Software Engineer with 10+ years experience in full-stack development. Passionate about clean code and developer wellness.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-brand-mint/20">
-                <div className="text-2xl">👩‍💻</div>
-              </div>
-              <h4 className="mb-2 text-xl font-semibold">Host Two</h4>
-              <p className="text-muted-foreground">
-                Tech lead and mental health advocate. Specializes in building inclusive teams and sustainable development practices.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>

@@ -23,7 +23,6 @@ const HeroSection = () => {
         <p className="mb-12 text-xl font-light text-muted-foreground md:text-2xl lg:text-3xl">Therapy for developers, one bug at a time</p>
 
         {/* CTA Buttons */}
-
         <div className="mb-16 flex flex-col gap-4 p-4">
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a href="https://www.youtube.com/@Devtherapy">

@@ -1,8 +1,8 @@
+import zura from '@/assets/zuba.png';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, ExternalLink, Play } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import zura from '@/assets/zuba.png';
 
 const GuestDetail = () => {
   const { guestId } = useParams();

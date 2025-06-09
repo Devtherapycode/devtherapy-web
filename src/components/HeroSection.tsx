@@ -1,8 +1,8 @@
+import logo from '@/assets/logo.png';
 import { Button } from '@/components/ui/button';
 import { Archive, Headphones, Play, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
-import logo from '@/assets/logo.png';
 
 const HeroSection = () => {
   return (

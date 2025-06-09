@@ -1,10 +1,10 @@
+import zura from '@/assets/zuba.png';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { ArrowRight, Search } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import zura from '@/assets/zuba.png';
 
 const Guests = () => {
   const [searchTerm, setSearchTerm] = useState('');

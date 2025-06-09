@@ -5,20 +5,32 @@ const PlatformLinks = () => {
   const platforms = [
     {
       name: 'Spotify',
-      icon: '🎵',
-      url: '#',
+      icon: '🟢',
+      url: 'https://open.spotify.com/show/6fF0duVCFxXKIOFagc1ovJ',
       color: 'bg-green-600 hover:bg-green-700',
     },
     {
       name: 'Apple Podcasts',
       icon: '🍎',
-      url: '#',
+      url: 'https://podcasts.apple.com/us/podcast/devtherapy/id1774788149',
       color: 'bg-purple-600 hover:bg-purple-700',
     },
     {
-      name: 'Google Podcasts',
-      icon: '🎙️',
-      url: '#',
+      name: 'Buzzsprout',
+      icon: '🌀',
+      url: 'https://www.buzzsprout.com/2415161',
+      color: 'bg-blue-600 hover:bg-blue-700',
+    },
+    {
+      name: 'Pocketcast',
+      icon: '🎧',
+      url: 'https://pocketcasts.com/podcasts/0f623c60-6fb8-013d-bd8d-02e325935ba3',
+      color: 'bg-blue-600 hover:bg-blue-700',
+    },
+    {
+      name: 'Deezer',
+      icon: '🎶',
+      url: 'https://www.deezer.com/en/show/1001333811',
       color: 'bg-blue-600 hover:bg-blue-700',
     },
   ];
@@ -29,7 +41,13 @@ const PlatformLinks = () => {
         <h2 className="mb-6 text-4xl font-bold text-brand-mint md:text-5xl">Listen Everywhere</h2>
         <p className="mb-12 text-xl text-muted-foreground">Choose your preferred platform and never miss an episode.</p>
 
-        <div className="mb-12 grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="mb-12 grid grid-cols-2 gap-6 md:grid-cols-3">
+          <Button variant="outline" size="lg" className="hover-lift h-20 flex-col gap-2 border-none bg-red-600 text-white hover:bg-red-700" asChild>
+            <a href="https://www.youtube.com/@Devtherapy" target="_blank" rel="noopener noreferrer">
+              <Youtube className="h-6 w-6" />
+              <span className="text-sm font-medium">YouTube</span>
+            </a>
+          </Button>
           {platforms.map((platform) => (
             <Button
               key={platform.name}
@@ -44,13 +62,6 @@ const PlatformLinks = () => {
               </a>
             </Button>
           ))}
-
-          <Button variant="outline" size="lg" className="hover-lift h-20 flex-col gap-2 border-none bg-red-600 text-white hover:bg-red-700" asChild>
-            <a href="https://www.youtube.com/@Devtherapy" target="_blank" rel="noopener noreferrer">
-              <Youtube className="h-6 w-6" />
-              <span className="text-sm font-medium">YouTube</span>
-            </a>
-          </Button>
         </div>
 
         <div className="rounded-xl border border-brand-mint/10 bg-card/30 p-8">

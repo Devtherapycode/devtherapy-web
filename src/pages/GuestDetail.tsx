@@ -1,28 +1,12 @@
-import zura from '@/assets/zuba.png';
+import MatrixBackground from '@/components/MatrixBackground';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { guestData } from '@/server/data/guests';
 import { ArrowLeft, ExternalLink, Play } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 
 const GuestDetail = () => {
   const { guestId } = useParams();
-
-  // In a real app, this would fetch guest data based on the ID
-  const guestData = {
-    'zura-abelashvili': {
-      name: 'Zura Abelashvili',
-      title: 'Graphics Engineer at Rockstar Games',
-      tagline: 'Episode #7 – From Georgia to GTA VI',
-      image: zura,
-      bio: `Zura is a talented graphics engineer at Rockstar Games, where he works on cutting-edge visual technologies that power some of the most beloved games in the world. Originally from Georgia, Zura's journey into game development showcases the global nature of tech talent and the passion that drives innovation in gaming.
-
-In our conversation, Zura shares insights into the technical challenges of creating realistic graphics, the collaborative nature of game development, and what it's like to work on projects that millions of players will experience.`,
-      quote:
-        "The most rewarding part of graphics engineering is seeing players get completely immersed in worlds we've helped create. Every optimization, every shader, every lighting effect contributes to that magic moment when reality and virtuality blend.",
-      youtubeUrl: 'https://www.youtube.com/embed/ptPHTbQk_sA',
-      linkedin: 'https://www.linkedin.com/in/zurab-abelashvili',
-    },
-  };
 
   const guest = guestData[guestId as keyof typeof guestData];
 
@@ -40,7 +24,8 @@ In our conversation, Zura shares insights into the technical challenges of creat
   }
 
   return (
-    <div className="matrix-bg min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
+      <MatrixBackground fullScreen />
       <div className="relative z-10 pb-16 pt-20">
         <div className="mx-auto max-w-4xl px-4">
           {/* Back Button */}
@@ -68,7 +53,7 @@ In our conversation, Zura shares insights into the technical challenges of creat
             <CardContent className="p-8">
               <h2 className="mb-6 text-2xl font-semibold text-brand-mint">About {guest.name.split(' ')[0]}</h2>
               <div className="prose prose-invert max-w-none">
-                {guest.bio.split('\n\n').map((paragraph, index) => (
+                {guest.description.split('\n\n').map((paragraph, index) => (
                   <p key={index} className="mb-4 leading-relaxed text-muted-foreground">
                     {paragraph}
                   </p>

@@ -1,6 +1,6 @@
 import logo from '@/assets/logo.png';
 import { Button } from '@/components/ui/button';
-import { Archive, Headphones, Play, Youtube } from 'lucide-react';
+import { Archive, Play, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
 
@@ -23,42 +23,42 @@ const HeroSection = () => {
         <p className="mb-12 text-xl font-light text-muted-foreground md:text-2xl lg:text-3xl">Therapy for developers, one bug at a time</p>
 
         {/* CTA Buttons */}
-        <div className="mb-16 flex flex-col flex-wrap items-center justify-center gap-4 sm:flex-row">
-          <Button size="lg" className="hover-lift bg-brand-mint px-8 py-4 text-lg font-semibold text-black hover:bg-brand-mint-dark">
-            <Play className="mr-2 h-5 w-5" />
-            Listen Now
-          </Button>
+        <div className="mb-16 flex flex-col gap-4 p-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a href="https://www.youtube.com/@Devtherapy">
+              <Button size="lg" className="hover-lift bg-brand-mint px-8 py-4 text-lg font-semibold text-black hover:bg-brand-mint-dark">
+                <Play className="mr-2 h-5 w-5" />
+                Listen Now
+              </Button>
+            </a>
 
-          <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
-            <Headphones className="mr-2 h-5 w-5" />
-            Subscribe
-          </Button>
+            <a href="https://www.youtube.com/@Devtherapy" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="hover-lift border-red-500/40 px-8 py-4 text-lg hover:border-red-500 hover:bg-red-500/10">
+                <Youtube className="mr-2 h-5 w-5" />
+                YouTube
+              </Button>
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link to="/episodes">
+              <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                <Archive className="mr-2 h-5 w-5" />
+                All Episodes
+              </Button>
+            </Link>
 
-          <a href="https://www.youtube.com/@Devtherapy" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="lg" className="hover-lift border-red-500/40 px-8 py-4 text-lg hover:border-red-500 hover:bg-red-500/10">
-              <Youtube className="mr-2 h-5 w-5" />
-              YouTube
-            </Button>
-          </a>
+            <Link to="/guests">
+              <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                Meet Our Guests
+              </Button>
+            </Link>
 
-          <Link to="/episodes">
-            <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
-              <Archive className="mr-2 h-5 w-5" />
-              All Episodes
-            </Button>
-          </Link>
-
-          <Link to="/guests">
-            <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
-              Meet Our Guests
-            </Button>
-          </Link>
-
-          <Link to="/shop">
-            <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
-              Shop Merch
-            </Button>
-          </Link>
+            <Link to="/shop">
+              <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                Shop Merch
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Scroll Indicator */}

@@ -1,4 +1,4 @@
-import logo from '@/assets/logo.png';
+import logo from '@/assets/common/logo.png';
 import { Button } from '@/components/ui/button';
 import { Archive, Play, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';

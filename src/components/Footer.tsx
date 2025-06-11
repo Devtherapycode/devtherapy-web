@@ -1,4 +1,4 @@
-import logo from '@/assets/logo.png';
+import logo from '@/assets/common/logo.png';
 import { Youtube } from 'lucide-react';
 
 const Footer = () => {

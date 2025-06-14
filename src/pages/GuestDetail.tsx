@@ -1,7 +1,7 @@
 import MatrixBackground from '@/components/MatrixBackground';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { guestData } from '@/server/data/guests';
+import { guestData } from '@/server/data/guests/guests.data';
 import { ArrowLeft, ExternalLink, Play } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 

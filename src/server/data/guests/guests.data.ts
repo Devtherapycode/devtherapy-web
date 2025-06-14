@@ -1,11 +1,31 @@
 import { abelaBasicInfo, abelaData } from './abela';
+import { kokraBasicInfo, kokraData } from './kokra';
 import { maineraBasicInfo, maineraData } from './mainera';
 import { zubaBasicInfo, zubaData } from './zuba';
 
-export const guests = [zubaBasicInfo, maineraBasicInfo, abelaBasicInfo];
+type GuestBasicInfo = {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  image: string;
+  episode: string;
+  tags: string[];
+};
 
-export const guestData = {
+export const guests: GuestBasicInfo[] = [zubaBasicInfo, maineraBasicInfo, abelaBasicInfo, kokraBasicInfo];
+
+type GuestData = {
+  tagline: string;
+  description: string;
+  quote: string;
+  youtubeUrl: string;
+  linkedin: string;
+} & GuestBasicInfo;
+
+export const guestData: Record<string, GuestData> = {
   zuba: zubaData,
   mainera: maineraData,
   abela: abelaData,
+  kokra: kokraData,
 };

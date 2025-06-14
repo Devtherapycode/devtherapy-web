@@ -2,7 +2,7 @@ import abela from '@/assets/guests/abela.jpeg';
 
 export const abelaBasicInfo = {
   id: 'abela',
-  name: 'Giorgi Abelashvili (აბელიქსი)',
+  name: 'Giorgi Abelashvili (Abelix)',
   title: 'Senior Game Developer at DECA Games',
   bio: 'თამაშების შექმნის ხელოვნება',
   image: abela,

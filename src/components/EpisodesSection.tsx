@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, Clock, Play } from 'lucide-react';
@@ -11,6 +12,7 @@ const EpisodesSection = () => {
       date: '2024-01-15',
       duration: '42 min',
       description: 'Exploring the psychological aspects of debugging and how to maintain composure when everything breaks.',
+      slug: 'debugging-mindset-frustration-to-flow',
     },
     {
       id: 2,
@@ -18,6 +20,7 @@ const EpisodesSection = () => {
       date: '2024-01-08',
       duration: '38 min',
       description: 'A deep dive into imposter syndrome, its prevalence in tech, and practical strategies for overcoming it.',
+      slug: 'imposter-syndrome-tech-not-alone',
     },
     {
       id: 3,
@@ -25,6 +28,7 @@ const EpisodesSection = () => {
       date: '2024-01-01',
       duration: '45 min',
       description: 'How to create a code review process that empowers developers and improves code quality without toxicity.',
+      slug: 'code-review-culture-building-trust',
     },
     {
       id: 4,
@@ -32,6 +36,7 @@ const EpisodesSection = () => {
       date: '2023-12-25',
       duration: '40 min',
       description: 'Identifying the unique challenges of remote development work and maintaining work-life balance.',
+      slug: 'remote-work-burnout-signs-solutions',
     },
   ];
 
@@ -48,12 +53,18 @@ const EpisodesSection = () => {
             <Card key={episode.id} className="hover-lift group border-brand-mint/20 bg-card/50">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <Button size="sm" className="mt-1 shrink-0 bg-brand-mint text-black hover:bg-brand-mint-dark">
-                    <Play className="h-4 w-4" />
-                  </Button>
+                  <Link to={`/episodes/${episode.slug}`}>
+                    <Button size="sm" className="mt-1 shrink-0 bg-brand-mint text-black hover:bg-brand-mint-dark">
+                      <Play className="h-4 w-4" />
+                    </Button>
+                  </Link>
 
                   <div className="flex-1">
-                    <h3 className="mb-2 text-xl font-semibold transition-colors group-hover:text-brand-mint">{episode.title}</h3>
+                    <Link to={`/episodes/${episode.slug}`}>
+                      <h3 className="mb-2 text-xl font-semibold transition-colors group-hover:text-brand-mint cursor-pointer">
+                        {episode.title}
+                      </h3>
+                    </Link>
                     <p className="mb-3 text-muted-foreground">{episode.description}</p>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">

@@ -277,12 +277,18 @@ const Episodes = () => {
                     <Card key={episode.id} className="hover-lift group border-brand-mint/20 bg-card/50">
                       <CardContent className="p-6">
                         <div className="flex items-start gap-4">
-                          <Button size="sm" className="mt-1 shrink-0 bg-brand-mint text-black hover:bg-brand-mint-dark">
-                            <Play className="h-4 w-4" />
-                          </Button>
+                          <Link to={`/episodes/${episode.slug}`}>
+                            <Button size="sm" className="mt-1 shrink-0 bg-brand-mint text-black hover:bg-brand-mint-dark">
+                              <Play className="h-4 w-4" />
+                            </Button>
+                          </Link>
 
                           <div className="min-w-0 flex-1">
-                            <h3 className="mb-2 line-clamp-2 text-lg font-semibold transition-colors group-hover:text-brand-mint">{episode.title}</h3>
+                            <Link to={`/episodes/${episode.slug}`}>
+                              <h3 className="mb-2 line-clamp-2 text-lg font-semibold transition-colors group-hover:text-brand-mint cursor-pointer">
+                                {episode.title}
+                              </h3>
+                            </Link>
                             <p className="mb-3 line-clamp-3 text-sm text-muted-foreground">{episode.description}</p>
 
                             <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">

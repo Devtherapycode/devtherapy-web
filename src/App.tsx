@@ -1,8 +1,10 @@
+
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HashRouter, Route, Routes } from 'react-router-dom';
+import EpisodeDetail from './pages/EpisodeDetail';
 import Episodes from './pages/Episodes';
 import GuestDetail from './pages/GuestDetail';
 import Guests from './pages/Guests';
@@ -22,6 +24,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/episodes" element={<Episodes />} />
+          <Route path="/episodes/:episodeSlug" element={<EpisodeDetail />} />
           <Route path="/guests" element={<Guests />} />
           <Route path="/guests/:guestId" element={<GuestDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

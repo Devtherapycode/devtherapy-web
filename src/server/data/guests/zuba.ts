@@ -1,8 +1,8 @@
-import zuba from '@/assets/guests/zuba.png';
+import zuba from '@/assets/guests/zuba.jpeg';
 
 export const zubaBasicInfo = {
   id: 'zuba',
-  name: 'Zura Abelashvili',
+  name: 'Zura Abelashvili (Zuba)',
   title: 'Graphics Engineer at Rockstar Games',
   bio: 'From Georgia to GTA VI - building the future of gaming graphics',
   image: zuba,

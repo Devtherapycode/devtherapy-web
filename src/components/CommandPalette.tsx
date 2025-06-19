@@ -1,4 +1,5 @@
 import { CommandDialog, CommandDialogTitle, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { allEpisodes } from '@/server/data/episodes/episodes.data';
 import { guests } from '@/server/data/guests/guests.data';
 import { YOUTUBE_URL } from '@/utils/const';
 import { Headphones, Home, Mic, User, Youtube } from 'lucide-react';
@@ -13,6 +14,13 @@ export const CommandPalette = ({ open, onOpenChange }: CommandPaletteProps) => {
   const navigate = useNavigate();
 
   const commands = [
+    {
+      id: 'subscribe-on-youtube',
+      label: 'Subscribe on YouTube',
+      icon: Youtube,
+      action: () => window.open(YOUTUBE_URL, '_blank'),
+      group: 'Commands',
+    },
     {
       id: 'home',
       label: 'Go to Home',
@@ -41,13 +49,13 @@ export const CommandPalette = ({ open, onOpenChange }: CommandPaletteProps) => {
     //   action: () => navigate('/shop'),
     //   group: 'Navigation',
     // },
-    {
-      id: 'subscribe-on-youtube',
-      label: 'Subscribe on YouTube',
-      icon: Youtube,
-      action: () => window.open(YOUTUBE_URL, '_blank'),
-      group: 'Actions',
-    },
+    ...allEpisodes.map((episode) => ({
+      id: episode.slug,
+      label: `Listen to Episode: ${episode.title}`,
+      icon: Headphones,
+      action: () => navigate(`/episodes/${episode.slug}`),
+      group: 'Episodes',
+    })),
     ...guests.map((guest) => ({
       id: guest.id,
       label: `View Guest: ${guest.name}`,
@@ -88,7 +96,7 @@ export const CommandPalette = ({ open, onOpenChange }: CommandPaletteProps) => {
                 onSelect={() => handleCommand(command)}
                 className="flex cursor-pointer items-center gap-3 px-3 py-2 hover:bg-accent data-[selected=true]:bg-accent/50"
               >
-                <command.icon className="h-4 w-4 text-primary" />
+                <command.icon className="h-4 w-4 shrink-0 text-primary" />
                 <span>{command.label}</span>
               </CommandItem>
             ))}

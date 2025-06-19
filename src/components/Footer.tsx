@@ -16,17 +16,17 @@ const Footer = () => {
             <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-brand-mint">
               <Youtube className="h-6 w-6" />
             </a>
-            <a href="#" className="text-sm text-muted-foreground transition-colors hover:text-brand-mint">
+            {/* <a href="#" className="text-sm text-muted-foreground transition-colors hover:text-brand-mint">
               Privacy Policy
             </a>
             <a href="#" className="text-sm text-muted-foreground transition-colors hover:text-brand-mint">
               Terms of Service
-            </a>
+            </a> */}
           </div>
         </div>
 
         <div className="mt-8 border-t border-brand-mint/10 pt-8 text-center text-muted-foreground">
-          <p>&copy; 2024 Devtherapy. All rights reserved. Therapy for developers, one bug at a time.</p>
+          <p>&copy; {new Date().getFullYear()} Devtherapy. All rights reserved. Therapy for developers, one bug at a time.</p>
         </div>
       </div>
     </footer>

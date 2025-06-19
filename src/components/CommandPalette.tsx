@@ -1,6 +1,7 @@
 import { CommandDialog, CommandDialogTitle, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { guests } from '@/server/data/guests/guests.data';
-import { Headphones, Home, Mic, ShoppingBag, User } from 'lucide-react';
+import { YOUTUBE_URL } from '@/utils/const';
+import { Headphones, Home, Mic, ShoppingBag, User, Youtube } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface CommandPaletteProps {
@@ -39,6 +40,13 @@ export const CommandPalette = ({ open, onOpenChange }: CommandPaletteProps) => {
       icon: ShoppingBag,
       action: () => navigate('/shop'),
       group: 'Navigation',
+    },
+    {
+      id: 'subscribe-on-youtube',
+      label: 'Subscribe on YouTube',
+      icon: Youtube,
+      action: () => window.open(YOUTUBE_URL, '_blank'),
+      group: 'Actions',
     },
     ...guests.map((guest) => ({
       id: guest.id,

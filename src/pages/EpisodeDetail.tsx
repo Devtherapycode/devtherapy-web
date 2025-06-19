@@ -2,54 +2,13 @@ import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { episodes } from '@/server/data/episodes/episodes.data';
+import { YOUTUBE_URL } from '@/utils/const';
 import { ArrowLeft, Calendar, Clock, Play, Share2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 
 const EpisodeDetail = () => {
   const { episodeSlug } = useParams();
-
-  // Mock episode data - in a real app this would come from an API
-  const episodes = {
-    'debugging-mindset-frustration-to-flow': {
-      id: 1,
-      title: 'The Debugging Mindset: From Frustration to Flow',
-      description:
-        'Exploring the psychological aspects of debugging and how to maintain composure when everything breaks. We dive deep into strategies for staying calm under pressure, turning debugging sessions from stressful experiences into learning opportunities.',
-      date: '2024-01-15',
-      duration: '42 min',
-      tags: ['mental health', 'debugging', 'productivity'],
-      youtubeId: 'ptPHTbQk_sA', // Using the same video ID as example
-      fullDescription: `In this episode, we explore the often overlooked psychological aspects of debugging. Every developer knows the frustration of staring at code that should work but doesn't, the mounting pressure as deadlines approach, and the mental fatigue that comes with complex problem-solving.
-
-We discuss practical strategies for maintaining composure during debugging sessions, including:
-- Building a systematic approach to problem-solving
-- Managing stress and avoiding tunnel vision
-- The importance of taking breaks and stepping away from the code
-- How to turn debugging into a learning opportunity rather than a source of frustration
-
-Whether you're a junior developer facing your first major bug or a senior engineer dealing with legacy systems, this episode offers insights into developing a healthier relationship with the debugging process.`,
-    },
-    'imposter-syndrome-tech-not-alone': {
-      id: 2,
-      title: "Imposter Syndrome in Tech: You're Not Alone",
-      description:
-        'A deep dive into imposter syndrome, its prevalence in tech, and practical strategies for overcoming it. Guest interviews with senior developers who share their experiences.',
-      date: '2024-01-08',
-      duration: '38 min',
-      tags: ['mental health', 'career', 'personal growth'],
-      youtubeId: 'ptPHTbQk_sA',
-      fullDescription: `Imposter syndrome affects developers at all levels, from bootcamp graduates to seasoned engineers at top tech companies. In this episode, we tackle this pervasive issue head-on with honest conversations and practical advice.
-
-Topics covered include:
-- Understanding what imposter syndrome really is and why it's so common in tech
-- The unique factors in tech culture that can amplify these feelings
-- Personal stories from developers who've struggled with and overcome imposter syndrome
-- Practical strategies for building confidence and recognizing your own achievements
-- How companies and teams can create environments that reduce imposter syndrome
-
-Remember: if you're feeling like you don't belong in tech, you're not alone, and those feelings don't reflect your actual capabilities.`,
-    },
-  };
 
   const episode = episodes[episodeSlug as keyof typeof episodes];
 
@@ -148,10 +107,12 @@ Remember: if you're feeling like you don't belong in tech, you're not alone, and
               <h3 className="mb-2 text-xl font-semibold text-brand-mint">Enjoyed this episode?</h3>
               <p className="mb-4 text-muted-foreground">Subscribe to Devtherapy for more conversations about code, culture, and mental health in tech.</p>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <Button className="bg-brand-mint text-black hover:bg-brand-mint-dark">
-                  <Play className="mr-2 h-4 w-4" />
-                  Subscribe on YouTube
-                </Button>
+                <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-brand-mint text-black hover:bg-brand-mint-dark">
+                    <Play className="mr-2 h-4 w-4" />
+                    Subscribe on YouTube
+                  </Button>
+                </a>
                 <Link to="/episodes">
                   <Button variant="outline" className="w-full border-brand-mint/40 text-brand-mint hover:bg-brand-mint/10 sm:w-auto">
                     Browse More Episodes

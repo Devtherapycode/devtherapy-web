@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { allEpisodes } from '@/server/data/episodes/episodes.data';
 import { ArrowLeft, Calendar, Clock, Filter, Play, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -15,120 +16,6 @@ const Episodes = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState('newest');
   const episodesPerPage = 9;
-
-  // Mock episode data
-  const allEpisodes = [
-    {
-      id: 1,
-      title: 'The Debugging Mindset: From Frustration to Flow',
-      description:
-        'Exploring the psychological aspects of debugging and how to maintain composure when everything breaks. We dive deep into strategies for staying calm under pressure.',
-      date: '2024-01-15',
-      duration: '42 min',
-      tags: ['mental health', 'debugging', 'productivity'],
-      slug: 'debugging-mindset-frustration-to-flow',
-    },
-    {
-      id: 2,
-      title: "Imposter Syndrome in Tech: You're Not Alone",
-      description:
-        'A deep dive into imposter syndrome, its prevalence in tech, and practical strategies for overcoming it. Guest interviews with senior developers.',
-      date: '2024-01-08',
-      duration: '38 min',
-      tags: ['mental health', 'career', 'personal growth'],
-      slug: 'imposter-syndrome-tech-not-alone',
-    },
-    {
-      id: 3,
-      title: 'Code Review Culture: Building Trust, Not Fear',
-      description: 'How to create a code review process that empowers developers and improves code quality without creating a toxic environment.',
-      date: '2024-01-01',
-      duration: '45 min',
-      tags: ['teamwork', 'code quality', 'culture'],
-      slug: 'code-review-culture-building-trust',
-    },
-    {
-      id: 4,
-      title: 'Remote Work Burnout: Signs and Solutions',
-      description: 'Identifying the unique challenges of remote development work and maintaining work-life balance in a distributed team environment.',
-      date: '2023-12-25',
-      duration: '40 min',
-      tags: ['remote work', 'mental health', 'work-life balance'],
-      slug: 'remote-work-burnout-signs-solutions',
-    },
-    {
-      id: 5,
-      title: 'AI and the Future of Development',
-      description: "Discussing how AI tools like GitHub Copilot are changing the development landscape and what it means for developers' careers.",
-      date: '2023-12-18',
-      duration: '52 min',
-      tags: ['AI', 'future', 'tools', 'career'],
-      slug: 'ai-future-development',
-    },
-    {
-      id: 6,
-      title: 'Frontend vs Backend: The Great Divide',
-      description: 'Exploring the differences between frontend and backend development cultures, challenges, and how to bridge the gap.',
-      date: '2023-12-11',
-      duration: '35 min',
-      tags: ['frontend', 'backend', 'career', 'teamwork'],
-      slug: 'frontend-vs-backend-great-divide',
-    },
-    {
-      id: 7,
-      title: 'Open Source Contribution Anxiety',
-      description: 'Overcoming the fear of contributing to open source projects and building confidence in the developer community.',
-      date: '2023-12-04',
-      duration: '41 min',
-      tags: ['open source', 'community', 'personal growth'],
-      slug: 'open-source-contribution-anxiety',
-    },
-    {
-      id: 8,
-      title: 'The Art of Technical Documentation',
-      description: 'Why good documentation is crucial and how to write docs that developers actually want to read and use.',
-      date: '2023-11-27',
-      duration: '33 min',
-      tags: ['documentation', 'communication', 'best practices'],
-      slug: 'art-technical-documentation',
-    },
-    {
-      id: 9,
-      title: 'Database Design Therapy Session',
-      description: 'Common database design mistakes and how to avoid them. A therapeutic approach to schema design and optimization.',
-      date: '2023-11-20',
-      duration: '48 min',
-      tags: ['database', 'backend', 'best practices'],
-      slug: 'database-design-therapy-session',
-    },
-    {
-      id: 10,
-      title: 'JavaScript Fatigue: Managing the Ecosystem',
-      description: 'Dealing with the overwhelming number of JavaScript frameworks and tools. How to choose what to learn next.',
-      date: '2023-11-13',
-      duration: '44 min',
-      tags: ['javascript', 'frontend', 'learning'],
-      slug: 'javascript-fatigue-managing-ecosystem',
-    },
-    {
-      id: 11,
-      title: 'DevOps for Developers: Breaking Down Silos',
-      description: 'Understanding DevOps culture and how developers can work better with operations teams.',
-      date: '2023-11-06',
-      duration: '39 min',
-      tags: ['devops', 'teamwork', 'infrastructure'],
-      slug: 'devops-developers-breaking-silos',
-    },
-    {
-      id: 12,
-      title: 'Mobile Development Mental Models',
-      description: 'Transitioning from web to mobile development and the mindset shifts required for success.',
-      date: '2023-10-30',
-      duration: '46 min',
-      tags: ['mobile', 'career', 'learning'],
-      slug: 'mobile-development-mental-models',
-    },
-  ];
 
   // Get all unique tags
   const allTags = Array.from(new Set(allEpisodes.flatMap((episode) => episode.tags)));
@@ -207,9 +94,6 @@ const Episodes = () => {
                 }}
                 className="h-12 border-brand-mint/20 bg-card/50 pl-10 focus:border-brand-mint"
               />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 transform text-xs text-muted-foreground">
-                Press <kbd className="rounded bg-muted px-2 py-1 text-xs">/</kbd> to focus
-              </div>
             </div>
 
             {/* Filters Row */}
@@ -276,44 +160,48 @@ const Episodes = () => {
                   {currentEpisodes.map((episode) => (
                     <Card key={episode.id} className="hover-lift group border-brand-mint/20 bg-card/50">
                       <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          <Link to={`/episodes/${episode.slug}`}>
-                            <Button size="sm" className="mt-1 shrink-0 bg-brand-mint text-black hover:bg-brand-mint-dark">
-                              <Play className="h-4 w-4" />
+                        <div>
+                          <Link to={`/episodes/${episode.slug}`} className="mb-3 flex items-center gap-2">
+                            <Button size="sm" className="bg-brand-mint px-5 py-0 text-black hover:bg-brand-mint-dark">
+                              <Play />
                             </Button>
+                            <h3 className="line-clamp-2 cursor-pointer text-lg font-semibold transition-colors group-hover:text-brand-mint">{episode.title}</h3>
                           </Link>
 
-                          <div className="min-w-0 flex-1">
-                            <Link to={`/episodes/${episode.slug}`}>
-                              <h3 className="mb-2 line-clamp-2 cursor-pointer text-lg font-semibold transition-colors group-hover:text-brand-mint">
-                                {episode.title}
-                              </h3>
-                            </Link>
-                            <p className="mb-3 line-clamp-3 text-sm text-muted-foreground">{episode.description}</p>
+                          <div className="aspect-video">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${episode.youtubeId}`}
+                              title={episode.title}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                              className="h-full w-full rounded-lg"
+                            />
+                          </div>
 
-                            <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="h-3 w-3" />
-                                {new Date(episode.date).toLocaleDateString()}
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                {episode.duration}
-                              </div>
-                            </div>
+                          <p className="mb-3 line-clamp-3 text-sm text-muted-foreground">{episode.description}</p>
 
-                            <div className="flex flex-wrap gap-1">
-                              {episode.tags.slice(0, 3).map((tag) => (
-                                <Badge key={tag} variant="outline" className="px-2 py-0 text-xs">
-                                  {tag}
-                                </Badge>
-                              ))}
-                              {episode.tags.length > 3 && (
-                                <Badge variant="outline" className="px-2 py-0 text-xs">
-                                  +{episode.tags.length - 3}
-                                </Badge>
-                              )}
+                          <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              {new Date(episode.date).toLocaleDateString()}
                             </div>
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              {episode.duration}
+                            </div>
+                          </div>
+
+                          <div className="flex flex-wrap gap-1">
+                            {episode.tags.slice(0, 3).map((tag) => (
+                              <Badge key={tag} variant="outline" className="px-2 py-0 text-xs">
+                                {tag}
+                              </Badge>
+                            ))}
+                            {episode.tags.length > 3 && (
+                              <Badge variant="outline" className="px-2 py-0 text-xs">
+                                +{episode.tags.length - 3}
+                              </Badge>
+                            )}
                           </div>
                         </div>
                       </CardContent>

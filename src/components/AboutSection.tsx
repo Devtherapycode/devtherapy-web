@@ -61,8 +61,8 @@ const AboutSection = () => {
         <div className="rounded-xl border border-brand-mint/10 bg-card/30 p-8">
           <h3 className="mb-6 text-center text-2xl font-semibold">Meet Your Hosts</h3>
           <div className="grid gap-8 md:grid-cols-2">
-            {hosts.map((host) => (
-              <div className="text-center">
+            {hosts.map((host, index) => (
+              <div className="text-center" key={index}>
                 <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-brand-mint/20">
                   <img src={host.image} alt={host.name} className="h-full w-full rounded-full object-cover" />
                 </div>

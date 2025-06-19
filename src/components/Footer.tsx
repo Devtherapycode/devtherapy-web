@@ -1,4 +1,5 @@
 import logo from '@/assets/common/logo.png';
+import { YOUTUBE_URL } from '@/utils/const';
 import { Youtube } from 'lucide-react';
 
 const Footer = () => {
@@ -12,12 +13,7 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-6">
-            <a
-              href="https://www.youtube.com/@Devtherapy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-brand-mint"
-            >
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-brand-mint">
               <Youtube className="h-6 w-6" />
             </a>
             <a href="#" className="text-sm text-muted-foreground transition-colors hover:text-brand-mint">

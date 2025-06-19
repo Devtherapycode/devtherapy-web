@@ -1,5 +1,6 @@
 import logo from '@/assets/common/logo.png';
 import { Button } from '@/components/ui/button';
+import { YOUTUBE_URL } from '@/utils/const';
 import { Archive, Play, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
@@ -25,14 +26,14 @@ const HeroSection = () => {
         {/* CTA Buttons */}
         <div className="mb-16 flex flex-col gap-4 p-4">
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a href="https://www.youtube.com/@Devtherapy">
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="hover-lift bg-brand-mint px-8 py-4 text-lg font-semibold text-black hover:bg-brand-mint-dark">
                 <Play className="mr-2 h-5 w-5" />
                 Listen Now
               </Button>
             </a>
 
-            <a href="https://www.youtube.com/@Devtherapy" target="_blank" rel="noopener noreferrer">
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="hover-lift border-red-500/40 px-8 py-4 text-lg hover:border-red-500 hover:bg-red-500/10">
                 <Youtube className="mr-2 h-5 w-5" />
                 YouTube

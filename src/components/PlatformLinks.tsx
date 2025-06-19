@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { YOUTUBE_URL } from '@/utils/const';
 import { Youtube } from 'lucide-react';
 
 const PlatformLinks = () => {
@@ -43,7 +44,7 @@ const PlatformLinks = () => {
 
         <div className="mb-12 grid grid-cols-2 gap-6 md:grid-cols-3">
           <Button variant="outline" size="lg" className="hover-lift h-20 flex-col gap-2 border-none bg-red-600 text-white hover:bg-red-700" asChild>
-            <a href="https://www.youtube.com/@Devtherapy" target="_blank" rel="noopener noreferrer">
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
               <Youtube className="h-6 w-6" />
               <span className="text-sm font-medium">YouTube</span>
             </a>

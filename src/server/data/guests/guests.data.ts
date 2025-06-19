@@ -1,5 +1,6 @@
 import { abelaBasicInfo, abelaData } from './abela';
 import { dalakaBasicInfo, dalakaData } from './dalaka';
+import { koiavaBasicInfo, koiavaData } from './koiava';
 import { kokraBasicInfo, kokraData } from './kokra';
 import { machitaBasicInfo, machitaData } from './machita';
 import { maineraBasicInfo, maineraData } from './mainera';
@@ -24,6 +25,7 @@ export const guests: GuestBasicInfo[] = [
   dalakaBasicInfo,
   notgiorgiBasicInfo,
   machitaBasicInfo,
+  koiavaBasicInfo,
 ];
 
 type GuestData = {
@@ -42,4 +44,5 @@ export const guestData: Record<string, GuestData> = {
   dalaka: dalakaData,
   notgiorgi: notgiorgiData,
   machita: machitaData,
+  koiava: koiavaData,
 };

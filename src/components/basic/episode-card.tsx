@@ -11,7 +11,7 @@ type EpisodeCardProps = {
 };
 
 export const EpisodeCard = ({ episode, tagsOn = false }: EpisodeCardProps) => (
-  <Card key={episode.id} className="hover-lift group border-brand-mint/20 bg-card/50">
+  <Card className="hover-lift group border-brand-mint/20 bg-card/50">
     <CardContent className="p-6">
       <div>
         <Link to={`/episodes/${episode.slug}`} className="mb-3 flex items-center gap-2">

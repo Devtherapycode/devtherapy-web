@@ -55,8 +55,7 @@ const Guests = () => {
                     </div>
                     <h3 className="mb-2 text-xl font-semibold transition-colors group-hover:text-brand-mint">{guest.name}</h3>
                     <p className="mb-2 text-sm font-medium text-brand-mint">{guest.title}</p>
-                    <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{guest.bio}</p>
-                    <div className="mb-4 text-xs text-muted-foreground">{guest.episode}</div>
+                    <div className="mb-4 text-sm text-muted-foreground">{typeof guest.episode === 'string' ? guest.episode : guest.episode.title}</div>
                     <Link to={`/guests/${guest.id}`}>
                       <Button
                         variant="outline"

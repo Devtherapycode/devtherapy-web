@@ -1,7 +1,7 @@
 import { EpisodeIdEnum } from './episodes.types';
 
 export const secondEpisodeBasicInfo = {
-  id: 1,
+  id: 2,
   title: 'Episode #2 - Web ის ევოლუცია, Toptal, ენთუზიაზმი, Job Market',
   description: 'ჩვენი ტექ პოდკასტის მეორე ეპიზოდი.',
   date: '2024-10-23',

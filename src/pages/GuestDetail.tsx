@@ -45,7 +45,7 @@ const GuestDetail = () => {
             </div>
             <h1 className="glow-text mb-4 text-4xl font-bold md:text-5xl">{guest.name}</h1>
             <p className="mb-2 text-xl text-brand-mint md:text-2xl">{guest.title}</p>
-            <p className="text-lg text-muted-foreground">{guest.tagline}</p>
+            <p className="text-lg text-muted-foreground">{typeof guest.episode !== 'string' ? guest.episode.title : guest.episode}</p>
           </div>
 
           {/* About Section */}
@@ -63,12 +63,14 @@ const GuestDetail = () => {
           </Card>
 
           {/* Quote Section */}
-          <Card className="mb-8 border-brand-mint/30 bg-gradient-to-r from-brand-mint/10 to-brand-mint/5">
-            <CardContent className="p-8">
-              <blockquote className="text-center text-lg italic">"{guest.quote}"</blockquote>
-              <p className="mt-4 text-center font-medium text-brand-mint">— {guest.name}</p>
-            </CardContent>
-          </Card>
+          {guest.quote && (
+            <Card className="mb-8 border-brand-mint/30 bg-gradient-to-r from-brand-mint/10 to-brand-mint/5">
+              <CardContent className="p-8">
+                <blockquote className="text-center text-lg italic">"{guest.quote}"</blockquote>
+                <p className="mt-4 text-center font-medium text-brand-mint">— {guest.name}</p>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Embedded Episode */}
           <Card className="mb-8 border-brand-mint/20 bg-card/50">
@@ -79,7 +81,7 @@ const GuestDetail = () => {
               </div>
               <div className="aspect-video overflow-hidden rounded-lg bg-black/20">
                 <iframe
-                  src={guest.youtubeUrl}
+                  src={typeof guest.episode !== 'string' ? `https://www.youtube.com/embed/${guest.episode.youtubeId}` : guest.youtubeUrl}
                   title={`Devtherapy Episode with ${guest.name}`}
                   className="h-full w-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

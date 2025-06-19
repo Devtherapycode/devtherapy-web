@@ -1,7 +1,6 @@
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from '@/hooks/use-toast';
+import { useToast } from './use-toast';
 
 interface UseKeyboardShortcutsProps {
   onCommandPaletteOpen: () => void;
@@ -9,23 +8,20 @@ interface UseKeyboardShortcutsProps {
 
 export const useKeyboardShortcuts = ({ onCommandPaletteOpen }: UseKeyboardShortcutsProps) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // Secret Dev Mode shortcut: Ctrl+Alt+D (or Cmd+Option+D on Mac)
-      if (
-        (event.ctrlKey || event.metaKey) &&
-        event.altKey &&
-        event.key.toLowerCase() === 'd'
-      ) {
+      if ((event.ctrlKey || event.metaKey) && event.altKey && event.key.toLowerCase() === 'd') {
         event.preventDefault();
         toast({
-          title: "🎧 You just unlocked Dev Mode",
-          description: "Go listen to another episode.",
+          title: '🎧 You just unlocked Dev Mode',
+          description: 'Go listen to another episode.',
           action: (
             <button
               onClick={() => navigate('/episodes')}
-              className="bg-primary text-primary-foreground px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors"
+              className="rounded bg-primary px-3 py-1 text-sm text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Take me there
             </button>

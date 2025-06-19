@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, Clock, Play } from 'lucide-react';
@@ -61,9 +60,7 @@ const EpisodesSection = () => {
 
                   <div className="flex-1">
                     <Link to={`/episodes/${episode.slug}`}>
-                      <h3 className="mb-2 text-xl font-semibold transition-colors group-hover:text-brand-mint cursor-pointer">
-                        {episode.title}
-                      </h3>
+                      <h3 className="mb-2 cursor-pointer text-xl font-semibold transition-colors group-hover:text-brand-mint">{episode.title}</h3>
                     </Link>
                     <p className="mb-3 text-muted-foreground">{episode.description}</p>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">

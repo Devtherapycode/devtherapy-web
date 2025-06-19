@@ -1,8 +1,7 @@
-
 import MatrixBackground from '@/components/MatrixBackground';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Clock, Play, Share2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -14,7 +13,8 @@ const EpisodeDetail = () => {
     'debugging-mindset-frustration-to-flow': {
       id: 1,
       title: 'The Debugging Mindset: From Frustration to Flow',
-      description: 'Exploring the psychological aspects of debugging and how to maintain composure when everything breaks. We dive deep into strategies for staying calm under pressure, turning debugging sessions from stressful experiences into learning opportunities.',
+      description:
+        'Exploring the psychological aspects of debugging and how to maintain composure when everything breaks. We dive deep into strategies for staying calm under pressure, turning debugging sessions from stressful experiences into learning opportunities.',
       date: '2024-01-15',
       duration: '42 min',
       tags: ['mental health', 'debugging', 'productivity'],
@@ -32,7 +32,8 @@ Whether you're a junior developer facing your first major bug or a senior engine
     'imposter-syndrome-tech-not-alone': {
       id: 2,
       title: "Imposter Syndrome in Tech: You're Not Alone",
-      description: 'A deep dive into imposter syndrome, its prevalence in tech, and practical strategies for overcoming it. Guest interviews with senior developers who share their experiences.',
+      description:
+        'A deep dive into imposter syndrome, its prevalence in tech, and practical strategies for overcoming it. Guest interviews with senior developers who share their experiences.',
       date: '2024-01-08',
       duration: '38 min',
       tags: ['mental health', 'career', 'personal growth'],
@@ -54,15 +55,13 @@ Remember: if you're feeling like you don't belong in tech, you're not alone, and
 
   if (!episode) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
         <MatrixBackground fullScreen />
         <div className="relative z-10 text-center">
-          <h1 className="text-4xl font-bold text-brand-mint mb-4">Episode Not Found</h1>
-          <p className="text-muted-foreground mb-6">The episode you're looking for doesn't exist.</p>
+          <h1 className="mb-4 text-4xl font-bold text-brand-mint">Episode Not Found</h1>
+          <p className="mb-6 text-muted-foreground">The episode you're looking for doesn't exist.</p>
           <Link to="/episodes">
-            <Button className="bg-brand-mint text-black hover:bg-brand-mint-dark">
-              Back to Episodes
-            </Button>
+            <Button className="bg-brand-mint text-black hover:bg-brand-mint-dark">Back to Episodes</Button>
           </Link>
         </div>
       </div>
@@ -83,7 +82,7 @@ Remember: if you're feeling like you don't belong in tech, you're not alone, and
                 <span className="font-semibold">Back to Episodes</span>
               </Link>
               <Button variant="outline" size="sm" className="border-brand-mint/40 text-brand-mint hover:bg-brand-mint/10">
-                <Share2 className="h-4 w-4 mr-2" />
+                <Share2 className="mr-2 h-4 w-4" />
                 Share
               </Button>
             </div>
@@ -106,7 +105,7 @@ Remember: if you're feeling like you don't belong in tech, you're not alone, and
             </div>
 
             <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">{episode.title}</h1>
-            
+
             <p className="mb-6 text-xl text-muted-foreground">{episode.description}</p>
 
             <div className="flex flex-wrap gap-2">
@@ -138,9 +137,7 @@ Remember: if you're feeling like you don't belong in tech, you're not alone, and
             <CardContent className="p-6">
               <h2 className="mb-4 text-2xl font-semibold text-brand-mint">About This Episode</h2>
               <div className="prose prose-invert max-w-none">
-                <p className="whitespace-pre-line text-muted-foreground leading-relaxed">
-                  {episode.fullDescription}
-                </p>
+                <p className="whitespace-pre-line leading-relaxed text-muted-foreground">{episode.fullDescription}</p>
               </div>
             </CardContent>
           </Card>
@@ -149,9 +146,7 @@ Remember: if you're feeling like you don't belong in tech, you're not alone, and
           <Card className="border-brand-mint/20 bg-card/50">
             <CardContent className="p-6 text-center">
               <h3 className="mb-2 text-xl font-semibold text-brand-mint">Enjoyed this episode?</h3>
-              <p className="mb-4 text-muted-foreground">
-                Subscribe to Devtherapy for more conversations about code, culture, and mental health in tech.
-              </p>
+              <p className="mb-4 text-muted-foreground">Subscribe to Devtherapy for more conversations about code, culture, and mental health in tech.</p>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <Button className="bg-brand-mint text-black hover:bg-brand-mint-dark">
                   <Play className="mr-2 h-4 w-4" />

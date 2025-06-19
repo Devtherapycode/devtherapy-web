@@ -285,7 +285,7 @@ const Episodes = () => {
 
                           <div className="min-w-0 flex-1">
                             <Link to={`/episodes/${episode.slug}`}>
-                              <h3 className="mb-2 line-clamp-2 text-lg font-semibold transition-colors group-hover:text-brand-mint cursor-pointer">
+                              <h3 className="mb-2 line-clamp-2 cursor-pointer text-lg font-semibold transition-colors group-hover:text-brand-mint">
                                 {episode.title}
                               </h3>
                             </Link>

@@ -1,6 +1,5 @@
-
-import { useState } from 'react';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
+import { useState } from 'react';
 import { CommandPalette } from './CommandPalette';
 
 export const GlobalShortcuts = () => {
@@ -10,10 +9,5 @@ export const GlobalShortcuts = () => {
     onCommandPaletteOpen: () => setCommandPaletteOpen(true),
   });
 
-  return (
-    <CommandPalette
-      open={commandPaletteOpen}
-      onOpenChange={setCommandPaletteOpen}
-    />
-  );
+  return <CommandPalette open={commandPaletteOpen} onOpenChange={setCommandPaletteOpen} />;
 };

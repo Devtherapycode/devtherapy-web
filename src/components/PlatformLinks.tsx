@@ -65,7 +65,7 @@ const PlatformLinks = () => {
           ))}
         </div>
 
-        <div className="rounded-xl border border-brand-mint/10 bg-card/30 p-8">
+        {/* <div className="rounded-xl border border-brand-mint/10 bg-card/30 p-8">
           <h3 className="mb-4 text-2xl font-semibold">Stay Updated</h3>
           <p className="mb-6 text-muted-foreground">Get notified when new episodes drop and join our community of developers.</p>
           <div className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row">
@@ -76,7 +76,7 @@ const PlatformLinks = () => {
             />
             <Button className="bg-brand-mint text-black hover:bg-brand-mint-dark">Subscribe</Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

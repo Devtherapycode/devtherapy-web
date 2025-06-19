@@ -54,11 +54,11 @@ const HeroSection = () => {
               </Button>
             </Link>
 
-            <Link to="/shop">
+            {/* <Link to="/shop">
               <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
                 Shop Merch
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
 

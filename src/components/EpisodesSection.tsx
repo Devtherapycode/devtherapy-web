@@ -11,8 +11,8 @@ const EpisodesSection = () => (
         <p className="text-xl text-muted-foreground">Fresh conversations about code, culture, and mental health in tech.</p>
       </div>
 
-      <div className="space-y-6 md:grid lg:grid-cols-2">
-        {allEpisodes.map((episode) => (
+      <div className="gap-6 md:grid lg:grid-cols-2">
+        {allEpisodes.slice(0, 4).map((episode) => (
           <EpisodeCard key={episode.id} episode={episode} />
         ))}
       </div>

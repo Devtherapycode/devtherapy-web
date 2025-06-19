@@ -31,7 +31,7 @@ export const EpisodeCard = ({ episode, tagsOn = false }: EpisodeCardProps) => (
           />
         </div>
 
-        <p className="mb-3 line-clamp-3 text-sm text-muted-foreground">{episode.description}</p>
+        <p className="mb-3 mt-2 line-clamp-3 text-sm text-muted-foreground">{episode.description}</p>
 
         <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1">

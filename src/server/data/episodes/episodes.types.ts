@@ -1,5 +1,6 @@
 export enum EpisodeIdEnum {
   DAE_IYOS_NATELI = 'dae-iyos-nateli',
+  WEB_EVOLUTION_TOPTAL_ENTUZI_JOB_MARKET = 'web-evolution-toptal-entuzi-job-market',
 }
 
 export type EpisodeBasicInfo = {

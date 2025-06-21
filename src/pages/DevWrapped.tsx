@@ -1,9 +1,9 @@
-
 import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
+import { YOUTUBE_URL } from '@/utils/const';
 import { ArrowLeft, Calendar, Clock, Headphones, Share2, Star, Trophy, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ const DevWrapped = () => {
   }, [getWrappedStats]);
 
   const handleShare = () => {
-    const shareText = `My Dev Wrapped 🎧\n\n📊 ${stats.episodesCompleted} episodes completed\n⏰ ${stats.totalPlayEvents} play sessions\n🎯 Top achievement: ${stats.achievements[0] || 'Getting started!'}\n\nCheck out @devtherapy_io for more! 🚀`;
+    const shareText = `My Dev Wrapped 🎧\n\n📊 ${stats.episodesCompleted} episodes completed\n⏰ ${stats.totalPlayEvents} play sessions\n🎯 Top achievement: ${stats.achievements[0] || 'Getting started!'}\n\nCheck out ${YOUTUBE_URL} for more! 🚀`;
 
     navigator.clipboard.writeText(shareText).then(() => {
       toast.success('Dev Wrapped stats copied to clipboard!');

@@ -12,8 +12,8 @@ export const useKeyboardShortcuts = ({ onCommandPaletteOpen }: UseKeyboardShortc
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // Secret Dev Mode shortcut: Ctrl+Alt+D (or Cmd+Option+D on Mac)
-      if ((event.ctrlKey || event.metaKey) && event.altKey && event.key.toLowerCase() === 'd') {
+      // Secret Dev Mode shortcut: Ctrl+Shift+D (or Cmd+Shift+D on Mac)
+      if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 'd') {
         event.preventDefault();
         toast({
           title: '🎧 You just unlocked Dev Mode',

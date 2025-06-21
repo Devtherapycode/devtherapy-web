@@ -42,13 +42,13 @@ export const CommandPalette = ({ open, onOpenChange }: CommandPaletteProps) => {
       action: () => navigate('/guests'),
       group: 'Navigation',
     },
-    // {
-    //   id: 'shop',
-    //   label: 'Go to Shop',
-    //   icon: ShoppingBag,
-    //   action: () => navigate('/shop'),
-    //   group: 'Navigation',
-    // },
+    {
+      id: 'wrapped',
+      label: 'View Dev Wrapped',
+      icon: Mic,
+      action: () => navigate('/wrapped'),
+      group: 'Navigation',
+    },
     ...allEpisodes.map((episode) => ({
       id: episode.slug,
       label: `Listen to Episode: ${episode.title}`,

@@ -1,24 +1,27 @@
+
 import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getWrappedData } from '@/utils/wrappedAnalytics';
+import { useAnalyticsStore } from '@/stores/analyticsStore';
 import { ArrowLeft, Calendar, Clock, Headphones, Share2, Star, Trophy, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 const DevWrapped = () => {
-  const [stats, setStats] = useState(getWrappedData());
+  const { getWrappedStats } = useAnalyticsStore();
+  const [stats, setStats] = useState(getWrappedStats());
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setStats(getWrappedStats());
     setIsVisible(true);
-  }, []);
+  }, [getWrappedStats]);
 
   const handleShare = () => {
-    const shareText = `My Dev Wrapped 🎧\n\n📊 ${stats.episodesCompleted} episodes completed\n⏰ ${stats.totalTimeListened}h of dev therapy\n🎯 Top achievement: ${stats.achievements[0] || 'Getting started!'}\n\nCheck out @devtherapy_io for more! 🚀`;
+    const shareText = `My Dev Wrapped 🎧\n\n📊 ${stats.episodesCompleted} episodes completed\n⏰ ${stats.totalPlayEvents} play sessions\n🎯 Top achievement: ${stats.achievements[0] || 'Getting started!'}\n\nCheck out @devtherapy_io for more! 🚀`;
 
     navigator.clipboard.writeText(shareText).then(() => {
       toast.success('Dev Wrapped stats copied to clipboard!');
@@ -91,11 +94,11 @@ const DevWrapped = () => {
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                       <Clock className="h-4 w-4" />
-                      Hours Listened
+                      Play Sessions
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-3xl font-bold text-brand-mint">{stats.totalTimeListened}</div>
+                    <div className="text-3xl font-bold text-brand-mint">{stats.totalPlayEvents}</div>
                   </CardContent>
                 </Card>
 

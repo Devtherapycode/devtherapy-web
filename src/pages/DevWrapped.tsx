@@ -211,7 +211,7 @@ const DevWrapped = () => {
                 className={`delay-1100 border-brand-mint/20 bg-card/50 transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
               >
                 <CardHeader>
-                  <CardTitle>Start Your {currentYear + 1} Journey</CardTitle>
+                  <CardTitle>Continue Your Dev Therapy Journey</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="mb-4 text-muted-foreground">Ready to level up your dev game? Discover more episodes and continue your learning journey.</p>

@@ -137,10 +137,9 @@ export const useAnalyticsStore = create<AnalyticsState>()(
           }
         });
 
-        const mostListenedGuest = Object.keys(guestCounts).reduce(
-          (a, b) => (guestCounts[a] > guestCounts[b] ? a : b), 
-          Object.keys(guestCounts)[0] || null
-        );
+        const mostListenedGuest = Object.keys(guestCounts).length > 0
+          ? Object.keys(guestCounts).reduce((a, b) => (guestCounts[a] > guestCounts[b] ? a : b))
+          : null;
 
         // Find favorite episode
         const favoriteEpisodes = Object.entries(stats).filter(([, stat]) => stat.isFavorite);
@@ -169,10 +168,13 @@ export const useAnalyticsStore = create<AnalyticsState>()(
         // Generate achievements
         const achievements = generateAchievements(episodesCompleted, totalPlayEvents, topTags);
 
-        // Calculate streak (simplified)
-        const streakDays = state.lastActiveDate && 
-          new Date().getTime() - new Date(state.lastActiveDate).getTime() < 7 * 24 * 60 * 60 * 1000 
-          ? 7 : 0;
+        // Calculate actual active days based on unique dates
+        const uniqueDates = new Set(
+          Object.values(stats)
+            .filter(stat => stat.lastPlayedAt)
+            .map(stat => new Date(stat.lastPlayedAt!).toDateString())
+        );
+        const streakDays = uniqueDates.size;
 
         return {
           episodesCompleted,

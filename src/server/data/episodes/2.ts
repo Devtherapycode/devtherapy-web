@@ -1,14 +1,15 @@
 import { EpisodeIdEnum } from './episodes.types';
 
 export const secondEpisodeBasicInfo = {
-  id: 2,
+  id: '2',
   title: 'Episode #2 - Web ის ევოლუცია, Toptal, ენთუზიაზმი, Job Market',
   description: 'ჩვენი ტექ პოდკასტის მეორე ეპიზოდი.',
   date: '2024-10-23',
-  duration: '57 min',
+  duration: 57,
   tags: ['ვებ დეველოპმენტი', 'ტოპტალი', 'ენთუზიაზმი', 'სამსახურები'],
   slug: EpisodeIdEnum.WEB_EVOLUTION_TOPTAL_ENTUZI_JOB_MARKET,
   youtubeId: 'bqmyM99JMHU',
+  guest: 'Levan Lotuashvili',
 };
 
 export const secondEpisodeData = {

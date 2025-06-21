@@ -4,14 +4,15 @@ export enum EpisodeIdEnum {
 }
 
 export type EpisodeBasicInfo = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   date: string;
-  duration: string;
+  duration: number;
   tags: string[];
   slug: EpisodeIdEnum;
   youtubeId: string;
+  guest?: string;
 };
 
 export type Episode = EpisodeBasicInfo & {

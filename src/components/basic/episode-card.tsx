@@ -40,7 +40,7 @@ export const EpisodeCard = ({ episode, tagsOn = false }: EpisodeCardProps) => (
           </div>
           <div className="flex items-center gap-1">
             <Clock className="h-3 w-3" />
-            {episode.duration}
+            {episode.duration} min
           </div>
         </div>
 

@@ -13,7 +13,6 @@ export const MemesFilters = ({ filteredMemesCount, activeFilters, onFiltersChang
   const isImageFilterActive = activeFilters.includes('image');
   const isVideoFilterActive = activeFilters.includes('video');
   const memesCountText = filteredMemesCount === 1 ? 'meme' : 'memes';
-  const isNotFirstVisit = localStorage.getItem('isNotFirstVisit');
 
   return (
     <section className="px-4 py-6">
@@ -67,15 +66,11 @@ export const MemesFilters = ({ filteredMemesCount, activeFilters, onFiltersChang
             Showing {filteredMemesCount} {memesCountText}
           </div>
         </div>
-        {!isNotFirstVisit && (
-          <div className="flex flex-col items-end gap-2">
-            <Button variant="outline" onClick={updateLayout}>
-              <RefreshCcw className="h-4 w-4" />
-              Refresh
-            </Button>
-            <span className="text-xs">If you see a meme that is not loading, please refresh the page.</span>
-          </div>
-        )}
+
+        <Button variant="outline" onClick={updateLayout}>
+          <RefreshCcw className="h-4 w-4" />
+          Refresh
+        </Button>
       </div>
     </section>
   );

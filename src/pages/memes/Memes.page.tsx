@@ -100,7 +100,7 @@ const Memes = () => {
           updateLayout={updateLayout}
         />
 
-        <MemesMasonryGrid filteredMemes={filteredMemeItems} onMemeShare={handleMemeShare} masonryRef={containerRef} />
+        <MemesMasonryGrid filteredMemes={filteredMemeItems} onMemeShare={handleMemeShare} masonryRef={containerRef} onItemLoad={updateLayout} />
       </div>
 
       <MemeModal filteredMemes={filteredMemeItems} onShareMeme={handleMemeShare} />

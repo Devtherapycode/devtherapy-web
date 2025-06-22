@@ -16,6 +16,8 @@ const DEFAULT_MASONRY_CONFIG: MasonryLayoutConfig = {
 
 export const useMasonryLayout = (itemsCount: number, config: MasonryLayoutConfig = DEFAULT_MASONRY_CONFIG, updateDelay: number = 250) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const batchUpdateTimeoutRef = useRef<NodeJS.Timeout>();
+  const pendingUpdatesRef = useRef(0);
 
   const getColumnCountForWidth = useCallback(
     (containerWidth: number): number => {
@@ -30,7 +32,7 @@ export const useMasonryLayout = (itemsCount: number, config: MasonryLayoutConfig
     [config],
   );
 
-  const updateLayout = useCallback(() => {
+  const performLayoutUpdate = useCallback(() => {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
@@ -50,11 +52,6 @@ export const useMasonryLayout = (itemsCount: number, config: MasonryLayoutConfig
         item.style.top = '0px';
         item.style.width = `${columnWidth}px`;
 
-        const mediaElement = item.querySelector('img, video') as HTMLImageElement | HTMLVideoElement;
-        if (mediaElement) {
-          mediaElement.onload = () => updateLayout();
-        }
-
         columnHeights[index] = item.offsetHeight + gap;
         return;
       }
@@ -70,7 +67,23 @@ export const useMasonryLayout = (itemsCount: number, config: MasonryLayoutConfig
     });
 
     container.style.height = `${Math.max(...columnHeights)}px`;
+    pendingUpdatesRef.current = 0;
   }, [config, getColumnCountForWidth]);
+
+  // Batched update function
+  const updateLayout = useCallback(() => {
+    pendingUpdatesRef.current += 1;
+
+    // Clear existing timeout
+    if (batchUpdateTimeoutRef.current) {
+      clearTimeout(batchUpdateTimeoutRef.current);
+    }
+
+    // Batch updates - wait for multiple items to load
+    batchUpdateTimeoutRef.current = setTimeout(() => {
+      performLayoutUpdate();
+    }, updateDelay);
+  }, [performLayoutUpdate, updateDelay]);
 
   // Update layout when items count changes
   useEffect(() => {
@@ -90,6 +103,15 @@ export const useMasonryLayout = (itemsCount: number, config: MasonryLayoutConfig
     window.addEventListener('resize', handleWindowResize);
     return () => window.removeEventListener('resize', handleWindowResize);
   }, [updateLayout]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (batchUpdateTimeoutRef.current) {
+        clearTimeout(batchUpdateTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return {
     containerRef,

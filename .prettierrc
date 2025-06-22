@@ -5,6 +5,5 @@
   "tabWidth": 2,
   "useTabs": false,
   "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
-  "endOfLine": "lf",
-  "ignore": ["src/server/data/memes/**"]
+  "endOfLine": "lf"
 }

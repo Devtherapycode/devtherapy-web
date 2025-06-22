@@ -10,7 +10,7 @@ import Episodes from './pages/Episodes';
 import GuestDetail from './pages/GuestDetail';
 import Guests from './pages/Guests';
 import Index from './pages/Index';
-import Memes from './pages/Memes';
+import Memes from './pages/memes/Memes.page';
 import NotFound from './pages/NotFound';
 import Shop from './pages/Shop';
 

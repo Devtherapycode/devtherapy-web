@@ -1,158 +1,111 @@
 import MatrixBackground from '@/components/MatrixBackground';
 import { memes } from '@/server/data/memes/memes.data';
-import { MemeItem, MemeType } from '@/server/data/memes/memes.types';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { MemeFilters } from '@/server/data/memes/memes.types';
+import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import { MemeModal } from './components/meme-modal';
 import { MemesFilters } from './components/memes-filters';
 import { MemesHeader } from './components/memes-header';
 import { MemesMasonryGrid } from './components/memes-masonry-grid';
+import { useMasonryLayout } from './hooks/use-masonry-layout';
+import { buildShareableUrl, processMemesData, updateUrlParams } from './utils/meme-utils';
 
 const Memes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedMeme, setSelectedMeme] = useState<string | null>(null);
-  const [activeFilters, setActiveFilters] = useState<MemeType[]>(['image', 'video']);
-  const masonryRef = useRef<HTMLDivElement>(null);
+  const [selectedMemeFilename, setSelectedMemeFilename] = useState<string | null>(null);
+  const [activeFilters, setActiveFilters] = useState<MemeFilters>(['image', 'video']);
 
-  // Process memes data
-  const memeItems: MemeItem[] = memes.map((memeUrl) => {
-    const filename = memeUrl.split('/').pop()?.split('.')[0] || '';
-    const extension = memeUrl.split('.').pop()?.toLowerCase();
-    const type: MemeType = ['mp4', 'webm', 'mov'].includes(extension || '') ? 'video' : 'image';
+  const processedMemeItems = processMemesData(memes);
+  const filteredMemeItems = processedMemeItems.filter((meme) => activeFilters.includes(meme.type));
+  const { containerRef } = useMasonryLayout(filteredMemeItems.length);
 
-    return {
-      url: memeUrl,
-      filename,
-      type,
-    };
-  });
+  const selectedMemeItem = selectedMemeFilename ? processedMemeItems.find((meme) => meme.filename === selectedMemeFilename) || null : null;
 
-  // Filter memes based on active filters
-  const filteredMemes = memeItems.filter((meme) => activeFilters.includes(meme.type));
+  const initializeFromUrlParams = useCallback(() => {
+    const selectedParam = searchParams.get('selected');
+    const filtersParam = searchParams.get('filters');
 
-  // Initialize from URL params
-  useEffect(() => {
-    const selected = searchParams.get('selected');
-    const filters = searchParams.get('filters');
-
-    if (selected) {
-      setSelectedMeme(selected);
+    if (selectedParam) {
+      setSelectedMemeFilename(selectedParam);
     }
 
-    if (filters) {
-      const filterArray = filters.split(',') as MemeType[];
+    if (filtersParam) {
+      const filterArray = filtersParam.split(',') as MemeFilters;
       setActiveFilters(filterArray);
     }
   }, [searchParams]);
 
-  // Masonry layout function
-  const updateMasonryLayout = useCallback(() => {
-    if (!masonryRef.current) return;
+  const handleFiltersChange = useCallback(
+    (newFilters: MemeFilters) => {
+      setActiveFilters(newFilters);
 
-    const container = masonryRef.current;
-    const items = Array.from(container.children) as HTMLElement[];
-    const gap = 16;
-    const containerWidth = container.offsetWidth;
+      const updatedParams = updateUrlParams(searchParams, {
+        filters: newFilters.length > 0 ? newFilters.join(',') : null,
+      });
+      setSearchParams(updatedParams);
+    },
+    [searchParams, setSearchParams],
+  );
 
-    // Determine number of columns based on screen width
-    let columns = 4;
-    if (containerWidth < 768)
-      columns = 2; // mobile
-    else if (containerWidth < 1024) columns = 3; // tablet
+  const handleMemeOpen = useCallback(
+    (filename: string) => {
+      setSelectedMemeFilename(filename);
 
-    const columnWidth = (containerWidth - gap * (columns - 1)) / columns;
-    const columnHeights = new Array(columns).fill(0);
+      const updatedParams = updateUrlParams(searchParams, {
+        selected: filename,
+      });
+      setSearchParams(updatedParams);
+    },
+    [searchParams, setSearchParams],
+  );
 
-    items.forEach((item, index) => {
-      if (index < columns) {
-        // First row
-        item.style.position = 'absolute';
-        item.style.left = `${index * (columnWidth + gap)}px`;
-        item.style.top = '0px';
-        item.style.width = `${columnWidth}px`;
+  const handleMemeClose = useCallback(() => {
+    setSelectedMemeFilename(null);
 
-        // Wait for image/video to load to get actual height
-        const img = item.querySelector('img, video') as HTMLImageElement | HTMLVideoElement;
-        if (img) {
-          img.onload = () => updateMasonryLayout();
-        }
-
-        columnHeights[index] = item.offsetHeight + gap;
-      } else {
-        // Find shortest column
-        const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
-
-        item.style.position = 'absolute';
-        item.style.left = `${shortestColumn * (columnWidth + gap)}px`;
-        item.style.top = `${columnHeights[shortestColumn]}px`;
-        item.style.width = `${columnWidth}px`;
-
-        columnHeights[shortestColumn] += item.offsetHeight + gap;
-      }
+    const updatedParams = updateUrlParams(searchParams, {
+      selected: null,
     });
+    setSearchParams(updatedParams);
+  }, [searchParams, setSearchParams]);
 
-    // Set container height
-    container.style.height = `${Math.max(...columnHeights)}px`;
-  }, []);
+  const handleMemeShare = useCallback(async (filename: string) => {
+    const currentUrl = window.location.href;
+    const [baseUrl, existingParams] = currentUrl.split('?');
+    const shareableUrl = buildShareableUrl(baseUrl, existingParams || '', filename);
 
-  // Update layout when filters change
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      updateMasonryLayout();
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [filteredMemes, updateMasonryLayout]);
-
-  // Window resize handler
-  useEffect(() => {
-    const handleResize = () => updateMasonryLayout();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [updateMasonryLayout]);
-
-  // Share meme
-  const shareMeme = async (filename: string) => {
-    const href = window.location.href;
-    const [url, paramsString] = href.split('?');
-    const params = new URLSearchParams(paramsString ?? searchParams ?? '');
-    params.set('selected', filename);
-    const newUrl = `${url}?${params.toString()}`;
     try {
-      await navigator.clipboard.writeText(newUrl);
+      await navigator.clipboard.writeText(shareableUrl);
       toast.success('Meme link copied to clipboard!');
-    } catch (err) {
+    } catch (error) {
       toast.error('Failed to copy link');
     }
-  };
+  }, []);
 
-  const openMeme = (filename: string) => {
-    setSelectedMeme(filename);
-    const params = new URLSearchParams(searchParams);
-    params.set('selected', filename);
-    setSearchParams(params);
-  };
-
-  // Get current meme for modal
-  const currentMeme = selectedMeme ? memeItems.find((meme) => meme.filename === selectedMeme) : null;
+  // Initialize from URL params on mount
+  useEffect(() => {
+    initializeFromUrlParams();
+  }, [initializeFromUrlParams]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <MatrixBackground fullScreen />
 
       <div className="relative z-10">
-        {/* Header */}
         <MemesHeader />
 
-        {/* Filters */}
-        <MemesFilters filteredMemesLength={filteredMemes.length} activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
+        <MemesFilters filteredMemesCount={filteredMemeItems.length} activeFilters={activeFilters} onFiltersChange={handleFiltersChange} />
 
-        {/* Masonry Grid */}
-        <MemesMasonryGrid filteredMemes={filteredMemes} openMeme={openMeme} shareMeme={shareMeme} masonryRef={masonryRef} />
+        <MemesMasonryGrid filteredMemes={filteredMemeItems} onMemeOpen={handleMemeOpen} onMemeShare={handleMemeShare} masonryRef={containerRef} />
       </div>
 
-      <MemeModal selectedMeme={currentMeme} setSelectedMeme={setSelectedMeme} filteredMemes={filteredMemes} shareMeme={shareMeme} openMeme={openMeme} />
+      <MemeModal
+        selectedMeme={selectedMemeItem}
+        onCloseMeme={handleMemeClose}
+        filteredMemes={filteredMemeItems}
+        onShareMeme={handleMemeShare}
+        onOpenMeme={handleMemeOpen}
+      />
     </div>
   );
 };

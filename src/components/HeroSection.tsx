@@ -1,7 +1,7 @@
 import logo from '@/assets/common/logo.png';
 import { Button } from '@/components/ui/button';
 import { YOUTUBE_URL } from '@/utils/const';
-import { Archive, Play, Youtube } from 'lucide-react';
+import { Archive, Image, Play, Users, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
 
@@ -50,6 +50,7 @@ const HeroSection = () => {
 
             <Link to="/guests">
               <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                <Users className="mr-2 h-5 w-5" />
                 Meet Our Guests
               </Button>
             </Link>
@@ -59,6 +60,14 @@ const HeroSection = () => {
                 Shop Merch
               </Button>
             </Link> */}
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link to="/memes">
+              <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                <Image className="mr-2 h-5 w-5" />
+                Memes
+              </Button>
+            </Link>
           </div>
         </div>
 

@@ -1,28 +1,17 @@
 import { Badge } from '@/components/ui/badge';
-import { MemeType } from '@/server/data/memes/memes.types';
+import { MemesFiltersProps } from '@/server/data/memes/memes.types';
 import { Filter } from 'lucide-react';
-import { useSearchParams } from 'react-router-dom';
 
-type MemesFiltersProps = {
-  filteredMemesLength: number;
-  activeFilters: MemeType[];
-  setActiveFilters: (filters: MemeType[]) => void;
-};
+export const MemesFilters = ({ filteredMemesCount, activeFilters, onFiltersChange }: MemesFiltersProps) => {
+  const handleFilterToggle = (type: 'image' | 'video') => {
+    const newFilters = activeFilters.includes(type) ? activeFilters.filter((filter) => filter !== type) : [...activeFilters, type];
 
-export const MemesFilters = ({ filteredMemesLength, activeFilters, setActiveFilters }: MemesFiltersProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // Toggle filter
-  const toggleFilter = (type: MemeType) => {
-    const newFilters = activeFilters.includes(type) ? activeFilters.filter((f) => f !== type) : [...activeFilters, type];
-
-    setActiveFilters(newFilters);
-
-    // Update URL
-    const params = new URLSearchParams(searchParams);
-    params.set('filters', newFilters.join(','));
-    setSearchParams(params);
+    onFiltersChange(newFilters);
   };
+
+  const isImageFilterActive = activeFilters.includes('image');
+  const isVideoFilterActive = activeFilters.includes('video');
+  const memesCountText = filteredMemesCount === 1 ? 'meme' : 'memes';
 
   return (
     <section className="px-4 py-6">
@@ -34,27 +23,45 @@ export const MemesFilters = ({ filteredMemesLength, activeFilters, setActiveFilt
           </div>
           <div className="flex gap-2">
             <Badge
-              variant={activeFilters.includes('image') ? 'default' : 'outline'}
+              variant={isImageFilterActive ? 'default' : 'outline'}
               className={`cursor-pointer transition-colors ${
-                activeFilters.includes('image') ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
+                isImageFilterActive ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
               }`}
-              onClick={() => toggleFilter('image')}
+              onClick={() => handleFilterToggle('image')}
+              role="button"
+              tabIndex={0}
+              aria-label="Toggle image filter"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleFilterToggle('image');
+                }
+              }}
             >
               Images
             </Badge>
             <Badge
-              variant={activeFilters.includes('video') ? 'default' : 'outline'}
+              variant={isVideoFilterActive ? 'default' : 'outline'}
               className={`cursor-pointer transition-colors ${
-                activeFilters.includes('video') ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
+                isVideoFilterActive ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
               }`}
-              onClick={() => toggleFilter('video')}
+              onClick={() => handleFilterToggle('video')}
+              role="button"
+              tabIndex={0}
+              aria-label="Toggle video filter"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleFilterToggle('video');
+                }
+              }}
             >
               Videos
             </Badge>
           </div>
         </div>
         <div className="mt-2 text-sm text-muted-foreground">
-          Showing {filteredMemesLength} meme{filteredMemesLength !== 1 ? 's' : ''}
+          Showing {filteredMemesCount} {memesCountText}
         </div>
       </div>
     </section>

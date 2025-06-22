@@ -78,7 +78,14 @@ export const useMasonryLayout = (itemsCount: number, config: MasonryLayoutConfig
       updateLayout();
     }, updateDelay);
 
-    return () => clearTimeout(layoutTimer);
+    const layoutTimerSecond = setTimeout(() => {
+      updateLayout();
+    }, updateDelay + updateDelay);
+
+    return () => {
+      clearTimeout(layoutTimer);
+      clearTimeout(layoutTimerSecond);
+    };
   }, [itemsCount, updateLayout, updateDelay]);
 
   // Handle window resize

@@ -1,10 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { MemeModalProps } from '@/server/data/memes/memes.types';
+import { useMemeStore } from '@/stores/memeStore';
 import { ChevronLeft, ChevronRight, Share2, X } from 'lucide-react';
 import { useEffect } from 'react';
 
-export const MemeModal = ({ selectedMeme, onCloseMeme, filteredMemes, onShareMeme, onOpenMeme }: MemeModalProps) => {
+export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
+  const selectedMeme = useMemeStore((state) => state.selectedMeme);
+  const setSelectedMeme = useMemeStore((state) => state.setSelectedMeme);
+  const clearSelectedMeme = useMemeStore((state) => state.clearSelectedMeme);
+
   const isModalOpen = !!selectedMeme;
 
   const handleNavigateMeme = (direction: 'prev' | 'next') => {
@@ -16,7 +21,7 @@ export const MemeModal = ({ selectedMeme, onCloseMeme, filteredMemes, onShareMem
     const nextIndex = direction === 'prev' ? (currentIndex - 1 + filteredMemes.length) % filteredMemes.length : (currentIndex + 1) % filteredMemes.length;
 
     const nextMeme = filteredMemes[nextIndex];
-    onOpenMeme(nextMeme.filename);
+    setSelectedMeme(nextMeme);
   };
 
   const handlePreviousMeme = () => handleNavigateMeme('prev');
@@ -43,7 +48,7 @@ export const MemeModal = ({ selectedMeme, onCloseMeme, filteredMemes, onShareMem
           break;
         case 'Escape':
           e.preventDefault();
-          onCloseMeme();
+          clearSelectedMeme();
           break;
         default:
           break;
@@ -52,7 +57,7 @@ export const MemeModal = ({ selectedMeme, onCloseMeme, filteredMemes, onShareMem
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen, selectedMeme, filteredMemes, onCloseMeme, onOpenMeme]);
+  }, [isModalOpen, selectedMeme, filteredMemes, clearSelectedMeme, setSelectedMeme]);
 
   if (!selectedMeme) return null;
 
@@ -60,7 +65,7 @@ export const MemeModal = ({ selectedMeme, onCloseMeme, filteredMemes, onShareMem
   const mediaAltText = `${selectedMeme.type}: ${selectedMeme.filename}`;
 
   return (
-    <Dialog open={isModalOpen} onOpenChange={onCloseMeme}>
+    <Dialog open={isModalOpen} onOpenChange={clearSelectedMeme}>
       <DialogContent noCloseButton className="max-h-[90vh] max-w-4xl border-brand-mint/20 bg-background p-0" aria-label={`Viewing ${mediaAltText}`}>
         <div className="relative">
           {/* Close button */}
@@ -68,7 +73,7 @@ export const MemeModal = ({ selectedMeme, onCloseMeme, filteredMemes, onShareMem
             size="sm"
             variant="outline"
             className="absolute right-4 top-4 z-10 h-8 w-8 border-brand-mint/40 bg-background/80 p-0 hover:bg-brand-mint/10"
-            onClick={onCloseMeme}
+            onClick={clearSelectedMeme}
             aria-label="Close modal"
           >
             <X className="h-4 w-4" />

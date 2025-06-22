@@ -1,17 +1,20 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MemesMasonryGridProps } from '@/server/data/memes/memes.types';
+import { useMemeStore } from '@/stores/memeStore';
 import { Play, Share2 } from 'lucide-react';
 
-export const MemesMasonryGrid = ({ filteredMemes, onMemeOpen, onMemeShare, masonryRef }: MemesMasonryGridProps) => {
-  const handleMemeClick = (filename: string) => {
-    onMemeOpen(filename);
+export const MemesMasonryGrid = ({ filteredMemes, onMemeShare, masonryRef }: MemesMasonryGridProps) => {
+  const setSelectedMeme = useMemeStore((state) => state.setSelectedMeme);
+
+  const handleMemeClick = (meme: any) => {
+    setSelectedMeme(meme);
   };
 
-  const handleMemeKeyDown = (e: React.KeyboardEvent, filename: string) => {
+  const handleMemeKeyDown = (e: React.KeyboardEvent, meme: any) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      onMemeOpen(filename);
+      setSelectedMeme(meme);
     }
   };
 
@@ -36,8 +39,8 @@ export const MemesMasonryGrid = ({ filteredMemes, onMemeOpen, onMemeShare, mason
             <Card
               key={meme.filename}
               className="hover-lift group cursor-pointer border-brand-mint/20 bg-card/50 transition-all duration-300 hover:border-brand-mint/40"
-              onClick={() => handleMemeClick(meme.filename)}
-              onKeyDown={(e) => handleMemeKeyDown(e, meme.filename)}
+              onClick={() => handleMemeClick(meme)}
+              onKeyDown={(e) => handleMemeKeyDown(e, meme)}
               role="button"
               tabIndex={0}
               aria-label={`Open ${meme.type}: ${meme.filename}`}

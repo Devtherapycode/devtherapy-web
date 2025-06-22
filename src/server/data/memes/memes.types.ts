@@ -9,11 +9,8 @@ export type MemeItem = {
 export type MemeFilters = MemeType[];
 
 export type MemeModalProps = {
-  selectedMeme: MemeItem | null;
-  onCloseMeme: () => void;
   filteredMemes: MemeItem[];
   onShareMeme: (filename: string) => void;
-  onOpenMeme: (filename: string) => void;
 };
 
 export type MemesFiltersProps = {
@@ -25,7 +22,6 @@ export type MemesFiltersProps = {
 
 export type MemesMasonryGridProps = {
   filteredMemes: MemeItem[];
-  onMemeOpen: (filename: string) => void;
   onMemeShare: (filename: string) => void;
   masonryRef: React.RefObject<HTMLDivElement>;
 };

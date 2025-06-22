@@ -1,6 +1,7 @@
 import MatrixBackground from '@/components/MatrixBackground';
 import { memes } from '@/server/data/memes/memes.data';
 import { MemeFilters } from '@/server/data/memes/memes.types';
+import { useMemeStore } from '@/stores/memeStore';
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -13,28 +14,42 @@ import { buildShareableUrl, processMemesData, updateUrlParams } from './utils/me
 
 const Memes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedMemeFilename, setSelectedMemeFilename] = useState<string | null>(null);
   const [activeFilters, setActiveFilters] = useState<MemeFilters>(['image', 'video']);
+
+  const setSelectedMeme = useMemeStore((state) => state.setSelectedMeme);
+  const setUrlUpdateCallback = useMemeStore((state) => state.setUrlUpdateCallback);
 
   const processedMemeItems = processMemesData(memes);
   const filteredMemeItems = processedMemeItems.filter((meme) => activeFilters.includes(meme.type));
   const { containerRef, updateLayout } = useMasonryLayout(filteredMemeItems.length);
 
-  const selectedMemeItem = selectedMemeFilename ? processedMemeItems.find((meme) => meme.filename === selectedMemeFilename) || null : null;
+  // Set up URL synchronization callback
+  const handleUrlUpdate = useCallback(
+    (filename: string | null) => {
+      const updatedParams = updateUrlParams(searchParams, {
+        selected: filename,
+      });
+      setSearchParams(updatedParams);
+    },
+    [searchParams, setSearchParams],
+  );
 
   const initializeFromUrlParams = useCallback(() => {
     const selectedParam = searchParams.get('selected');
     const filtersParam = searchParams.get('filters');
 
     if (selectedParam) {
-      setSelectedMemeFilename(selectedParam);
+      const memeItem = processedMemeItems.find((meme) => meme.filename === selectedParam);
+      if (memeItem) {
+        setSelectedMeme(memeItem);
+      }
     }
 
     if (filtersParam) {
       const filterArray = filtersParam.split(',') as MemeFilters;
       setActiveFilters(filterArray);
     }
-  }, [searchParams]);
+  }, [searchParams, processedMemeItems, setSelectedMeme]);
 
   const handleFiltersChange = useCallback(
     (newFilters: MemeFilters) => {
@@ -48,27 +63,6 @@ const Memes = () => {
     [searchParams, setSearchParams],
   );
 
-  const handleMemeOpen = useCallback(
-    (filename: string) => {
-      setSelectedMemeFilename(filename);
-
-      const updatedParams = updateUrlParams(searchParams, {
-        selected: filename,
-      });
-      setSearchParams(updatedParams);
-    },
-    [searchParams, setSearchParams],
-  );
-
-  const handleMemeClose = useCallback(() => {
-    setSelectedMemeFilename(null);
-
-    const updatedParams = updateUrlParams(searchParams, {
-      selected: null,
-    });
-    setSearchParams(updatedParams);
-  }, [searchParams, setSearchParams]);
-
   const handleMemeShare = useCallback(async (filename: string) => {
     const currentUrl = window.location.href;
     const [baseUrl, existingParams] = currentUrl.split('?');
@@ -81,6 +75,11 @@ const Memes = () => {
       toast.error('Failed to copy link');
     }
   }, []);
+
+  // Set up URL synchronization callback
+  useEffect(() => {
+    setUrlUpdateCallback(handleUrlUpdate);
+  }, [setUrlUpdateCallback, handleUrlUpdate]);
 
   // Initialize from URL params on mount
   useEffect(() => {
@@ -101,16 +100,10 @@ const Memes = () => {
           updateLayout={updateLayout}
         />
 
-        <MemesMasonryGrid filteredMemes={filteredMemeItems} onMemeOpen={handleMemeOpen} onMemeShare={handleMemeShare} masonryRef={containerRef} />
+        <MemesMasonryGrid filteredMemes={filteredMemeItems} onMemeShare={handleMemeShare} masonryRef={containerRef} />
       </div>
 
-      <MemeModal
-        selectedMeme={selectedMemeItem}
-        onCloseMeme={handleMemeClose}
-        filteredMemes={filteredMemeItems}
-        onShareMeme={handleMemeShare}
-        onOpenMeme={handleMemeOpen}
-      />
+      <MemeModal filteredMemes={filteredMemeItems} onShareMeme={handleMemeShare} />
     </div>
   );
 };

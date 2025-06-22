@@ -1,8 +1,9 @@
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { MemesFiltersProps } from '@/server/data/memes/memes.types';
-import { Filter } from 'lucide-react';
+import { Filter, RefreshCcw } from 'lucide-react';
 
-export const MemesFilters = ({ filteredMemesCount, activeFilters, onFiltersChange }: MemesFiltersProps) => {
+export const MemesFilters = ({ filteredMemesCount, activeFilters, onFiltersChange, updateLayout }: MemesFiltersProps) => {
   const handleFilterToggle = (type: 'image' | 'video') => {
     const newFilters = activeFilters.includes(type) ? activeFilters.filter((filter) => filter !== type) : [...activeFilters, type];
 
@@ -12,57 +13,69 @@ export const MemesFilters = ({ filteredMemesCount, activeFilters, onFiltersChang
   const isImageFilterActive = activeFilters.includes('image');
   const isVideoFilterActive = activeFilters.includes('video');
   const memesCountText = filteredMemesCount === 1 ? 'meme' : 'memes';
+  const isNotFirstVisit = localStorage.getItem('isNotFirstVisit');
 
   return (
     <section className="px-4 py-6">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Filter className="h-4 w-4 text-brand-mint" />
-            <span className="text-sm font-medium">Filter by type:</span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Filter className="h-4 w-4 text-brand-mint" />
+              <span className="text-sm font-medium">Filter by type:</span>
+            </div>
+            <div className="flex gap-2">
+              <Badge
+                variant={isImageFilterActive ? 'default' : 'outline'}
+                className={`cursor-pointer transition-colors ${
+                  isImageFilterActive ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
+                }`}
+                onClick={() => handleFilterToggle('image')}
+                role="button"
+                tabIndex={0}
+                aria-label="Toggle image filter"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleFilterToggle('image');
+                  }
+                }}
+              >
+                Images
+              </Badge>
+              <Badge
+                variant={isVideoFilterActive ? 'default' : 'outline'}
+                className={`cursor-pointer transition-colors ${
+                  isVideoFilterActive ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
+                }`}
+                onClick={() => handleFilterToggle('video')}
+                role="button"
+                tabIndex={0}
+                aria-label="Toggle video filter"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleFilterToggle('video');
+                  }
+                }}
+              >
+                Videos
+              </Badge>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <Badge
-              variant={isImageFilterActive ? 'default' : 'outline'}
-              className={`cursor-pointer transition-colors ${
-                isImageFilterActive ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
-              }`}
-              onClick={() => handleFilterToggle('image')}
-              role="button"
-              tabIndex={0}
-              aria-label="Toggle image filter"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleFilterToggle('image');
-                }
-              }}
-            >
-              Images
-            </Badge>
-            <Badge
-              variant={isVideoFilterActive ? 'default' : 'outline'}
-              className={`cursor-pointer transition-colors ${
-                isVideoFilterActive ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'hover:border-brand-mint hover:bg-brand-mint/10'
-              }`}
-              onClick={() => handleFilterToggle('video')}
-              role="button"
-              tabIndex={0}
-              aria-label="Toggle video filter"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleFilterToggle('video');
-                }
-              }}
-            >
-              Videos
-            </Badge>
+          <div className="mt-2 text-sm text-muted-foreground">
+            Showing {filteredMemesCount} {memesCountText}
           </div>
         </div>
-        <div className="mt-2 text-sm text-muted-foreground">
-          Showing {filteredMemesCount} {memesCountText}
-        </div>
+        {!isNotFirstVisit && (
+          <div className="flex flex-col items-end gap-2">
+            <Button variant="outline" onClick={updateLayout}>
+              <RefreshCcw className="h-4 w-4" />
+              Refresh
+            </Button>
+            <span className="text-xs">If you see a meme that is not loading, please refresh the page.</span>
+          </div>
+        )}
       </div>
     </section>
   );

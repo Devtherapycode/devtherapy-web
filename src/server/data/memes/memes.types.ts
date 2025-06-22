@@ -20,6 +20,7 @@ export type MemesFiltersProps = {
   filteredMemesCount: number;
   activeFilters: MemeFilters;
   onFiltersChange: (filters: MemeFilters) => void;
+  updateLayout: () => void;
 };
 
 export type MemesMasonryGridProps = {

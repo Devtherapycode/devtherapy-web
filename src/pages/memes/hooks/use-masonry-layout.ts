@@ -76,15 +76,11 @@ export const useMasonryLayout = (itemsCount: number, config: MasonryLayoutConfig
   useEffect(() => {
     const layoutTimer = setTimeout(() => {
       updateLayout();
+      localStorage.setItem('isNotFirstVisit', 'true');
     }, updateDelay);
-
-    const layoutTimerSecond = setTimeout(() => {
-      updateLayout();
-    }, updateDelay + updateDelay);
 
     return () => {
       clearTimeout(layoutTimer);
-      clearTimeout(layoutTimerSecond);
     };
   }, [itemsCount, updateLayout, updateDelay]);
 

@@ -18,7 +18,7 @@ const Memes = () => {
 
   const processedMemeItems = processMemesData(memes);
   const filteredMemeItems = processedMemeItems.filter((meme) => activeFilters.includes(meme.type));
-  const { containerRef } = useMasonryLayout(filteredMemeItems.length);
+  const { containerRef, updateLayout } = useMasonryLayout(filteredMemeItems.length);
 
   const selectedMemeItem = selectedMemeFilename ? processedMemeItems.find((meme) => meme.filename === selectedMemeFilename) || null : null;
 
@@ -94,7 +94,12 @@ const Memes = () => {
       <div className="relative z-10">
         <MemesHeader />
 
-        <MemesFilters filteredMemesCount={filteredMemeItems.length} activeFilters={activeFilters} onFiltersChange={handleFiltersChange} />
+        <MemesFilters
+          filteredMemesCount={filteredMemeItems.length}
+          activeFilters={activeFilters}
+          onFiltersChange={handleFiltersChange}
+          updateLayout={updateLayout}
+        />
 
         <MemesMasonryGrid filteredMemes={filteredMemeItems} onMemeOpen={handleMemeOpen} onMemeShare={handleMemeShare} masonryRef={containerRef} />
       </div>

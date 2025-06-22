@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import avto_heartstone_wageba from '@/assets/memes/avto_heartstone_wageba.jpg';
 import avto_hobbies from '@/assets/memes/avto_hobbies.jpg';
 import tornike_asks_render_priest_for_blessing from '@/assets/memes/tornike_asks_render_priest_for_blessing.mp4';
 import avto_c_sharp_demigod_card from '@/assets/memes/avto_c_sharp_demigod_card.png';
@@ -67,6 +68,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  avto_heartstone_wageba,
   avto_hobbies,
   tornike_asks_render_priest_for_blessing,
   avto_c_sharp_demigod_card,

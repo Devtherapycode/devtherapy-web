@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import konkretulad_rashia_dotnet_neli from '@/assets/memes/konkretulad_rashia_dotnet_neli.jpg';
 import dotnet_hate_kompetencia from '@/assets/memes/dotnet_hate_kompetencia.jpg';
 import avto_x_dotnet_meetup_members from '@/assets/memes/avto_x_dotnet_meetup_members.jpg';
 import enterprise_devs_vs_other_devs from '@/assets/memes/enterprise_devs_vs_other_devs.jpg';
@@ -72,6 +73,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  konkretulad_rashia_dotnet_neli,
   dotnet_hate_kompetencia,
   avto_x_dotnet_meetup_members,
   enterprise_devs_vs_other_devs,

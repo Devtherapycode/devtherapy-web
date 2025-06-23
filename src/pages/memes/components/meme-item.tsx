@@ -5,12 +5,13 @@ import { MemeItem as MemeItemType } from '@/server/data/memes/memes.types';
 import { useMemeStore } from '@/stores/memeStore';
 import { Play, Share2 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { updateUrlParams } from '../utils/meme-utils';
 
 interface MemeItemProps {
   meme: MemeItemType;
   onShare: (filename: string) => void;
   onLoad: () => void;
-  index: number;
 }
 
 const ESTIMATED_ASPECT_RATIOS = {
@@ -18,15 +19,27 @@ const ESTIMATED_ASPECT_RATIOS = {
   video: 16 / 9, // 16:9 ratio for videos
 } as const;
 
-export const MemeItem = ({ meme, onShare, onLoad, index }: MemeItemProps) => {
+export const MemeItem = ({ meme, onShare, onLoad }: MemeItemProps) => {
   const [isInViewport, setIsInViewport] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const setSelectedMeme = useMemeStore((state) => state.setSelectedMeme);
   const cardRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLImageElement | HTMLVideoElement>(null);
+
+  // Set up URL synchronization callback
+  const handleUrlUpdate = useCallback(
+    (filename: string | null) => {
+      const updatedParams = updateUrlParams(searchParams, {
+        selected: filename,
+      });
+      setSearchParams(updatedParams);
+    },
+    [searchParams, setSearchParams],
+  );
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -73,16 +86,18 @@ export const MemeItem = ({ meme, onShare, onLoad, index }: MemeItemProps) => {
 
   const handleMemeClick = useCallback(() => {
     setSelectedMeme(meme);
-  }, [meme, setSelectedMeme]);
+    handleUrlUpdate(meme.filename);
+  }, [meme, setSelectedMeme, handleUrlUpdate]);
 
   const handleMemeKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         setSelectedMeme(meme);
+        handleUrlUpdate(meme.filename);
       }
     },
-    [meme, setSelectedMeme],
+    [meme, setSelectedMeme, handleUrlUpdate],
   );
 
   const handleShareClick = useCallback(

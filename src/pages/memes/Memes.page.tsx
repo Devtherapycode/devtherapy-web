@@ -17,22 +17,10 @@ const Memes = () => {
   const [activeFilters, setActiveFilters] = useState<MemeFilters>(['image', 'video']);
 
   const setSelectedMeme = useMemeStore((state) => state.setSelectedMeme);
-  const setUrlUpdateCallback = useMemeStore((state) => state.setUrlUpdateCallback);
 
   const processedMemeItems = processMemesData(memes);
   const filteredMemeItems = processedMemeItems.filter((meme) => activeFilters.includes(meme.type));
   const { containerRef, updateLayout } = useMasonryLayout(filteredMemeItems.length);
-
-  // Set up URL synchronization callback
-  const handleUrlUpdate = useCallback(
-    (filename: string | null) => {
-      const updatedParams = updateUrlParams(searchParams, {
-        selected: filename,
-      });
-      setSearchParams(updatedParams);
-    },
-    [searchParams, setSearchParams],
-  );
 
   const initializeFromUrlParams = useCallback(() => {
     const selectedParam = searchParams.get('selected');
@@ -75,11 +63,6 @@ const Memes = () => {
       toast.error('Failed to copy link');
     }
   }, []);
-
-  // Set up URL synchronization callback
-  useEffect(() => {
-    setUrlUpdateCallback(handleUrlUpdate);
-  }, [setUrlUpdateCallback, handleUrlUpdate]);
 
   // Initialize from URL params on mount
   useEffect(() => {

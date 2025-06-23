@@ -15,8 +15,8 @@ export const MemesMasonryGrid = ({ filteredMemes, onMemeShare, masonryRef, onIte
     <section className="px-4 pb-16">
       <div className="mx-auto max-w-7xl">
         <div ref={masonryRef} className="relative">
-          {filteredMemes.map((meme, index) => (
-            <MemeItem key={meme.filename} meme={meme} onShare={onMemeShare} onLoad={handleItemLoad} index={index} />
+          {filteredMemes.map((meme) => (
+            <MemeItem key={meme.filename} meme={meme} onShare={onMemeShare} onLoad={handleItemLoad} />
           ))}
         </div>
       </div>

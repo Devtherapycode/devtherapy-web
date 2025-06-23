@@ -3,12 +3,26 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { MemeModalProps } from '@/server/data/memes/memes.types';
 import { useMemeStore } from '@/stores/memeStore';
 import { ChevronLeft, ChevronRight, Share2, X } from 'lucide-react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { updateUrlParams } from '../utils/meme-utils';
 
 export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const selectedMeme = useMemeStore((state) => state.selectedMeme);
   const setSelectedMeme = useMemeStore((state) => state.setSelectedMeme);
   const clearSelectedMeme = useMemeStore((state) => state.clearSelectedMeme);
+
+  // Set up URL synchronization callback
+  const handleUrlUpdate = useCallback(
+    (filename: string | null) => {
+      const updatedParams = updateUrlParams(searchParams, {
+        selected: filename,
+      });
+      setSearchParams(updatedParams);
+    },
+    [searchParams, setSearchParams],
+  );
 
   const isModalOpen = !!selectedMeme;
 
@@ -22,6 +36,7 @@ export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
 
     const nextMeme = filteredMemes[nextIndex];
     setSelectedMeme(nextMeme);
+    handleUrlUpdate(nextMeme.filename);
   };
 
   const handlePreviousMeme = () => handleNavigateMeme('prev');
@@ -30,6 +45,11 @@ export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
   const handleShareClick = () => {
     if (!selectedMeme) return;
     onShareMeme(selectedMeme.filename);
+  };
+
+  const handleCloseModal = () => {
+    handleUrlUpdate(null);
+    clearSelectedMeme();
   };
 
   // Keyboard navigation
@@ -48,7 +68,7 @@ export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
           break;
         case 'Escape':
           e.preventDefault();
-          clearSelectedMeme();
+          handleCloseModal();
           break;
         default:
           break;
@@ -57,7 +77,7 @@ export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen, selectedMeme, filteredMemes, clearSelectedMeme, setSelectedMeme]);
+  }, [isModalOpen, selectedMeme, filteredMemes, setSelectedMeme, handleCloseModal]);
 
   if (!selectedMeme) return null;
 
@@ -65,7 +85,7 @@ export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
   const mediaAltText = `${selectedMeme.type}: ${selectedMeme.filename}`;
 
   return (
-    <Dialog open={isModalOpen} onOpenChange={clearSelectedMeme}>
+    <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
       <DialogContent noCloseButton className="max-h-[90vh] max-w-4xl border-brand-mint/20 bg-background p-0" aria-label={`Viewing ${mediaAltText}`}>
         <div className="relative">
           {/* Close button */}
@@ -73,7 +93,7 @@ export const MemeModal = ({ filteredMemes, onShareMeme }: MemeModalProps) => {
             size="sm"
             variant="outline"
             className="absolute right-4 top-4 z-10 h-8 w-8 border-brand-mint/40 bg-background/80 p-0 hover:bg-brand-mint/10"
-            onClick={clearSelectedMeme}
+            onClick={handleCloseModal}
             aria-label="Close modal"
           >
             <X className="h-4 w-4" />

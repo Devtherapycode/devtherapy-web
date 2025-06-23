@@ -1,6 +1,8 @@
 /*
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
+
+import avto_lifts_c_sharp from '@/assets/memes/avto_lifts_c_sharp.jpg';
 import zubas_yoveldgiuroba from '@/assets/memes/zubas_yoveldgiuroba.png';
 import konkretulad_rashia_dotnet_neli from '@/assets/memes/konkretulad_rashia_dotnet_neli.jpg';
 import dotnet_hate_kompetencia from '@/assets/memes/dotnet_hate_kompetencia.jpg';
@@ -73,6 +75,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  avto_lifts_c_sharp,
   zubas_yoveldgiuroba,
   konkretulad_rashia_dotnet_neli,
   dotnet_hate_kompetencia,

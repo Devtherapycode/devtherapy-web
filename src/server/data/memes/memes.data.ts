@@ -2,6 +2,9 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import dotnet_neli_tua from '@/assets/memes/dotnet_neli_tua.png';
+import magla_isari_avagde from '@/assets/memes/magla_isari_avagde.png';
+import norqiqa_muzit_xelshi from '@/assets/memes/norqiqa_muzit_xelshi.png';
 import utimod_ro_avawyo from '@/assets/memes/utimod_ro_avawyo.jpg';
 import avto_hate_c_sharp from '@/assets/memes/avto_hate_c_sharp.png';
 import avto_lifts_c_sharp from '@/assets/memes/avto_lifts_c_sharp.jpg';
@@ -77,6 +80,9 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  dotnet_neli_tua,
+  magla_isari_avagde,
+  norqiqa_muzit_xelshi,
   utimod_ro_avawyo,
   avto_hate_c_sharp,
   avto_lifts_c_sharp,

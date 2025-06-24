@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import utimod_ro_avawyo from '@/assets/memes/utimod_ro_avawyo.jpg';
 import avto_hate_c_sharp from '@/assets/memes/avto_hate_c_sharp.png';
 import avto_lifts_c_sharp from '@/assets/memes/avto_lifts_c_sharp.jpg';
 import zubas_yoveldgiuroba from '@/assets/memes/zubas_yoveldgiuroba.png';
@@ -76,6 +77,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  utimod_ro_avawyo,
   avto_hate_c_sharp,
   avto_lifts_c_sharp,
   zubas_yoveldgiuroba,

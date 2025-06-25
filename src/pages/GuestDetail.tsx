@@ -12,7 +12,7 @@ const GuestDetail = () => {
 
   if (!guest) {
     return (
-      <div className="matrix-bg flex min-h-screen items-center justify-center bg-background">
+      <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center">
           <h1 className="mb-4 text-4xl font-bold">Guest Not Found</h1>
           <Link to="/guests">

@@ -68,6 +68,12 @@ const HeroSection = () => {
                 Memes
               </Button>
             </Link>
+            <Link to="/events">
+              <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                <Image className="mr-2 h-5 w-5" />
+                Events
+              </Button>
+            </Link>
           </div>
         </div>
 

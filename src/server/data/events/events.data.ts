@@ -1,87 +1,48 @@
-
+import gamejam_2025_tsu from '@/assets/events/gamejam_2025_tsu.png';
 import { Event } from './events.types';
 
 export const eventsData: Event[] = [
   {
-    id: 'devtherapy-live-2024',
-    title: 'Devtherapy Live: Year End Wrap-up',
-    shortDescription: 'Join us for a live discussion about the biggest dev trends of 2024 and what to expect in 2025.',
-    fullDescription: 'Join the Devtherapy hosts for an interactive live session where we discuss the biggest developer trends of 2024, share our personal highlights, and take questions from the community. We\'ll cover everything from AI development tools to the latest framework wars.',
-    date: '2024-12-28T19:00:00Z',
-    location: 'Online',
-    type: 'Livestream',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop',
+    id: 'gamejam-2025-tsu',
+    title: 'Game Jam 2025',
+    shortDescription: 'შემოგვიერთდი 48-საათიან Game Jam ში',
+    fullDescription: `სიხარულით მინდა გაცნობოთ, რომ Devtherapy ატარებს პირველ ოფიციალურ 48-საათიან Game Jam-ს 🎮, რომელიც გაიმართება ივანე ჯავახიშვილის სახელობის თბილისის სახელმწიფო უნივერსიტეტში (TSU), 5-6 ივლისს 📅.
+
+Game Jam-ის საპრიზო ფონდის ნაწილი უკვე დაფარულია ორგანიზატორებისა და Devtherapy-ის გუნდის მიერ, ხოლო დანარჩენი ნაწილი შედგება სრულად community-სგან შემოსული crowdfunding-ის საშუალებით 💸. ჩვენთვის მნიშვნელოვანია, რომ ეს ღონისძიება იყოს community-ის მიერ წახალისებული და მათზე ორიენტირებული (“From community, to community”) 🤝, რაც კიდევ უფრო გაზრდის მოტივაციას დამწყები დეველოპერების, დიზაინერების, არტისტებისა და ზოგადად ყველა იმ ადამიანისათვის, ვინც ახლა აპირებს პირველ ნაბიჯების გადადგმას 🚀.
+
+გამომდინარე დინამიური crowdfunding პროცესიდან, საპრიზო ფონდი მზარდია და ყოველდღე იზრდება, 5-6 ივლისისთვის ზუსტად გვეცოდინება მთლიანი prize pool ი. ამასთან, ღია ვართ პარტნიორობისა და თანამშრომლობისთვის ნებისმიერი სახის სპონსორებთან 🤗.
+
+Game Jam-ის ფარგლებში მონაწილეებს 48 საათის განმავლობაში მოუწევთ თამაშების შექმნა კონკრეტული იდეის ან მექანიკის ირგვლივ, რომელიც სპეციალური თემის სახით, ღონისძიების დაწყებისას გახდება ცნობილი 🕹️. ამ მიდგომით ვუზრუნველვყოფთ, რომ ყველა მონაწილე თანაბარ პირობებში იყოს და არ წარმოიქმნას წინასწარ მომზადებული ნამუშევრების წარდგენის შესაძლებლობა ⚖️.
+
+გარდა ძირითადი Game Jam პროცესისა, ღონისძიების განმავლობაში დაგეგმილია სხვადასხვა Tech Talk-ები და Q&A სესიები, რომელშიც აქტიური მონაწილეობა შეგეძლებათ 🎤❓.
+
+ღონისძიების სრული პროცესი იქნება დეტალურად გადაღებული და ასახული ვლოგის სახით Devtherapy-ის production გუნდის მიერ 🎥.
+
+მონაწილეთა რაოდენობა შეზღუდულია და ჯამში 100 ადამიანს მოიცავს, გუნდში მონაწილეთა მაქსიმალური რაოდენობა კი 5 ადამიანია 👥.
+
+თუ ჯერ არ გყავთ გუნდი, Game Jam-ის დაწყებისას აუცილებლად შეგვიძლია დაგეხმაროთ გუნდის მოძიებაში და შექმნაში 🛠️.
+
+რადგან მონაწილეთა რაოდენობა შეზღუდულია, გთხოვთ, დროულად გაიაროთ რეგისტრაცია ⏳.
+
+🔗 დარეგისტრირდი აქ 👉 https://lu.ma/rodmrn6z
+
+ღონისძიების შესახებ სრულ ინფორმაციას და Agenda-ს მიიღებთ მეილის სახით 📧.
+
+თუ სურვილი გაქვთ ჩაერთოთ ღონისძიების საპრიზო ფონდის გაზრდაში, შეგიძლიათ ფინანსური მხარდაჭერა გაუწიოთ Game Jam-ს შემდეგი რეკვიზიტებით:
+
+🏦 მიმღები: Tornike Gomareli
+💳 ანგარიში: GE63BG0000000609279471
+📌 დანიშნულება: “Devtherapy Game Jam 2025”
+
+ვფიქრობ, ძალიან საინტერესო და გასართობი 2 დღე გველოდება წინ!! 🎉
+`,
+    date: '2025-07-05T10:00:00Z',
+    location: 'TSU-ს მე-11 კორპუსი (განივი)',
+    type: 'Game Jam',
+    image: gamejam_2025_tsu,
     featured: true,
     links: {
-      rsvp: 'https://youtube.com/@Devtherapy',
-      youtube: 'https://youtube.com/@Devtherapy'
-    }
+      rsvp: 'https://lu.ma/rodmrn6z',
+    },
   },
-  {
-    id: 'tbilisi-dev-meetup-2024',
-    title: 'Tbilisi Developer Meetup',
-    shortDescription: 'In-person meetup with local developers discussing GraphQL, microservices, and career growth.',
-    fullDescription: 'Our first in-person meetup in Tbilisi! Join fellow developers for an evening of technical talks, networking, and great conversations. We\'ll have presentations on GraphQL best practices, microservices architecture, and career growth in the Georgian tech scene.',
-    date: '2024-11-15T18:00:00Z',
-    location: 'Tbilisi, Georgia',
-    type: 'Meetup',
-    image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop',
-    links: {
-      blog: 'https://devtherapy.io/blog/tbilisi-meetup-recap'
-    }
-  },
-  {
-    id: 'zura-graphics-workshop',
-    title: 'Graphics Programming Workshop with Zura',
-    shortDescription: 'Deep dive into graphics programming and game engine development with Zura from Rockstar Games.',
-    fullDescription: 'An exclusive workshop session with Zura Abelashvili from Rockstar Games. Learn about the fundamentals of graphics programming, rendering pipelines, and what it takes to work on AAA games like GTA VI. This hands-on session will cover OpenGL basics, shader programming, and optimization techniques.',
-    date: '2024-10-20T15:00:00Z',
-    location: 'Online',
-    type: 'Workshop',
-    image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=600&fit=crop',
-    links: {
-      youtube: 'https://www.youtube.com/watch?v=ptPHTbQk_sA',
-      slides: 'https://example.com/graphics-workshop-slides.pdf',
-      notion: 'https://notion.so/devtherapy/graphics-workshop-notes'
-    }
-  },
-  {
-    id: 'react-conf-guest-session',
-    title: 'React Conference Guest Session',
-    shortDescription: 'Special guest appearance at React Conference discussing the future of React development.',
-    date: '2024-09-12T14:00:00Z',
-    location: 'San Francisco, CA',
-    type: 'Guest Session',
-    image: 'https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=600&fit=crop',
-    links: {
-      youtube: 'https://youtube.com/watch?v=example',
-      blog: 'https://devtherapy.io/blog/react-conf-2024'
-    }
-  },
-  {
-    id: 'mental-health-tech-workshop',
-    title: 'Mental Health in Tech Workshop',
-    shortDescription: 'Interactive workshop focusing on developer burnout, work-life balance, and mental wellness.',
-    fullDescription: 'A comprehensive workshop addressing the mental health challenges unique to software developers. We\'ll discuss burnout prevention, imposter syndrome, work-life balance strategies, and building supportive development teams. Includes interactive exercises and group discussions.',
-    date: '2024-08-05T16:00:00Z',
-    location: 'Online',
-    type: 'Workshop',
-    image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop',
-    links: {
-      youtube: 'https://youtube.com/watch?v=mental-health-workshop',
-      slides: 'https://example.com/mental-health-slides.pdf'
-    }
-  },
-  {
-    id: 'summer-coding-livestream',
-    title: 'Summer Coding Challenge Livestream',
-    shortDescription: 'Live coding session tackling algorithm challenges and discussing problem-solving strategies.',
-    date: '2024-07-15T17:00:00Z',
-    location: 'Online',
-    type: 'Livestream',
-    image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=600&fit=crop',
-    links: {
-      youtube: 'https://youtube.com/watch?v=summer-coding-challenge'
-    }
-  }
 ];

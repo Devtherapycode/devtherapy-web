@@ -1,12 +1,11 @@
-
 export interface Event {
   id: string;
   title: string;
   shortDescription: string;
-  fullDescription?: string;
+  fullDescription: string;
   date: string;
   location: string;
-  type: 'Meetup' | 'Livestream' | 'Guest Session' | 'Workshop' | 'Conference';
+  type: 'Meetup' | 'Livestream' | 'Guest Session' | 'Workshop' | 'Conference' | 'Game Jam';
   image: string;
   featured?: boolean;
   links?: {

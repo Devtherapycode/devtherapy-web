@@ -14,7 +14,7 @@ export const BackToHomeHeader = ({ title }: BackToHomeHeaderProps) => (
           <span className="font-semibold">Back to Home</span>
         </Link>
         <h1 className="text-2xl font-bold text-brand-mint">{title}</h1>
-        <div className="w-24"></div> {/* Spacer for balance */}
+        <div className="hidden sm:block sm:w-24"></div> {/* Spacer for balance */}
       </div>
     </div>
   </header>

@@ -2,7 +2,7 @@ import { CommandDialog, CommandDialogTitle, CommandEmpty, CommandGroup, CommandI
 import { allEpisodes } from '@/server/data/episodes/episodes.data';
 import { guests } from '@/server/data/guests/guests.data';
 import { YOUTUBE_URL } from '@/utils/const';
-import { Headphones, Home, Mic, User, Youtube } from 'lucide-react';
+import { Calendar, Headphones, Home, Image, Mic, User, Youtube } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface CommandPaletteProps {
@@ -40,6 +40,20 @@ export const CommandPalette = ({ open, onOpenChange }: CommandPaletteProps) => {
       label: 'View All Guests',
       icon: User,
       action: () => navigate('/guests'),
+      group: 'Navigation',
+    },
+    {
+      id: 'events',
+      label: 'Check out our Events',
+      icon: Calendar,
+      action: () => navigate('/events'),
+      group: 'Navigation',
+    },
+    {
+      id: 'memes',
+      label: 'Laugh on Meme Gallery',
+      icon: Image,
+      action: () => navigate('/memes'),
       group: 'Navigation',
     },
     {

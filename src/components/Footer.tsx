@@ -6,12 +6,12 @@ import { Youtube } from 'lucide-react';
 const Footer = () => {
   useScrollToTop();
   return (
-    <footer className="border-t border-brand-mint/10 bg-card/20 px-4 py-12">
+    <footer className="relative z-10 border-t border-brand-mint/10 bg-card/20 px-4 py-12">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex items-center gap-4">
             <img src={logo} alt="Devtherapy Logo" className="h-8" />
-            <span className="text-xl font-semibold text-brand-mint">devtherapy</span>
+            <span className="text-xl font-semibold text-brand-mint">Dev Therapy</span>
           </div>
 
           <div className="flex items-center gap-6">

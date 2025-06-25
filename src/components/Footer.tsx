@@ -1,8 +1,10 @@
 import logo from '@/assets/common/logo.png';
+import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import { YOUTUBE_URL } from '@/utils/const';
 import { Youtube } from 'lucide-react';
 
 const Footer = () => {
+  useScrollToTop();
   return (
     <footer className="border-t border-brand-mint/10 bg-card/20 px-4 py-12">
       <div className="mx-auto max-w-6xl">

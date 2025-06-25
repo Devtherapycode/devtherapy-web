@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import avto_eating_shawarma from '@/assets/memes/avto_eating_shawarma.mp4';
 import dotnet_neli_tua from '@/assets/memes/dotnet_neli_tua.png';
 import magla_isari_avagde from '@/assets/memes/magla_isari_avagde.png';
 import norqiqa_muzit_xelshi from '@/assets/memes/norqiqa_muzit_xelshi.png';
@@ -80,6 +81,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  avto_eating_shawarma,
   dotnet_neli_tua,
   magla_isari_avagde,
   norqiqa_muzit_xelshi,

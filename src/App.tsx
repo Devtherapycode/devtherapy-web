@@ -1,3 +1,4 @@
+
 import { GlobalShortcuts } from '@/components/GlobalShortcuts';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { Toaster } from '@/components/ui/toaster';
@@ -7,6 +8,8 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import DevWrapped from './pages/DevWrapped';
 import EpisodeDetail from './pages/EpisodeDetail';
 import Episodes from './pages/Episodes';
+import EventDetail from './pages/EventDetail';
+import Events from './pages/Events';
 import GuestDetail from './pages/GuestDetail';
 import Guests from './pages/Guests';
 import Index from './pages/Index';
@@ -29,6 +32,8 @@ const App = () => (
           <Route path="/episodes/:episodeSlug" element={<EpisodeDetail />} />
           <Route path="/guests" element={<Guests />} />
           <Route path="/guests/:guestId" element={<GuestDetail />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/events/:eventId" element={<EventDetail />} />
           <Route path="/wrapped" element={<DevWrapped />} />
           <Route path="/memes" element={<Memes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

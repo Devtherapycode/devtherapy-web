@@ -1,3 +1,4 @@
+import { BackToHomeHeader } from '@/components/back-to-home-header';
 import MatrixBackground from '@/components/MatrixBackground';
 import { memes } from '@/server/data/memes/memes.data';
 import { MemeFilters } from '@/server/data/memes/memes.types';
@@ -7,7 +8,6 @@ import { useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import { MemeModal } from './components/meme-modal';
 import { MemesFilters } from './components/memes-filters';
-import { MemesHeader } from './components/memes-header';
 import { MemesMasonryGrid } from './components/memes-masonry-grid';
 import { useMasonryLayout } from './hooks/use-masonry-layout';
 import { buildShareableUrl, processMemesData, updateUrlParams } from './utils/meme-utils';
@@ -74,7 +74,7 @@ const Memes = () => {
       <MatrixBackground fullScreen />
 
       <div className="relative z-10">
-        <MemesHeader />
+        <BackToHomeHeader title="Meme Gallery" />
 
         <MemesFilters
           filteredMemesCount={filteredMemeItems.length}

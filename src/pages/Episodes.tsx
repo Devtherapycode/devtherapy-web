@@ -1,3 +1,4 @@
+import { BackToHomeHeader } from '@/components/back-to-home-header';
 import { EpisodeCard } from '@/components/basic/episode-card';
 import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
@@ -6,9 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { allEpisodes } from '@/server/data/episodes/episodes.data';
-import { ArrowLeft, Filter, Search } from 'lucide-react';
+import { Filter, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const Episodes = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -64,19 +64,7 @@ const Episodes = () => {
       <MatrixBackground fullScreen />
 
       <div className="relative z-10">
-        {/* Header */}
-        <header className="sticky top-0 z-20 border-b border-border/40 bg-background/80 backdrop-blur-sm">
-          <div className="mx-auto max-w-7xl px-4 py-4">
-            <div className="flex items-center justify-between">
-              <Link to="/" className="flex items-center gap-2 transition-colors hover:text-brand-mint">
-                <ArrowLeft className="h-5 w-5" />
-                <span className="font-semibold">Back to Home</span>
-              </Link>
-              <h1 className="text-2xl font-bold text-brand-mint">Episode Archive</h1>
-              <div className="w-24"></div> {/* Spacer for balance */}
-            </div>
-          </div>
-        </header>
+        <BackToHomeHeader title="Episodes" />
 
         {/* Search and Filters */}
         <section className="px-4 py-8">

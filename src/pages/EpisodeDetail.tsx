@@ -2,15 +2,130 @@ import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { episodes } from '@/server/data/episodes/episodes.data';
+import { fetchYoutubeEpisodes } from '@/server/data/episodes/fetchYoutubeEpisodes';
 import { YOUTUBE_URL } from '@/utils/const';
 import { ArrowLeft, Calendar, Clock, Play, Share2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+interface YoutubeEpisode {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  duration: number;
+  tags: string[];
+  slug: string;
+  youtubeId: string;
+  guest: string;
+}
+
+// Helper to convert timestamp string to seconds
+function timestampToSeconds(ts: string): number {
+  const parts = ts.split(':').map(Number);
+  if (parts.length === 3) {
+    return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  } else if (parts.length === 2) {
+    return parts[0] * 60 + parts[1];
+  } else if (parts.length === 1) {
+    return parts[0];
+  }
+  return 0;
+}
 
 const EpisodeDetail = () => {
   const { episodeSlug } = useParams();
+  const [episode, setEpisode] = useState<YoutubeEpisode | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [playerTime, setPlayerTime] = useState<number>(0);
 
-  const episode = episodes[episodeSlug as keyof typeof episodes];
+  useEffect(() => {
+    setLoading(true);
+    fetchYoutubeEpisodes()
+      .then((episodes) => {
+        const found = episodes.find((ep: YoutubeEpisode) => ep.id === episodeSlug);
+        setEpisode(found || null);
+      })
+      .finally(() => setLoading(false));
+  }, [episodeSlug]);
+
+  // Helper to render description with clickable timestamps and links
+  function renderDescription(desc: string) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const timeRegex = /\b(\d{1,2}:\d{2}(?::\d{2})?)\b/g;
+    return desc.split(/\n\n+/).map((paragraph, idx) => (
+      <p key={idx} className="mb-6 last:mb-0">
+        {paragraph.split(/\n/).map((line, i, arr) => {
+          // Split line into parts: URLs, timestamps, and text
+          const parts = [];
+          let lastIndex = 0;
+          let matchArr: RegExpExecArray | null;
+          const regex = new RegExp(`${urlRegex.source}|${timeRegex.source}`, 'g');
+          while ((matchArr = regex.exec(line)) !== null) {
+            if (matchArr.index > lastIndex) {
+              parts.push(line.slice(lastIndex, matchArr.index));
+            }
+            if (matchArr[0].match(urlRegex)) {
+              parts.push({ type: 'url', value: matchArr[0] });
+            } else if (matchArr[0].match(timeRegex)) {
+              parts.push({ type: 'time', value: matchArr[0] });
+            }
+            lastIndex = regex.lastIndex;
+          }
+          if (lastIndex < line.length) {
+            parts.push(line.slice(lastIndex));
+          }
+          return parts.map((part, j) => {
+            if (typeof part === 'string') return <span key={j}>{part}</span>;
+            if (part.type === 'url') {
+              return (
+                <a
+                  key={j}
+                  href={part.value}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-brand-mint font-semibold hover:text-brand-mint-dark transition-colors mx-1 break-all"
+                  style={{ wordBreak: 'break-all', padding: '0 0.15em' }}
+                >
+                  {part.value}
+                </a>
+              );
+            }
+            if (part.type === 'time') {
+              const seconds = timestampToSeconds(part.value);
+              const youtubeUrl = `https://www.youtube.com/watch?v=${episode.youtubeId}&t=${seconds}`;
+              return (
+                <a
+                  key={j}
+                  href={youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Open YouTube at ${part.value}`}
+                  className="underline text-brand-mint font-semibold hover:text-brand-mint-dark transition-colors mx-1 cursor-pointer"
+                  style={{ padding: '0 0.15em' }}
+                >
+                  {part.value}
+                </a>
+              );
+            }
+            return null;
+          }).concat(i < arr.length - 1 ? <br key={`br-${i}`} /> : null);
+        })}
+      </p>
+    ));
+  }
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
+        <MatrixBackground fullScreen />
+        <div className="relative z-10 text-center">
+          <div className="mb-4 animate-spin text-6xl">⏳</div>
+          <h1 className="mb-4 text-4xl font-bold text-brand-mint">Loading episode...</h1>
+        </div>
+      </div>
+    );
+  }
 
   if (!episode) {
     return (
@@ -65,10 +180,8 @@ const EpisodeDetail = () => {
 
             <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">{episode.title}</h1>
 
-            <p className="mb-6 text-xl text-muted-foreground">{episode.description}</p>
-
             <div className="flex flex-wrap gap-2">
-              {episode.tags.map((tag) => (
+              {episode.tags.map((tag: string) => (
                 <Badge key={tag} variant="outline" className="border-brand-mint/40 text-brand-mint">
                   {tag}
                 </Badge>
@@ -81,7 +194,7 @@ const EpisodeDetail = () => {
             <CardContent className="p-0">
               <div className="aspect-video">
                 <iframe
-                  src={`https://www.youtube.com/embed/${episode.youtubeId}`}
+                  src={`https://www.youtube.com/embed/${episode.youtubeId}${playerTime > 0 ? `?start=${playerTime}` : ''}`}
                   title={episode.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -95,8 +208,8 @@ const EpisodeDetail = () => {
           <Card className="mb-8 border-brand-mint/20 bg-card/50">
             <CardContent className="p-6">
               <h2 className="mb-4 text-2xl font-semibold text-brand-mint">About This Episode</h2>
-              <div className="prose prose-invert max-w-none">
-                <p className="whitespace-pre-line leading-relaxed text-muted-foreground">{episode.fullDescription}</p>
+              <div className="text-xl text-muted-foreground prose prose-invert max-w-none">
+                {renderDescription(episode.description)}
               </div>
             </CardContent>
           </Card>

@@ -6,27 +6,53 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { allEpisodes } from '@/server/data/episodes/episodes.data';
 import { Filter, Search } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import { fetchYoutubeEpisodes } from '@/server/data/episodes/fetchYoutubeEpisodes';
+import { EpisodeIdEnum } from '@/server/data/episodes/episodes.types';
 
-const Episodes = () => {
+interface YoutubeEpisode {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  duration: number;
+  tags: string[];
+  slug: string;
+  youtubeId: string;
+  guest: string;
+}
+
+interface EpisodesProps {
+  useCache?: boolean;
+}
+
+const Episodes = ({ useCache = true }: EpisodesProps) => {
+  const [episodes, setEpisodes] = useState<YoutubeEpisode[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState('newest');
   const episodesPerPage = 9;
 
+  useEffect(() => {
+    setLoading(true);
+    fetchYoutubeEpisodes(useCache)
+      .then((data) => setEpisodes(data))
+      .finally(() => setLoading(false));
+  }, [useCache]);
+
   // Get all unique tags
-  const allTags = Array.from(new Set(allEpisodes.flatMap((episode) => episode.tags)));
+  const allTags = Array.from(new Set(episodes.flatMap((episode) => episode.tags)));
 
   // Filter and sort episodes
   const filteredEpisodes = useMemo(() => {
-    let filtered = allEpisodes.filter((episode) => {
+    const filtered = episodes.filter((episode) => {
       const matchesSearch =
         episode.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         episode.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        episode.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+        episode.tags.some((tag: string) => tag.toLowerCase().includes(searchTerm.toLowerCase()));
 
       const matchesTags = selectedTags.length === 0 || selectedTags.every((tag) => episode.tags.includes(tag));
 
@@ -41,7 +67,7 @@ const Episodes = () => {
     });
 
     return filtered;
-  }, [searchTerm, selectedTags, sortOrder]);
+  }, [episodes, searchTerm, selectedTags, sortOrder]);
 
   // Pagination
   const totalPages = Math.ceil(filteredEpisodes.length / episodesPerPage);
@@ -133,8 +159,9 @@ const Episodes = () => {
 
             {/* Results Count */}
             <div className="mb-6 text-muted-foreground">
-              Showing {filteredEpisodes.length} episode{filteredEpisodes.length !== 1 ? 's' : ''}
-              {searchTerm && ` for "${searchTerm}"`}
+              {loading ? 'Loading episodes...' : (
+                <>Showing {filteredEpisodes.length} episode{filteredEpisodes.length !== 1 ? 's' : ''}{searchTerm && ` for "${searchTerm}"`}</>
+              )}
             </div>
           </div>
         </section>
@@ -142,11 +169,23 @@ const Episodes = () => {
         {/* Episodes Grid */}
         <section className="px-4 pb-16">
           <div className="mx-auto max-w-7xl">
-            {currentEpisodes.length > 0 ? (
+            {loading ? (
+              <div className="py-16 text-center">
+                <div className="mb-4 text-6xl animate-spin">⏳</div>
+                <h3 className="mb-2 text-xl font-semibold">Loading episodes...</h3>
+              </div>
+            ) : currentEpisodes.length > 0 ? (
               <>
                 <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {currentEpisodes.map((episode) => (
-                    <EpisodeCard key={episode.id} episode={episode} tagsOn />
+                    <EpisodeCard
+                      key={episode.id}
+                      episode={{
+                        ...episode,
+                        slug: episode.id as unknown as EpisodeIdEnum,
+                      }}
+                      tagsOn
+                    />
                   ))}
                 </div>
 

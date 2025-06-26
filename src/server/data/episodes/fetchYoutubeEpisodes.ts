@@ -71,7 +71,6 @@ export async function fetchYoutubeEpisodes(useCache = true) {
   const episodes = videoDetails
     .filter((video) => {
       const title = video.snippet.title || '';
-      console.log(title);
       const durationMin = parseDuration(video.contentDetails.duration);
       return (/^devtherapy episode #/i.test(title) || /^devtherapy #/i.test(title)) && durationMin >= 30;
     })

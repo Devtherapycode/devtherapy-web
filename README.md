@@ -1,73 +1,135 @@
-# Welcome to your Lovable project
+# DevTherapy Landing Page
 
-## Project info
+> 🎙️ **Therapy for developers, one bug at a time**
 
-**URL**: https://lovable.dev/projects/9c27aed8-fa9f-42fb-8186-505127604504
+A modern, responsive landing page for DevTherapy - a podcast dedicated to developer mental health, technical deep dives, and dev culture discussions.
 
-## How can I edit this code?
+## 🌟 About DevTherapy
 
-There are several ways of editing your application.
+DevTherapy is where developers come to decompress, learn, and connect. We tackle the real challenges of software development - from imposter syndrome to technical debt, burnout to breakthrough moments.
 
-**Use Lovable**
+### 🎯 What We Cover
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9c27aed8-fa9f-42fb-8186-505127604504) and start prompting.
+- **Technical Deep Dives**: Cutting-edge technologies, architectural patterns, and maintainable code
+- **Mental Health Focus**: Addressing burnout, stress, and psychological aspects of development
+- **Dev Culture**: Remote work, team dynamics, career growth, and healthy engineering cultures
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🎤 Hosts
 
-**Use your preferred IDE**
+- **Tornike Gomareli** - Senior Software Engineer with 10+ years experience in full-stack development
+- **Avtandil Ushikishvili** - Tech lead and mental health advocate specializing in Enterprise Software
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ✨ Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- 📱 **Responsive Design** - Works seamlessly across all devices
+- 🎨 **Modern UI** - Built with Tailwind CSS and shadcn/ui components
+- 📺 **Episode Browser** - Browse and search through all podcast episodes
+- 👥 **Guest Profiles** - Meet the amazing guests who've appeared on the show
+- 🎉 **Events Section** - Stay updated with upcoming events and game jams
+- 😂 **Memes Gallery** - Developer humor and community memes
+- 🛍️ **Shop** - Merchandise and branded items
+- ⌨️ **Keyboard Shortcuts** - Quick navigation with keyboard commands
+- 🎯 **Command Palette** - Fast search and navigation
+- 📊 **Analytics** - Track user engagement and popular content
 
-Follow these steps:
+## 🚀 Tech Stack
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui + Radix UI
+- **Routing**: React Router v6
+- **State Management**: Zustand
+- **Data Fetching**: TanStack Query
+- **Icons**: Lucide React
+- **Animations**: CSS + Framer Motion patterns
+- **Deployment**: GitHub Pages
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🛠️ Installation & Setup
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Prerequisites
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+- Node.js 18+ or Bun
+- npm, yarn, or bun
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/Devtherapycode/devtherapy-web
+cd devtherapy-web
+
+# Install dependencies
+npm install
+# or with bun
+bun install
+
+# Start development server
 npm run dev
+# or with bun
+bun dev
 ```
 
-**Edit a file directly in GitHub**
+The app will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Available Scripts
 
-**Use GitHub Codespaces**
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run build:dev    # Build for development
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
+npm run deploy       # Deploy to GitHub Pages
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 Key Components
 
-## What technologies are used for this project?
+- **HeroSection**: Landing page hero with animated background
+- **EpisodesSection**: Featured episodes with search and filtering
+- **AboutSection**: Information about the podcast and hosts
+- **CommandPalette**: Quick navigation and search interface
+- **MatrixBackground**: Animated matrix-style background effect
+- **MemeGallery**: Masonry layout for developer memes
 
-This project is built with:
+## 🔗 Links
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **🎥 YouTube**: [@Devtherapy](https://www.youtube.com/@Devtherapy)
+- **💬 Discord**: [Join our community](https://discord.gg/devtherapy)
+- **🌐 Website**: [Live Site](https://devtherapy.ge)
 
-## How can I deploy this project?
+## 🤝 Contributing
 
-Simply open [Lovable](https://lovable.dev/projects/9c27aed8-fa9f-42fb-8186-505127604504) and click on Share -> Publish.
+We welcome contributions! Here's how you can help:
 
-## Can I connect a custom domain to my Lovable project?
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Commit your changes**: `git commit -m 'Add amazing feature'`
+4. **Push to the branch**: `git push origin feature/amazing-feature`
+5. **Open a Pull Request**
 
-Yes, you can!
+### Adding New Episodes
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Create a new file in `src/server/data/episodes/`
+2. Follow the existing episode structure
+3. Add the episode to `episodes.data.ts`
+4. Update the `EpisodeIdEnum` in `episodes.types.ts`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Adding New Guests
+
+1. Add guest photo to `src/assets/guests/`
+2. Create guest data file in `src/server/data/guests/`
+3. Export guest data in `guests.data.ts`
+
+## 💬 Support
+
+If you have any questions or need help:
+
+- Join our [Discord community](https://discord.gg/devtherapy)
+- Open an issue on GitHub
+- Reach out to the hosts on LinkedIn
+
+---
+
+**Built with ❤️ by the DevTherapy team**

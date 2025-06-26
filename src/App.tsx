@@ -1,3 +1,4 @@
+
 import { GlobalShortcuts } from '@/components/GlobalShortcuts';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { Toaster } from '@/components/ui/toaster';
@@ -10,6 +11,7 @@ import EpisodeDetail from './pages/EpisodeDetail';
 import Episodes from './pages/Episodes';
 import EventDetail from './pages/EventDetail';
 import Events from './pages/Events';
+import GameJam2025 from './pages/GameJam2025';
 import GuestDetail from './pages/GuestDetail';
 import Guests from './pages/Guests';
 import { HomePage } from './pages/home-page';
@@ -34,6 +36,7 @@ const App = () => (
           <Route path="/guests/:guestId" element={<GuestDetail />} />
           <Route path="/events" element={<Events />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
+          <Route path="/gamejam-2025" element={<GameJam2025 />} />
           <Route path="/wrapped" element={<DevWrapped />} />
           <Route path="/memes" element={<Memes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -2,23 +2,10 @@ import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { fetchYoutubeEpisodes } from '@/server/data/episodes/fetchYoutubeEpisodes';
+import { episodes } from '@/server/data/episodes/episodes.data';
 import { YOUTUBE_URL } from '@/utils/const';
 import { ArrowLeft, Calendar, Clock, Play, Share2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
-interface YoutubeEpisode {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  duration: number;
-  tags: string[];
-  slug: string;
-  youtubeId: string;
-  guest: string;
-}
 
 // Helper to convert timestamp string to seconds
 function timestampToSeconds(ts: string): number {
@@ -35,21 +22,9 @@ function timestampToSeconds(ts: string): number {
 
 const EpisodeDetail = () => {
   const { episodeSlug } = useParams();
-  const [episode, setEpisode] = useState<YoutubeEpisode | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [playerTime, setPlayerTime] = useState<number>(0);
 
-  useEffect(() => {
-    setLoading(true);
-    fetchYoutubeEpisodes()
-      .then((episodes) => {
-        const found = episodes.find((ep: YoutubeEpisode) => ep.id === episodeSlug);
-        setEpisode(found || null);
-      })
-      .finally(() => setLoading(false));
-  }, [episodeSlug]);
+  const episode = episodes[episodeSlug as keyof typeof episodes];
 
-  // Helper to render description with clickable timestamps and links
   function renderDescription(desc: string) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     const timeRegex = /\b(\d{1,2}:\d{2}(?::\d{2})?)\b/g;
@@ -75,56 +50,46 @@ const EpisodeDetail = () => {
           if (lastIndex < line.length) {
             parts.push(line.slice(lastIndex));
           }
-          return parts.map((part, j) => {
-            if (typeof part === 'string') return <span key={j}>{part}</span>;
-            if (part.type === 'url') {
-              return (
-                <a
-                  key={j}
-                  href={part.value}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline text-brand-mint font-semibold hover:text-brand-mint-dark transition-colors mx-1 break-all"
-                  style={{ wordBreak: 'break-all', padding: '0 0.15em' }}
-                >
-                  {part.value}
-                </a>
-              );
-            }
-            if (part.type === 'time') {
-              const seconds = timestampToSeconds(part.value);
-              const youtubeUrl = `https://www.youtube.com/watch?v=${episode.youtubeId}&t=${seconds}`;
-              return (
-                <a
-                  key={j}
-                  href={youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={`Open YouTube at ${part.value}`}
-                  className="underline text-brand-mint font-semibold hover:text-brand-mint-dark transition-colors mx-1 cursor-pointer"
-                  style={{ padding: '0 0.15em' }}
-                >
-                  {part.value}
-                </a>
-              );
-            }
-            return null;
-          }).concat(i < arr.length - 1 ? <br key={`br-${i}`} /> : null);
+          return parts
+            .map((part, j) => {
+              if (typeof part === 'string') return <span key={j}>{part}</span>;
+              if (part.type === 'url') {
+                return (
+                  <a
+                    key={j}
+                    href={part.value}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mx-1 break-all font-semibold text-brand-mint underline transition-colors hover:text-brand-mint-dark"
+                    style={{ wordBreak: 'break-all', padding: '0 0.15em' }}
+                  >
+                    {part.value}
+                  </a>
+                );
+              }
+              if (part.type === 'time') {
+                const seconds = timestampToSeconds(part.value);
+                const youtubeUrl = `https://www.youtube.com/watch?v=${episode.youtubeId}&t=${seconds}`;
+                return (
+                  <a
+                    key={j}
+                    href={youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Open YouTube at ${part.value}`}
+                    className="mx-1 cursor-pointer font-semibold text-brand-mint underline transition-colors hover:text-brand-mint-dark"
+                    style={{ padding: '0 0.15em' }}
+                  >
+                    {part.value}
+                  </a>
+                );
+              }
+              return null;
+            })
+            .concat(i < arr.length - 1 ? <br key={`br-${i}`} /> : null);
         })}
       </p>
     ));
-  }
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-        <MatrixBackground fullScreen />
-        <div className="relative z-10 text-center">
-          <div className="mb-4 animate-spin text-6xl">⏳</div>
-          <h1 className="mb-4 text-4xl font-bold text-brand-mint">Loading episode...</h1>
-        </div>
-      </div>
-    );
   }
 
   if (!episode) {
@@ -180,8 +145,10 @@ const EpisodeDetail = () => {
 
             <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">{episode.title}</h1>
 
+            <p className="mb-6 text-xl text-muted-foreground">{episode.description}</p>
+
             <div className="flex flex-wrap gap-2">
-              {episode.tags.map((tag: string) => (
+              {episode.tags.map((tag) => (
                 <Badge key={tag} variant="outline" className="border-brand-mint/40 text-brand-mint">
                   {tag}
                 </Badge>
@@ -194,7 +161,7 @@ const EpisodeDetail = () => {
             <CardContent className="p-0">
               <div className="aspect-video">
                 <iframe
-                  src={`https://www.youtube.com/embed/${episode.youtubeId}${playerTime > 0 ? `?start=${playerTime}` : ''}`}
+                  src={`https://www.youtube.com/embed/${episode.youtubeId}`}
                   title={episode.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -208,8 +175,8 @@ const EpisodeDetail = () => {
           <Card className="mb-8 border-brand-mint/20 bg-card/50">
             <CardContent className="p-6">
               <h2 className="mb-4 text-2xl font-semibold text-brand-mint">About This Episode</h2>
-              <div className="text-xl text-muted-foreground prose prose-invert max-w-none">
-                {renderDescription(episode.description)}
+              <div className="prose prose-invert max-w-none">
+                <div className="prose prose-invert max-w-none text-xl text-muted-foreground">{renderDescription(episode.fullDescription)}</div>
               </div>
             </CardContent>
           </Card>

@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 // Configuration
-const YOUTUBE_API_KEY = process.env.VITE_YOUTUBE_API_KEY || "AIzaSyCje3slC0MXL3htthRAPIFHwOgTvPUeIdU";
+const YOUTUBE_API_KEY = process.env.VITE_YOUTUBE_API_KEY;
 const YOUTUBE_CHANNEL_ID = "UCHzaT-JZeoOCAlZWyUFc4qQ";
 const EPISODES_DATA_DIR = path.join(process.cwd(), 'src/server/data/episodes');
 

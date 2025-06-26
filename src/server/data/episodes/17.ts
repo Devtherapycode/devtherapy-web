@@ -9,13 +9,11 @@ export const seventeenthEpisodeBasicInfo: EpisodeBasicInfo = {
   duration: 104,
   tags: [
     'virtual reality',
-    'xr',
     'oculus',
     'unity',
     'unreal engine',
     'game development',
     'indie games',
-    'vr survival',
     'gamejam',
     'openGL',
     'c#',

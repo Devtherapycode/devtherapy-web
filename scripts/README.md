@@ -24,6 +24,7 @@ npx tsx scripts/fetch-episodes/fetchEpisodes.ts
 4. **Extracts episode numbers** from titles
 5. **Saves data locally** in `src/server/data/episodes/` directory
 6. **Creates individual files** for each episode for easy customization
+7. **Skips existing episodes** to preserve your customizations
 
 ### Output Files
 
@@ -41,6 +42,8 @@ After running the script, you can manually edit the generated files to:
 - Mark as featured (`featured`)
 - Add episode numbers (`episodeNumber`)
 
+**Important**: The script will skip episodes that already exist, so your customizations are preserved when re-running the script.
+
 ### Environment Variables
 
 Make sure to set your YouTube API key in `.env.local`:
@@ -55,4 +58,5 @@ VITE_YOUTUBE_API_KEY=your_youtube_api_key_here
 - **Full Customization**: Add custom metadata, tags, and notes
 - **Guest Integration**: Link episodes to guest profiles
 - **Resource Efficiency**: Reduces YouTube API usage
-- **Offline Capability**: Works without internet connection 
+- **Offline Capability**: Works without internet connection
+- **Safe Updates**: Preserves existing customizations when re-running 

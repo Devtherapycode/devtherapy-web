@@ -8,7 +8,7 @@ export const fourteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-03-28T15:29:15Z',
   duration: 70,
   tags: ['ai', 'machine learning'],
-  slug: 'xE4MAuxHnLo',
+  slug: 'natia-kukhilava',
   youtubeId: 'xE4MAuxHnLo',
   guest: 'Natia Kukhilava',
 };

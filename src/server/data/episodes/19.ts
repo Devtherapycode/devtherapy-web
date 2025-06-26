@@ -8,7 +8,7 @@ export const nineteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-06-19T17:23:04Z',
   duration: 112,
   tags: ['3d graphics', 'rendering', 'graphics engineering', 'international experience', 'opengl', 'software engineering', 'technical interviews'],
-  slug: 'fb5ssIH5-1E',
+  slug: 'irakli-koiava',
   youtubeId: 'fb5ssIH5-1E',
   guest: 'Irakli Koiava',
 };

@@ -1,4 +1,4 @@
-import { Episode, EpisodeBasicInfo } from './episodes.types';
+import { EpisodeBasicInfo, Episode } from './episodes.types';
 
 export const ninthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'swqK7GgJIrk',
@@ -8,7 +8,7 @@ export const ninthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-02-05T05:00:46Z',
   duration: 107,
   tags: ['microsoft mvp', '.net', 'open source', 'ai', 'llm', 'software architecture', 'career', 'dev conferences', 'c#'],
-  slug: 'swqK7GgJIrk',
+  slug: 'giorgi-dalakishvili',
   youtubeId: 'swqK7GgJIrk',
   guest: 'Giorgi Dalakishvili',
 };

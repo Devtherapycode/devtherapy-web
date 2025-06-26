@@ -8,9 +8,9 @@ export const thirdEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2024-10-30T11:17:20Z',
   duration: 67,
   tags: ['engineering management', 'feedback culture', 'tech hiring', 'career growth', 'software engineering', 'team leadership'],
-  slug: '0d-j8jDxiJE',
+  slug: 'archil-varshanidze',
   youtubeId: '0d-j8jDxiJE',
-  guest: 'არჩილ ვარშანიძე',
+  guest: '',
 };
 
 export const thirdEpisodeData: Episode = {

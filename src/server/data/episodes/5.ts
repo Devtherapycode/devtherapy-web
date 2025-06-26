@@ -8,7 +8,7 @@ export const fifthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2024-11-27T16:26:02Z',
   duration: 116,
   tags: ['game development', 'indie games', 'game engines', 'c#', 'unity', 'unreal engine'],
-  slug: 'Fv3jD_3jfhQ',
+  slug: 'giorgi-abelashvili',
   youtubeId: 'Fv3jD_3jfhQ',
   guest: 'Giorgi Abelashvili',
 };

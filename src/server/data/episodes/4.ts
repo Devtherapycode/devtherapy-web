@@ -8,7 +8,7 @@ export const fourthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2024-11-13T09:59:46Z',
   duration: 82,
   tags: ['android', 'mobile development', 'google developer expert', 'open source', 'conferences', 'public speaking'],
-  slug: '0cuCVR91zJY',
+  slug: 'tato-kutalia',
   youtubeId: '0cuCVR91zJY',
   guest: 'Tato Kutalia',
 };

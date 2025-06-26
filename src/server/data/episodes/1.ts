@@ -7,7 +7,7 @@ export const firstEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2024-10-16T09:03:40Z',
   duration: 57,
   tags: ['tech', 'podcast', 'georgian tech community'],
-  slug: 'tI-vWehbH-8',
+  slug: 'dae-iyos-nateli',
   youtubeId: 'tI-vWehbH-8',
   guest: '',
 };

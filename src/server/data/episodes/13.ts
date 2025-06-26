@@ -21,7 +21,7 @@ export const thirteenthEpisodeBasicInfo: EpisodeBasicInfo = {
     'linux',
     'openbsd',
   ],
-  slug: 'uzsNxVpVR4s',
+  slug: 'nika-gigashvili',
   youtubeId: 'uzsNxVpVR4s',
   guest: 'Nika Gigashvili',
 };

@@ -8,7 +8,7 @@ export const eleventhEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-02-21T12:06:50Z',
   duration: 115,
   tags: ['linux', 'redhat', 'systems engineering', 'devops', 'open source', 'cloud', 'finops'],
-  slug: 'xt3gOif5PeM',
+  slug: 'giorgi-machitidze',
   youtubeId: 'xt3gOif5PeM',
   guest: 'Giorgi Machitidze',
 };

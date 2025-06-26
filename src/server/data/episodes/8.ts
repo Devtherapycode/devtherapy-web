@@ -8,7 +8,7 @@ export const eighthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-01-26T17:30:04Z',
   duration: 75,
   tags: ['career', 'ai', 'entry level', 'web', 'mobile', 'software engineering'],
-  slug: 'ibxIUdZ84hQ',
+  slug: 'q-a',
   youtubeId: 'ibxIUdZ84hQ',
   guest: '',
 };

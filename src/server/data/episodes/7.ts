@@ -8,7 +8,7 @@ export const seventhEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-01-16T06:00:35Z',
   duration: 142,
   tags: ['graphics engineering', 'rockstar games', 'gta vi', 'gpu programming', 'game development', 'unreal engine', 'unity', 'opengl', 'vulkan', 'rendering'],
-  slug: 'ptPHTbQk_sA',
+  slug: 'zura-abelashvili',
   youtubeId: 'ptPHTbQk_sA',
   guest: 'Zura Abelashvili',
 };

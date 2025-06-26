@@ -2,13 +2,13 @@ import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const sixthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'ohciTBFhqMo',
-  title: 'Devtherapy Episode #6 - Nika Otiashvili | დაზეპირებული OOP ცუდია, SDL, Emacs, Neovim, Indie თამაშები',
+  title: 'Devtherapy Episode #6 - NIka Otiashvili | დაზეპირებული OOP ცუდია, SDL, Emacs, Neovim, Indie თამაშები',
   description:
     'პოდკასტის მეექვსე ეპიზოდში ჩვენი სტუმარია ნიკოლოზ ოთიაშვილი — გამოცდილი პროგრამისტი და Game Developer. ამ ეპიზოდში ვისაუბრებთ Enterprise vs Game Development-ის განსხვავებებზე, OOP-ის პრობლემებზე, Developer tooling-ზე, Game Engine-ების გარეშე პროგრამირებაზე და მოძველებულ best practice-ებზე.',
   date: '2025-01-09T12:16:38Z',
   duration: 110,
-  tags: ['oop', 'sdl', 'emacs', 'neovim', 'indie games', 'game development', 'developer tooling'],
-  slug: 'ohciTBFhqMo',
+  tags: [],
+  slug: 'nika-otiashvili',
   youtubeId: 'ohciTBFhqMo',
   guest: 'Nika Otiashvili',
 };

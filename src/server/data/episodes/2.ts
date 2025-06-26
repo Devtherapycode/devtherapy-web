@@ -7,7 +7,7 @@ export const secondEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2024-10-23T14:23:03Z',
   duration: 87,
   tags: ['web development', 'toptal', 'career'],
-  slug: 'bqmyM99JMHU',
+  slug: 'levan-lotuashvili',
   youtubeId: 'bqmyM99JMHU',
   guest: 'ლევან ლოთუაშვილი',
 };

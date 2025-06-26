@@ -8,7 +8,7 @@ export const twelfthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-03-06T19:05:07Z',
   duration: 120,
   tags: ['c#', 'golang', 'development philosophies'],
-  slug: 'atg6EtERPVA',
+  slug: 'tornike-razmadze',
   youtubeId: 'atg6EtERPVA',
   guest: 'Tornike Razmadze',
 };

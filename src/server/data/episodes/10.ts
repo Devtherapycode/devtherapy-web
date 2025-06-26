@@ -1,4 +1,4 @@
-import { Episode, EpisodeBasicInfo } from './episodes.types';
+import { EpisodeBasicInfo, Episode } from './episodes.types';
 
 export const tenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 't71ge5v-4ig',
@@ -8,7 +8,7 @@ export const tenthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-02-13T16:00:58Z',
   duration: 99,
   tags: ['frontend', 'software engineering', 'platform team', 'blazor', 'micro frontend', 'generalist', 'specialist'],
-  slug: 't71ge5v-4ig',
+  slug: 'oto-lolua',
   youtubeId: 't71ge5v-4ig',
   guest: 'Oto Lolua',
 };

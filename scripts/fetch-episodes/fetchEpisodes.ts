@@ -1,11 +1,20 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 
+// Load environment variables from .env files
+dotenv.config({ path: '.env.local' });
+dotenv.config({ path: '.env' });
+
 // Configuration
-const YOUTUBE_API_KEY = process.env.VITE_YOUTUBE_API_KEY;
-const YOUTUBE_CHANNEL_ID = "UCHzaT-JZeoOCAlZWyUFc4qQ";
+const YOUTUBE_API_KEY = process.env.VITE_YOUTUBE_API_KEY || process.env.YOUTUBE_API_KEY;
+const YOUTUBE_CHANNEL_ID = 'UCHzaT-JZeoOCAlZWyUFc4qQ';
 const EPISODES_DATA_DIR = path.join(process.cwd(), 'src/server/data/episodes');
+
+if (!YOUTUBE_API_KEY) {
+  throw new Error('YouTube API key not found. Please set VITE_YOUTUBE_API_KEY or YOUTUBE_API_KEY in your .env.local or .env file.');
+}
 
 interface YoutubeVideo {
   id: string;
@@ -88,25 +97,71 @@ function extractEpisodeNumber(title: string): number | undefined {
 function generateTags(title: string, description: string): string[] {
   const tags: string[] = [];
   const text = `${title} ${description}`.toLowerCase();
-  
+
   // Common tech topics
   const techTopics = [
-    'javascript', 'typescript', 'react', 'vue', 'angular', 'nodejs', 'python', 'java', 'c#', 'dotnet',
-    'web development', 'frontend', 'backend', 'fullstack', 'mobile', 'ios', 'android', 'flutter', 'react native',
-    'database', 'sql', 'nosql', 'mongodb', 'postgresql', 'mysql', 'redis',
-    'devops', 'docker', 'kubernetes', 'aws', 'azure', 'gcp', 'ci/cd',
-    'testing', 'tdd', 'bdd', 'unit testing', 'integration testing',
-    'architecture', 'microservices', 'monolith', 'api', 'rest', 'graphql',
-    'security', 'authentication', 'authorization', 'oauth', 'jwt',
-    'performance', 'optimization', 'scalability', 'monitoring', 'logging'
+    'javascript',
+    'typescript',
+    'react',
+    'vue',
+    'angular',
+    'nodejs',
+    'python',
+    'java',
+    'c#',
+    'dotnet',
+    'web development',
+    'frontend',
+    'backend',
+    'fullstack',
+    'mobile',
+    'ios',
+    'android',
+    'flutter',
+    'react native',
+    'database',
+    'sql',
+    'nosql',
+    'mongodb',
+    'postgresql',
+    'mysql',
+    'redis',
+    'devops',
+    'docker',
+    'kubernetes',
+    'aws',
+    'azure',
+    'gcp',
+    'ci/cd',
+    'testing',
+    'tdd',
+    'bdd',
+    'unit testing',
+    'integration testing',
+    'architecture',
+    'microservices',
+    'monolith',
+    'api',
+    'rest',
+    'graphql',
+    'security',
+    'authentication',
+    'authorization',
+    'oauth',
+    'jwt',
+    'performance',
+    'optimization',
+    'scalability',
+    'monitoring',
+    'logging',
   ];
-  
-  techTopics.forEach(topic => {
+
+  techTopics.forEach((topic) => {
     if (text.includes(topic)) {
       tags.push(topic);
     }
   });
-  
+
   return tags;
 }
 
@@ -129,17 +184,56 @@ function getOrdinalSuffix(num: number): string {
 // Get ordinal word for valid JavaScript identifier
 function getOrdinalWord(num: number): string {
   const ordinals = [
-    'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth',
-    'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth',
-    'twentyFirst', 'twentySecond', 'twentyThird', 'twentyFourth', 'twentyFifth', 'twentySixth', 'twentySeventh', 'twentyEighth', 'twentyNinth', 'thirtieth'
+    'first',
+    'second',
+    'third',
+    'fourth',
+    'fifth',
+    'sixth',
+    'seventh',
+    'eighth',
+    'ninth',
+    'tenth',
+    'eleventh',
+    'twelfth',
+    'thirteenth',
+    'fourteenth',
+    'fifteenth',
+    'sixteenth',
+    'seventeenth',
+    'eighteenth',
+    'nineteenth',
+    'twentieth',
+    'twentyFirst',
+    'twentySecond',
+    'twentyThird',
+    'twentyFourth',
+    'twentyFifth',
+    'twentySixth',
+    'twentySeventh',
+    'twentyEighth',
+    'twentyNinth',
+    'thirtieth',
   ];
-  
+
   if (num <= ordinals.length) {
     return ordinals[num - 1];
   }
-  
+
   // Fallback for numbers beyond our list
   return `episode${num}`;
+}
+
+// Generate slug from title
+function generateSlugFromTitle(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/^devtherapy\s+(?:episode\s+)?#?\d+\s*[-:]\s*/i, '') // Remove "Devtherapy Episode #X - " prefix
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
+    .substring(0, 100); // Limit length
 }
 
 // Fetch all episodes from YouTube
@@ -161,6 +255,7 @@ export async function batchFetchEpisodes(): Promise<CustomEpisodeData[]> {
     .map((video) => {
       const episodeNumber = extractEpisodeNumber(video.snippet.title);
       const generatedTags = generateTags(video.snippet.title, video.snippet.description);
+      const slug = generateSlugFromTitle(video.snippet.title);
       
       return {
         id: video.id,
@@ -169,7 +264,7 @@ export async function batchFetchEpisodes(): Promise<CustomEpisodeData[]> {
         date: video.snippet.publishedAt,
         duration: parseDuration(video.contentDetails.duration),
         tags: generatedTags,
-        slug: video.id,
+        slug: slug,
         youtubeId: video.id,
         guest: '',
         // Custom fields
@@ -178,7 +273,7 @@ export async function batchFetchEpisodes(): Promise<CustomEpisodeData[]> {
         highlights: [],
         notes: '',
         featured: false,
-        episodeNumber
+        episodeNumber,
       };
     })
     .sort((a, b) => (a.episodeNumber || 0) - (b.episodeNumber || 0));
@@ -190,18 +285,19 @@ export async function batchFetchEpisodes(): Promise<CustomEpisodeData[]> {
 // Fetch single episode by ID
 export async function fetchEpisodeById(episodeId: string): Promise<CustomEpisodeData | null> {
   console.log(`🔄 Fetching episode ${episodeId} from YouTube...`);
-  
+
   try {
     const videoDetails = await fetchVideoDetails([episodeId]);
     if (videoDetails.length === 0) {
       console.log(`❌ Episode ${episodeId} not found`);
       return null;
     }
-    
+
     const video = videoDetails[0];
     const episodeNumber = extractEpisodeNumber(video.snippet.title);
     const generatedTags = generateTags(video.snippet.title, video.snippet.description);
-    
+    const slug = generateSlugFromTitle(video.snippet.title);
+
     const episode: CustomEpisodeData = {
       id: video.id,
       title: video.snippet.title,
@@ -209,7 +305,7 @@ export async function fetchEpisodeById(episodeId: string): Promise<CustomEpisode
       date: video.snippet.publishedAt,
       duration: parseDuration(video.contentDetails.duration),
       tags: generatedTags,
-      slug: video.id,
+      slug: slug,
       youtubeId: video.id,
       guest: '',
       // Custom fields
@@ -218,9 +314,9 @@ export async function fetchEpisodeById(episodeId: string): Promise<CustomEpisode
       highlights: [],
       notes: '',
       featured: false,
-      episodeNumber
+      episodeNumber,
     };
-    
+
     console.log(`✅ Fetched episode: ${episode.title}`);
     return episode;
   } catch (error) {
@@ -233,15 +329,15 @@ export async function fetchEpisodeById(episodeId: string): Promise<CustomEpisode
 export function saveEpisodeData(episode: CustomEpisodeData, index: number): boolean {
   const filename = `${index}.ts`;
   const filepath = path.join(EPISODES_DATA_DIR, filename);
-  
+
   // Check if file already exists
   if (fs.existsSync(filepath)) {
     console.log(`⏭️  Skipping ${filename} - file already exists`);
     return false;
   }
-  
+
   const ordinalWord = getOrdinalWord(index);
-  
+
   const fileContent = `import { EpisodeBasicInfo, Episode } from './episodes.types';
 
 export const ${ordinalWord}EpisodeBasicInfo: EpisodeBasicInfo = {
@@ -267,10 +363,54 @@ export const ${ordinalWord}EpisodeData: Episode = {
   return true;
 }
 
+// Generate enum from episode slugs
+function generateEpisodeIdEnum(episodes: CustomEpisodeData[]): string {
+  const enumEntries = episodes
+    .map((episode) => {
+      // Convert slug to UPPER_SNAKE_CASE for enum key
+      const enumKey = episode.slug.replace(/[^a-zA-Z0-9]/g, '_').toUpperCase();
+      return `  ${enumKey} = '${episode.slug}',`;
+    })
+    .join('\n');
+
+  return `export enum EpisodeIdEnum {
+${enumEntries}
+}`;
+}
+
+// Update episodes.types.ts with the generated enum
+function updateEpisodesTypesFile(episodes: CustomEpisodeData[]): void {
+  const typesFilePath = path.join(EPISODES_DATA_DIR, 'episodes.types.ts');
+  
+  // Read existing types file
+  let typesContent = '';
+  if (fs.existsSync(typesFilePath)) {
+    typesContent = fs.readFileSync(typesFilePath, 'utf8');
+  }
+  
+  // Generate the new enum
+  const episodeIdEnum = generateEpisodeIdEnum(episodes);
+  
+  // Replace or add the EpisodeIdEnum
+  if (typesContent.includes('export enum EpisodeIdEnum')) {
+    // Replace existing enum
+    typesContent = typesContent.replace(
+      /export enum EpisodeIdEnum \{[\s\S]*?\}/,
+      episodeIdEnum
+    );
+  } else {
+    // Add enum at the beginning of the file
+    typesContent = `${episodeIdEnum}\n\n${typesContent}`;
+  }
+  
+  fs.writeFileSync(typesFilePath, typesContent, 'utf8');
+  console.log(`💾 Updated episodes.types.ts with EpisodeIdEnum`);
+}
+
 // Save all episodes data and update episodes.data.ts
 export function saveAllEpisodesData(episodes: CustomEpisodeData[]): void {
   let newEpisodesCount = 0;
-  
+
   // Save individual episode files
   episodes.forEach((episode, index) => {
     const wasSaved = saveEpisodeData(episode, index + 1);
@@ -278,53 +418,59 @@ export function saveAllEpisodesData(episodes: CustomEpisodeData[]): void {
       newEpisodesCount++;
     }
   });
-  
+
   console.log(`📊 Created ${newEpisodesCount} new episode files, skipped ${episodes.length - newEpisodesCount} existing files`);
-  
-  // Only update episodes.data.ts if we have new episodes
-  if (newEpisodesCount > 0) {
-    // Create episodes data index file
-    const imports = episodes.map((_, index) => {
+
+  // Always update episodes.data.ts to include all episodes (including existing ones)
+  // Create episodes data index file
+  const imports = episodes
+    .map((_, index) => {
       const ordinalWord = getOrdinalWord(index + 1);
       return `import { ${ordinalWord}EpisodeBasicInfo, ${ordinalWord}EpisodeData } from './${index + 1}';`;
-    }).join('\n');
-    
-    const basicInfoArray = episodes.map((_, index) => {
+    })
+    .join('\n');
+
+  const basicInfoArray = episodes
+    .map((_, index) => {
       const ordinalWord = getOrdinalWord(index + 1);
       return `${ordinalWord}EpisodeBasicInfo`;
-    }).join(', ');
-    
-    const episodesRecord = episodes.map((episode, index) => {
-      const ordinalWord = getOrdinalWord(index + 1);
-      return `  '${episode.slug}': ${ordinalWord}EpisodeData`;
-    }).join(',\n');
-    
-    const indexContent = `${imports}
-import { Episode, EpisodeBasicInfo } from './episodes.types';
+    })
+    .join(', ');
+
+  const episodesRecord = episodes
+    .map((episode) => {
+      const ordinalWord = getOrdinalWord(episodes.findIndex((e) => e.slug === episode.slug) + 1);
+      const enumKey = episode.slug.replace(/[^a-zA-Z0-9]/g, '_').toUpperCase();
+      return `  [EpisodeIdEnum.${enumKey}]: ${ordinalWord}EpisodeData`;
+    })
+    .join(',\n');
+
+  const indexContent = `${imports}
+import { Episode, EpisodeBasicInfo, EpisodeIdEnum } from './episodes.types';
 
 export const allEpisodes: EpisodeBasicInfo[] = [${basicInfoArray}];
 
-export const episodes: Record<string, Episode> = {
+export const episodes: Record<EpisodeIdEnum, Episode> = {
 ${episodesRecord},
 };
 `;
 
-    const indexPath = path.join(EPISODES_DATA_DIR, 'episodes.data.ts');
-    fs.writeFileSync(indexPath, indexContent, 'utf8');
-    console.log(`💾 Updated episodes index to episodes.data.ts`);
-  } else {
-    console.log(`⏭️  No new episodes to add, skipping episodes.data.ts update`);
-  }
+  const indexPath = path.join(EPISODES_DATA_DIR, 'episodes.data.ts');
+  fs.writeFileSync(indexPath, indexContent, 'utf8');
+  console.log(`💾 Updated episodes index to episodes.data.ts with EpisodeIdEnum`);
+  
+  // Update episodes.types.ts with the enum
+  updateEpisodesTypesFile(episodes);
 }
 
 // Main function to run the script
 async function main() {
   try {
     console.log('🚀 Starting episode fetch script...');
-    
+
     const episodes = await batchFetchEpisodes();
     saveAllEpisodesData(episodes);
-    
+
     console.log('✅ Episode fetch script completed successfully!');
   } catch (error) {
     console.error('❌ Error running episode fetch script:', error);
@@ -335,4 +481,4 @@ async function main() {
 // Run if called directly (ES module approach)
 if (import.meta.url === `file://${process.argv[1]}`) {
   main();
-} 
+}

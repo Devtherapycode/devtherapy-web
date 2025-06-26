@@ -8,7 +8,7 @@ export const fifteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   date: '2025-04-10T14:46:26Z',
   duration: 101,
   tags: ['terraform', 'ai', 'bun', 'cloud providers', 'gcp', 'infrastructure as code', 'freelancing'],
-  slug: '4mbdXt_wcA0',
+  slug: 'giorgi-bagdavadze',
   youtubeId: '4mbdXt_wcA0',
   guest: 'Giorgi Bagdavadze',
 };

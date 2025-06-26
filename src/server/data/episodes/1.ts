@@ -1,4 +1,4 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const firstEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'tI-vWehbH-8',
@@ -6,7 +6,7 @@ export const firstEpisodeBasicInfo: EpisodeBasicInfo = {
   description: 'ჩვენი ტექ პოდკასტის პირველი, საპილოტე ეპიზოდი.',
   date: '2024-10-16T09:03:40Z',
   duration: 57,
-  tags: ['ტექ', 'პოდკასტი', 'ქართული ტექ კულტურა'],
+  tags: ['tech', 'podcast', 'georgian tech community'],
   slug: 'tI-vWehbH-8',
   youtubeId: 'tI-vWehbH-8',
   guest: '',

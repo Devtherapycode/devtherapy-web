@@ -1,12 +1,22 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const sixteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'Iw6R3NiEHXA',
   title: 'Devtherapy Episode #16 – David Bumbeishvili | D3, Data visualization, JS, Workstations, Upwork',
-  description: 'პოდკასტის მე-16 ეპიზოდში სტუმრად გვყავს დავით ბუმბეიშვილი — Data Visualization Engineer. ვისაუბრეთ D3.js-ზე, მონაცემთა ვიზუალიზაციაზე, JS ეკოსისტემაზე, Remote მუშაობაზე და Upwork-ზე.',
+  description:
+    'პოდკასტის მე-16 ეპიზოდში სტუმრად გვყავს დავით ბუმბეიშვილი — Data Visualization Engineer. ვისაუბრეთ D3.js-ზე, მონაცემთა ვიზუალიზაციაზე, JS ეკოსისტემაზე, Remote მუშაობაზე და Upwork-ზე.',
   date: '2025-04-19T15:55:56Z',
   duration: 98,
-  tags: ["d3", "data visualization", "javascript", "workstations", "upwork", "freelancing", "remote work", "webgl", "3d visualization", "open source", "ai", "career", "devtherapy"],
+  tags: [
+    'data visualization',
+    'javascript',
+    'freelancing',
+    'webgl',
+    '3d visualization',
+    'open source',
+    'ai',
+    'career',
+  ],
   slug: 'Iw6R3NiEHXA',
   youtubeId: 'Iw6R3NiEHXA',
   guest: 'David Bumbeishvili',

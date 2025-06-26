@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const ninthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'swqK7GgJIrk',
   title: 'Devtherapy Episode #9 - Giorgi Dalakishvili | Microsoft MVP, .NET, LLM, Open Source, Dev Conferences',
-  description: 'პოდკასტის მეცხრე ეპიზოდში სტუმრად გვეწვია საქართველოში ერთადერთი Microsoft MVP — გიორგი დალაქიშვილი. ამ ეპიზოდში ვისაუბრებთ .NET ეკოსისტემაზე, Open Source პროექტებზე, Microsoft MVP სტატუსზე, AI-ს გავლენაზე პროგრამირებაზე და დეველოპერების კარიერულ განვითარებაზე.',
+  description:
+    'პოდკასტის მეცხრე ეპიზოდში სტუმრად გვეწვია საქართველოში ერთადერთი Microsoft MVP — გიორგი დალაქიშვილი. ამ ეპიზოდში ვისაუბრებთ .NET ეკოსისტემაზე, Open Source პროექტებზე, Microsoft MVP სტატუსზე, AI-ს გავლენაზე პროგრამირებაზე და დეველოპერების კარიერულ განვითარებაზე.',
   date: '2025-02-05T05:00:46Z',
   duration: 107,
-  tags: ["microsoft mvp", ".net", "open source", "ai", "llm", "software architecture", "career", "dev conferences", "c#", "github", "devtherapy"],
+  tags: ['microsoft mvp', '.net', 'open source', 'ai', 'llm', 'software architecture', 'career', 'dev conferences', 'c#'],
   slug: 'swqK7GgJIrk',
   youtubeId: 'swqK7GgJIrk',
   guest: 'Giorgi Dalakishvili',

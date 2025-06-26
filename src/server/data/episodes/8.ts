@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const eighthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'ibxIUdZ84hQ',
   title: 'Devtherapy Episode #8 - კითხვებზე პასუხი',
-  description: 'პოდკასტის მერვე ეპიზოდში შევეცდებით გაგცეთ პასუხები თქვენს მიერ დასმულ კითხვებზე. ვისაუბრებთ კარიერულ განვითარებაზე, ტექნოლოგიების არჩევაზე, AI-ს გავლენაზე პროგრამირებაზე, მათემატიკის მნიშვნელობაზე და მრავალ სხვა საინტერესო საკითხზე.',
+  description:
+    'პოდკასტის მერვე ეპიზოდში შევეცდებით გაგცეთ პასუხები თქვენს მიერ დასმულ კითხვებზე. ვისაუბრებთ კარიერულ განვითარებაზე, ტექნოლოგიების არჩევაზე, AI-ს გავლენაზე პროგრამირებაზე, მათემატიკის მნიშვნელობაზე და მრავალ სხვა საინტერესო საკითხზე.',
   date: '2025-01-26T17:30:04Z',
   duration: 75,
-  tags: ["career", "ai", "programming", "technology", "math", "github", "entry level", "web", "mobile", "software engineering", "devtherapy"],
+  tags: ['career', 'ai', 'entry level', 'web', 'mobile', 'software engineering'],
   slug: 'ibxIUdZ84hQ',
   youtubeId: 'ibxIUdZ84hQ',
   guest: '',

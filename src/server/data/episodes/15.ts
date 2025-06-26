@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const fifteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: '4mbdXt_wcA0',
   title: 'Devtherapy Episode #15 – Giorgi Bagdavadze | Dev Community, Terraform, AI Agents, AWS, Bun & Node',
-  description: 'პოდკასტის მე-15 ეპიზოდში სტუმრად გვყავს გიორგი ბაღდავაძე — გამოცდილი ინჟინერი და დეველოპერების კომუნიტის აქტიური წევრი. ვისაუბრეთ Dev Community-ზე, Cloud Providers-ზე, Terraform-ზე, AI Agent-ებზე, AWS-ზე, Bun-ზე და Node-ზე.',
+  description:
+    'პოდკასტის მე-15 ეპიზოდში სტუმრად გვყავს გიორგი ბაღდავაძე — გამოცდილი ინჟინერი და დეველოპერების კომუნიტის აქტიური წევრი. ვისაუბრეთ Dev Community-ზე, Cloud Providers-ზე, Terraform-ზე, AI Agent-ებზე, AWS-ზე, Bun-ზე და Node-ზე.',
   date: '2025-04-10T14:46:26Z',
   duration: 101,
-  tags: ["dev community", "terraform", "ai agents", "aws", "bun", "node", "cloud providers", "azure", "gcp", "infrastructure as code", "career", "freelancing", "upwork", "remote work", "devtherapy"],
+  tags: ['terraform', 'ai', 'bun', 'cloud providers', 'gcp', 'infrastructure as code', 'freelancing'],
   slug: '4mbdXt_wcA0',
   youtubeId: '4mbdXt_wcA0',
   guest: 'Giorgi Bagdavadze',

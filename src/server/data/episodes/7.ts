@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const seventhEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'ptPHTbQk_sA',
   title: 'Devtherapy Episode #7 - Zura Abelashvili | GTA VI, Watch Dogs, Ray Tracing, GPU პროგრამირება',
-  description: 'მეშვიდე ეპიზოდში სტუმრად გვყავს ლეგენდარული ზუბა — Senior Graphics Engineer Rockstar Games-ში, რომელიც ამჟამად GTA VI ძრავზე მუშაობს. ამ ეპიზოდში ვისაუბრებთ AAA კომპანიაში მუშაობაზე, Ray Tracing-ზე, Game Development ალგორითმებზე, GPU პროგრამირებაზე და მრავალ საინტერესო საკითხზე.',
+  description:
+    'მეშვიდე ეპიზოდში სტუმრად გვყავს ლეგენდარული ზუბა — Senior Graphics Engineer Rockstar Games-ში, რომელიც ამჟამად GTA VI ძრავზე მუშაობს. ამ ეპიზოდში ვისაუბრებთ AAA კომპანიაში მუშაობაზე, Ray Tracing-ზე, Game Development ალგორითმებზე, GPU პროგრამირებაზე და მრავალ საინტერესო საკითხზე.',
   date: '2025-01-16T06:00:35Z',
   duration: 142,
-  tags: ["graphics engineering", "rockstar games", "gta vi", "watch dogs", "ray tracing", "gpu programming", "game development", "unreal engine", "unity", "opengl", "directx12", "vulkan", "rendering", "console vs pc", "memory", "career", "devtherapy"],
+  tags: ['graphics engineering', 'rockstar games', 'gta vi', 'gpu programming', 'game development', 'unreal engine', 'unity', 'opengl', 'vulkan', 'rendering'],
   slug: 'ptPHTbQk_sA',
   youtubeId: 'ptPHTbQk_sA',
   guest: 'Zura Abelashvili',

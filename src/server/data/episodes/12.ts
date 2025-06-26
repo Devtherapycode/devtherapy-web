@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const twelfthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'atg6EtERPVA',
   title: 'Devtherapy Episode #12 - Tornike Razmadze | GoLang, Simplicity, Tooling, Development Philosophies',
-  description: 'პოდკასტის მე-12 ეპიზოდში სტუმრად გვყავს თორნიკე რაზმაძე — ერთ-ერთი პირველი Gopher-ი საქართველოში. ამ ეპიზოდში ვსაუბრობთ დეველოპმენტის ფილოსოფიაზე, Go-ს დიზაინსა და მის მთავარ ფასეულობებზე, სიმარტივის ძალაზე, ინჟინერიის პრინციპებზე და თანამედროვე ტექნოლოგიების გავლენაზე.',
+  description:
+    'პოდკასტის მე-12 ეპიზოდში სტუმრად გვყავს თორნიკე რაზმაძე — ერთ-ერთი პირველი Gopher-ი საქართველოში. ამ ეპიზოდში ვსაუბრობთ დეველოპმენტის ფილოსოფიაზე, Go-ს დიზაინსა და მის მთავარ ფასეულობებზე, სიმარტივის ძალაზე, ინჟინერიის პრინციპებზე და თანამედროვე ტექნოლოგიების გავლენაზე.',
   date: '2025-03-06T19:05:07Z',
   duration: 120,
-  tags: ["c#"],
+  tags: ['c#', 'golang', 'development philosophies'],
   slug: 'atg6EtERPVA',
   youtubeId: 'atg6EtERPVA',
   guest: 'Tornike Razmadze',

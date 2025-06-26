@@ -6,7 +6,7 @@ export const secondEpisodeBasicInfo: EpisodeBasicInfo = {
   description: 'ჩვენი ტექ პოდკასტის მეორე ეპიზოდი.',
   date: '2024-10-23T14:23:03Z',
   duration: 87,
-  tags: ['ვებ დეველოპმენტი', 'ტოპტალი', 'ენთუზიაზმი', 'სამსახურები'],
+  tags: ['web development', 'toptal', 'career'],
   slug: 'bqmyM99JMHU',
   youtubeId: 'bqmyM99JMHU',
   guest: 'ლევან ლოთუაშვილი',

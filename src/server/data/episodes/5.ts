@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const fifthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'Fv3jD_3jfhQ',
   title: 'Devtherapy Episode #5 - Giorgi Abelashvili | ვიდეო თამაშები, თამაშების ინჟინერია და პროგრამირება',
-  description: 'პოდკასტის მეხუთე ეპიზოდში ჩვენი სტუმარია გიორგი აბელაშვილი — 15 წლიანი გამოცდილების მქონე Game Developer და Software Engineer. ამ ეპიზოდში ვსაუბრობთ თამაშების შექმნის ხელოვნებაზე, indie თამაშების პოპულარობაზე, Game Engine-ებს, ტექნიკურ დეტალებს და თამაშების მონეტიზაციის სხვადასხვა მოდელებზე.',
+  description:
+    'პოდკასტის მეხუთე ეპიზოდში ჩვენი სტუმარია გიორგი აბელაშვილი — 15 წლიანი გამოცდილების მქონე Game Developer და Software Engineer. ამ ეპიზოდში ვსაუბრობთ თამაშების შექმნის ხელოვნებაზე, indie თამაშების პოპულარობაზე, Game Engine-ებს, ტექნიკურ დეტალებს და თამაშების მონეტიზაციის სხვადასხვა მოდელებზე.',
   date: '2024-11-27T16:26:02Z',
   duration: 116,
-  tags: ["game development", "indie games", "game engines", "c#", "unity", "unreal engine", "steam", "career", "feedback", "devtherapy"],
+  tags: ['game development', 'indie games', 'game engines', 'c#', 'unity', 'unreal engine'],
   slug: 'Fv3jD_3jfhQ',
   youtubeId: 'Fv3jD_3jfhQ',
   guest: 'Giorgi Abelashvili',

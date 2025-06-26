@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const thirdEpisodeBasicInfo: EpisodeBasicInfo = {
   id: '0d-j8jDxiJE',
   title: 'Devtherapy Episode #3 - არჩილ ვარშანიძე | Engineering Manager, Feedback კულტურა, ინჟინრული ჰიგიენა',
-  description: 'პოდკასტის მესამე ეპიზოდში სტუმრად გვყავს არჩილ ვარშანიძე — ინჟინერი, რომელიც დღეს უკვე Engineering Manager-ის როლშია. ამ ეპიზოდში დეტალურად ვსაუბრობთ ქართულ ბაზარზე არსებული ინჟინრების პროფესიულ დონეზე, ტოპ კომპანიებში Tech hiring-ის პროცედურებსა და გამოწვევებზე, ასევე ინჟინერულ ჰიგიენაზე და ფიდბექის კულტურის დანერგვაზე.',
+  description:
+    'პოდკასტის მესამე ეპიზოდში სტუმრად გვყავს არჩილ ვარშანიძე — ინჟინერი, რომელიც დღეს უკვე Engineering Manager-ის როლშია. ამ ეპიზოდში დეტალურად ვსაუბრობთ ქართულ ბაზარზე არსებული ინჟინრების პროფესიულ დონეზე, ტოპ კომპანიებში Tech hiring-ის პროცედურებსა და გამოწვევებზე, ასევე ინჟინერულ ჰიგიენაზე და ფიდბექის კულტურის დანერგვაზე.',
   date: '2024-10-30T11:17:20Z',
   duration: 67,
-  tags: ["engineering management", "feedback culture", "tech hiring", "career growth", "software engineering", "team leadership", "devtherapy"],
+  tags: ['engineering management', 'feedback culture', 'tech hiring', 'career growth', 'software engineering', 'team leadership'],
   slug: '0d-j8jDxiJE',
   youtubeId: '0d-j8jDxiJE',
   guest: 'არჩილ ვარშანიძე',

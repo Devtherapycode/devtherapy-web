@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const fourteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'xE4MAuxHnLo',
   title: 'Devtherapy Episode #14 - Natia Kukhilava | Helio, AI Agents, Large Language Models, Machine learning',
-  description: 'პოდკასტის მე-14 ეპიზოდში სტუმრად გვყავს ნათია კუხილავა — Helio.AI-ის ტექნიკური დირექტორი. ვისაუბრეთ AI ტექნოლოგიებზე, LLM-ებზე, AI Agent-ებზე, სტარტაპ ეკოსისტემაზე და ინოვაციურ მიდგომებზე.',
+  description:
+    'პოდკასტის მე-14 ეპიზოდში სტუმრად გვყავს ნათია კუხილავა — Helio.AI-ის ტექნიკური დირექტორი. ვისაუბრეთ AI ტექნოლოგიებზე, LLM-ებზე, AI Agent-ებზე, სტარტაპ ეკოსისტემაზე და ინოვაციურ მიდგომებზე.',
   date: '2025-03-28T15:29:15Z',
   duration: 70,
-  tags: ["ai", "llm", "ai agents", "machine learning", "helio", "python", "react", "startup", "innovation", "technology", "career", "devtherapy"],
+  tags: ['ai', 'machine learning'],
   slug: 'xE4MAuxHnLo',
   youtubeId: 'xE4MAuxHnLo',
   guest: 'Natia Kukhilava',

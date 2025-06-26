@@ -230,9 +230,15 @@ export async function fetchEpisodeById(episodeId: string): Promise<CustomEpisode
 }
 
 // Save episode data to numbered file
-export function saveEpisodeData(episode: CustomEpisodeData, index: number): void {
+export function saveEpisodeData(episode: CustomEpisodeData, index: number): boolean {
   const filename = `${index}.ts`;
   const filepath = path.join(EPISODES_DATA_DIR, filename);
+  
+  // Check if file already exists
+  if (fs.existsSync(filepath)) {
+    console.log(`⏭️  Skipping ${filename} - file already exists`);
+    return false;
+  }
   
   const ordinalWord = getOrdinalWord(index);
   
@@ -258,32 +264,42 @@ export const ${ordinalWord}EpisodeData: Episode = {
 
   fs.writeFileSync(filepath, fileContent, 'utf8');
   console.log(`💾 Saved episode data to ${filename}`);
+  return true;
 }
 
 // Save all episodes data and update episodes.data.ts
 export function saveAllEpisodesData(episodes: CustomEpisodeData[]): void {
+  let newEpisodesCount = 0;
+  
   // Save individual episode files
   episodes.forEach((episode, index) => {
-    saveEpisodeData(episode, index + 1);
+    const wasSaved = saveEpisodeData(episode, index + 1);
+    if (wasSaved) {
+      newEpisodesCount++;
+    }
   });
   
-  // Create episodes data index file
-  const imports = episodes.map((_, index) => {
-    const ordinalWord = getOrdinalWord(index + 1);
-    return `import { ${ordinalWord}EpisodeBasicInfo, ${ordinalWord}EpisodeData } from './${index + 1}';`;
-  }).join('\n');
+  console.log(`📊 Created ${newEpisodesCount} new episode files, skipped ${episodes.length - newEpisodesCount} existing files`);
   
-  const basicInfoArray = episodes.map((_, index) => {
-    const ordinalWord = getOrdinalWord(index + 1);
-    return `${ordinalWord}EpisodeBasicInfo`;
-  }).join(', ');
-  
-  const episodesRecord = episodes.map((episode, index) => {
-    const ordinalWord = getOrdinalWord(index + 1);
-    return `  '${episode.slug}': ${ordinalWord}EpisodeData`;
-  }).join(',\n');
-  
-  const indexContent = `${imports}
+  // Only update episodes.data.ts if we have new episodes
+  if (newEpisodesCount > 0) {
+    // Create episodes data index file
+    const imports = episodes.map((_, index) => {
+      const ordinalWord = getOrdinalWord(index + 1);
+      return `import { ${ordinalWord}EpisodeBasicInfo, ${ordinalWord}EpisodeData } from './${index + 1}';`;
+    }).join('\n');
+    
+    const basicInfoArray = episodes.map((_, index) => {
+      const ordinalWord = getOrdinalWord(index + 1);
+      return `${ordinalWord}EpisodeBasicInfo`;
+    }).join(', ');
+    
+    const episodesRecord = episodes.map((episode, index) => {
+      const ordinalWord = getOrdinalWord(index + 1);
+      return `  '${episode.slug}': ${ordinalWord}EpisodeData`;
+    }).join(',\n');
+    
+    const indexContent = `${imports}
 import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const allEpisodes: EpisodeBasicInfo[] = [${basicInfoArray}];
@@ -293,9 +309,12 @@ ${episodesRecord},
 };
 `;
 
-  const indexPath = path.join(EPISODES_DATA_DIR, 'episodes.data.ts');
-  fs.writeFileSync(indexPath, indexContent, 'utf8');
-  console.log(`💾 Saved episodes index to episodes.data.ts`);
+    const indexPath = path.join(EPISODES_DATA_DIR, 'episodes.data.ts');
+    fs.writeFileSync(indexPath, indexContent, 'utf8');
+    console.log(`💾 Updated episodes index to episodes.data.ts`);
+  } else {
+    console.log(`⏭️  No new episodes to add, skipping episodes.data.ts update`);
+  }
 }
 
 // Main function to run the script

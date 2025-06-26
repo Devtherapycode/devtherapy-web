@@ -1,12 +1,26 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const thirteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'uzsNxVpVR4s',
   title: 'Devtherapy Episode #13 - Nika Gigashvili | FreeBSD, C, Penetration Testing, App Security',
-  description: 'პოდკასტის მე-13 ეპიზოდში სტუმრად გვყავს ნიკა გიგაშვილი — Low Level Programmer და უსაფრთხოების სპეციალისტი. ამ ეპიზოდში ვისაუბრებთ FreeBSD-ზე, Penetration Testing-ზე, C და low level დაპროგრამებაზე, აპლიკაციების უსაფრთხოებაზე და თანამედროვე ინჟინერიის მიდგომებზე.',
+  description:
+    'პოდკასტის მე-13 ეპიზოდში სტუმრად გვყავს ნიკა გიგაშვილი — Low Level Programmer და უსაფრთხოების სპეციალისტი. ამ ეპიზოდში ვისაუბრებთ FreeBSD-ზე, Penetration Testing-ზე, C და low level დაპროგრამებაზე, აპლიკაციების უსაფრთხოებაზე და თანამედროვე ინჟინერიის მიდგომებზე.',
   date: '2025-03-18T17:14:59Z',
   duration: 93,
-  tags: ["freebsd", "c", "penetration testing", "app security", "low level programming", "qa", "devsecops", "software supply chain", "agile", "scrum", "kernel", "windows", "linux", "openbsd", "career", "devtherapy"],
+  tags: [
+    'c',
+    'penetration testing',
+    'app security',
+    'low level programming',
+    'devsecops',
+    'software supply chain',
+    'agile',
+    'scrum',
+    'kernel',
+    'windows',
+    'linux',
+    'openbsd',
+  ],
   slug: 'uzsNxVpVR4s',
   youtubeId: 'uzsNxVpVR4s',
   guest: 'Nika Gigashvili',

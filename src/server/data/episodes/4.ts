@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const fourthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: '0cuCVR91zJY',
   title: 'Devtherapy Episode #4 - Tato Kutalia | Google Developer Expert, Tech კონფერენციები, Open Source',
-  description: 'პოდკასტის მეოთხე ეპიზოდში სტუმრად გვყავს ტატო კუტალია — Android ინჟინერი და ერთადერთი ქართველი Google Developer Expert. ამ ეპიზოდში ვისაუბრებთ კონფერენციების მნიშვნელობაზე, სპიკერობის გამოცდილებაზე, Open Source კონტრიბუციებზე, Mobile Development-ს და თანამედროვე ინჟინრულ გამოწვევებზე.',
+  description:
+    'პოდკასტის მეოთხე ეპიზოდში სტუმრად გვყავს ტატო კუტალია — Android ინჟინერი და ერთადერთი ქართველი Google Developer Expert. ამ ეპიზოდში ვისაუბრებთ კონფერენციების მნიშვნელობაზე, სპიკერობის გამოცდილებაზე, Open Source კონტრიბუციებზე, Mobile Development-ს და თანამედროვე ინჟინრულ გამოწვევებზე.',
   date: '2024-11-13T09:59:46Z',
   duration: 82,
-  tags: ["android", "mobile development", "google developer expert", "open source", "conferences", "public speaking", "devcommunity", "devtherapy"],
+  tags: ['android', 'mobile development', 'google developer expert', 'open source', 'conferences', 'public speaking'],
   slug: '0cuCVR91zJY',
   youtubeId: '0cuCVR91zJY',
   guest: 'Tato Kutalia',

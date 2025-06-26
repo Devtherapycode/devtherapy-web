@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const eleventhEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'xt3gOif5PeM',
   title: 'Devtherapy Episode #11 - Giorgi Machitidze | Linux, RedHat, Systems Engineering, DevOps, IT Roadmap',
-  description: 'პოდკასტის მე-11 ეპიზოდში სტუმრად გვეწვია გიორგი მაჩიტიძე — 25 წლიანი გამოცდილების მქონე IT სპეციალისტი. ამ ეპიზოდში ვისაუბრებთ Linux-ზე, RedHat-ზე, სისტემურ ინჟინერიაზე, DevOps-ზე, Open Source-ზე და IT ინდუსტრიის განვითარებაზე.',
+  description:
+    'პოდკასტის მე-11 ეპიზოდში სტუმრად გვეწვია გიორგი მაჩიტიძე — 25 წლიანი გამოცდილების მქონე IT სპეციალისტი. ამ ეპიზოდში ვისაუბრებთ Linux-ზე, RedHat-ზე, სისტემურ ინჟინერიაზე, DevOps-ზე, Open Source-ზე და IT ინდუსტრიის განვითარებაზე.',
   date: '2025-02-21T12:06:50Z',
   duration: 115,
-  tags: ["linux", "redhat", "systems engineering", "devops", "it roadmap", "open source", "cloud", "sre", "infrastructure", "career", "finops", "framework", "custom development", "devtherapy"],
+  tags: ['linux', 'redhat', 'systems engineering', 'devops', 'open source', 'cloud', 'finops'],
   slug: 'xt3gOif5PeM',
   youtubeId: 'xt3gOif5PeM',
   guest: 'Giorgi Machitidze',

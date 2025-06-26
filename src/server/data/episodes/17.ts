@@ -1,12 +1,25 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const seventeenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'NFmq3_ujDfU',
   title: 'Devtherapy #17 – Irakli Kokrashvili | Virtual Reality, XR, Oculus, Gaming, Police 1-2-3, Unity',
-  description: 'პოდკასტის მე-17 ეპიზოდში სტუმრად გვყავს ირაკლი კოკრაშვილი — VR და Gaming ინდუსტრიის ექსპერტი. ვისაუბრეთ Virtual Reality-ზე, XR ტექნოლოგიებზე, Oculus-ზე, Unity-ზე, Gaming ინდუსტრიაზე და ინოვაციურ პროექტებზე.',
+  description:
+    'პოდკასტის მე-17 ეპიზოდში სტუმრად გვყავს ირაკლი კოკრაშვილი — VR და Gaming ინდუსტრიის ექსპერტი. ვისაუბრეთ Virtual Reality-ზე, XR ტექნოლოგიებზე, Oculus-ზე, Unity-ზე, Gaming ინდუსტრიაზე და ინოვაციურ პროექტებზე.',
   date: '2025-05-30T14:47:17Z',
   duration: 104,
-  tags: ["virtual reality", "xr", "oculus", "gaming", "unity", "unreal engine", "game development", "indie games", "aaa games", "vr survival", "gamejam", "openGL", "c#", "career", "devtherapy"],
+  tags: [
+    'virtual reality',
+    'xr',
+    'oculus',
+    'unity',
+    'unreal engine',
+    'game development',
+    'indie games',
+    'vr survival',
+    'gamejam',
+    'openGL',
+    'c#',
+  ],
   slug: 'NFmq3_ujDfU',
   youtubeId: 'NFmq3_ujDfU',
   guest: 'Irakli Kokrashvili',

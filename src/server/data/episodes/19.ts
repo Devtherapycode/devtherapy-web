@@ -1,12 +1,22 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const nineteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'fb5ssIH5-1E',
   title: 'Devtherapy #19 – Irakli Koiava | Exploring 3D Graphics, the Mind of a Rendering Engineer, Relocation',
-  description: 'მე-19 ეპიზოდში სტუმარია ირაკლი ქოიავა — Graphics Software Engineer. ვისაუბრეთ 3D გრაფიკაზე, Rendering-ის კონცეპტებზე, გრაფიკული სისტემების მუშაობაზე, რელოკაციაზე, კარიერულ გზაზე და საერთაშორისო გამოცდილებაზე.',
+  description:
+    'მე-19 ეპიზოდში სტუმარია ირაკლი ქოიავა — Graphics Software Engineer. ვისაუბრეთ 3D გრაფიკაზე, Rendering-ის კონცეპტებზე, გრაფიკული სისტემების მუშაობაზე, რელოკაციაზე, კარიერულ გზაზე და საერთაშორისო გამოცდილებაზე.',
   date: '2025-06-19T17:23:04Z',
   duration: 112,
-  tags: ["3d graphics", "rendering", "graphics engineering", "relocation", "career", "international experience", "opengl", "software engineering", "germany", "mentorship", "devtherapy", "shadertoy", "dassault systèmes", "technical interviews", "mathematics", "university", "product development", "remote work"],
+  tags: [
+    '3d graphics',
+    'rendering',
+    'graphics engineering',
+    'international experience',
+    'opengl',
+    'software engineering',
+    'technical interviews',
+    'mathematics',
+  ],
   slug: 'fb5ssIH5-1E',
   youtubeId: 'fb5ssIH5-1E',
   guest: 'Irakli Koiava',

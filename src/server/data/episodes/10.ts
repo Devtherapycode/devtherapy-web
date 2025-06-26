@@ -1,12 +1,13 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const tenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 't71ge5v-4ig',
   title: 'Devtherapy Episode #10 - Oto Lolua | Javascript, Angular, Frontend myths, Engineering levels',
-  description: 'პოდკასტის მეათე ეპიზოდში სტუმრად გვეწვია ოთო ლოლუა — გამოცდილი Frontend Engineer და ლიდერი. ამ ეპიზოდში ვისაუბრებთ Frontend ეკოსისტემაზე, Javascript-ზე, Angular-ზე, Framework-ების განვითარებაზე, Software Engineer-ის როლებზე და კარიერულ განვითარებაზე.',
+  description:
+    'პოდკასტის მეათე ეპიზოდში სტუმრად გვეწვია ოთო ლოლუა — გამოცდილი Frontend Engineer და ლიდერი. ამ ეპიზოდში ვისაუბრებთ Frontend ეკოსისტემაზე, Javascript-ზე, Angular-ზე, Framework-ების განვითარებაზე, Software Engineer-ის როლებზე და კარიერულ განვითარებაზე.',
   date: '2025-02-13T16:00:58Z',
   duration: 99,
-  tags: ["javascript", "typescript", "react", "angular", "frontend", "software engineering", "career", "platform team", "nextjs", "blazor", "micro frontend", "generalist", "specialist", "devtherapy"],
+  tags: ['frontend', 'software engineering', 'platform team', 'blazor', 'micro frontend', 'generalist', 'specialist'],
   slug: 't71ge5v-4ig',
   youtubeId: 't71ge5v-4ig',
   guest: 'Oto Lolua',

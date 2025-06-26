@@ -1,12 +1,24 @@
-import { EpisodeBasicInfo, Episode } from './episodes.types';
+import { Episode, EpisodeBasicInfo } from './episodes.types';
 
 export const eighteenthEpisodeBasicInfo: EpisodeBasicInfo = {
   id: 'aECGCXO1Nus',
   title: 'Devtherapy #18 – Levan Mamulashvili (Mainera) | Technical Leadership, Career Strategy, MIT, Forbes,',
-  description: 'მე-18 ეპიზოდში სტუმრად გვყავს ლევან მამულაშვილი — ინჟინერი, რომელმაც ბუთქემპიდან დაიწყო და დღეს ერთ-ერთი ყველაზე დიდი კომპანიის ტექნიკური ლიდერია. ვისაუბრეთ კარიერულ სტრატეგიებზე, ტექნიკურ ლიდერობაზე, პროფესიულ ზრდაზე, ინდივიდუალურ სტრატეგიებზე და საერთაშორისო გამოცდილებაზე.',
+  description:
+    'მე-18 ეპიზოდში სტუმრად გვყავს ლევან მამულაშვილი — ინჟინერი, რომელმაც ბუთქემპიდან დაიწყო და დღეს ერთ-ერთი ყველაზე დიდი კომპანიის ტექნიკური ლიდერია. ვისაუბრეთ კარიერულ სტრატეგიებზე, ტექნიკურ ლიდერობაზე, პროფესიულ ზრდაზე, ინდივიდუალურ სტრატეგიებზე და საერთაშორისო გამოცდილებაზე.',
   date: '2025-06-05T17:50:26Z',
   duration: 131,
-  tags: ["technical leadership", "career strategy", "mit", "forbes", "mobile", "ios", "android", "architecture", "swift", "team management", "career growth", "remote work", "financial independence", "devtherapy"],
+  tags: [
+    'technical leadership',
+    'mit',
+    'mobile',
+    'ios',
+    'android',
+    'architecture',
+    'swift',
+    'team management',
+    'career growth',
+    'financial independence',
+  ],
   slug: 'aECGCXO1Nus',
   youtubeId: 'aECGCXO1Nus',
   guest: 'Levan Mamulashvili',

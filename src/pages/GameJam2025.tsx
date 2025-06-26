@@ -141,7 +141,7 @@ const GameJam2025 = () => {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="rules" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid h-full w-full grid-cols-2 sm:grid-cols-4">
             <TabsTrigger value="rules">🎮 წესები</TabsTrigger>
             <TabsTrigger value="faq">❓ FAQ</TabsTrigger>
             <TabsTrigger value="location">📍 ლოკაცია</TabsTrigger>
@@ -249,7 +249,7 @@ const GameJam2025 = () => {
               <CardContent className="space-y-6">
                 <div className="text-center">
                   <a href="https://lu.ma/rodmrn6z" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="bg-brand-mint px-12 py-6 text-xl text-black hover:bg-brand-mint-dark">
+                    <Button size="lg" className="bg-brand-mint px-12 py-6 text-black hover:bg-brand-mint-dark sm:text-xl">
                       📅 დარეგისტრირდი აქ
                       <ExternalLink className="ml-2 h-6 w-6" />
                     </Button>

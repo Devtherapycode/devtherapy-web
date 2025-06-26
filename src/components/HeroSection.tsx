@@ -1,7 +1,8 @@
 import logo from '@/assets/common/logo.png';
+import { Discord, Youtube } from '@/assets/icons/svgs';
 import { Button } from '@/components/ui/button';
-import { YOUTUBE_URL } from '@/utils/const';
-import { Archive, Image, Play, Users, Youtube } from 'lucide-react';
+import { DISCORD_URL, YOUTUBE_URL } from '@/utils/const';
+import { Archive, Image, Play, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
 
@@ -18,7 +19,7 @@ const HeroSection = () => {
         </div>
 
         {/* Main Heading */}
-        <h1 className="glow-text mb-6 text-4xl font-bold md:text-6xl lg:text-7xl">devtherapy</h1>
+        <h1 className="glow-text mb-6 text-4xl font-bold md:text-6xl lg:text-7xl">DevTherapy</h1>
 
         {/* Tagline */}
         <p className="mb-12 text-xl font-light text-muted-foreground md:text-2xl lg:text-3xl">Therapy for developers, one bug at a time</p>
@@ -37,6 +38,13 @@ const HeroSection = () => {
               <Button variant="outline" size="lg" className="hover-lift border-red-500/40 px-8 py-4 text-lg hover:border-red-500 hover:bg-red-500/10">
                 <Youtube className="mr-2 h-5 w-5" />
                 YouTube
+              </Button>
+            </a>
+
+            <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                <Discord className="mr-2 h-5 w-5" />
+                Discord
               </Button>
             </a>
           </div>

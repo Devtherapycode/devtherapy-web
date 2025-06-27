@@ -18,7 +18,9 @@ export type QuizCategory =
   | 'leadership'
   | 'freelancing'
   | 'web-development'
-  | 'mobile-development';
+  | 'mobile-development'
+  | 'software-architecture'
+  | 'open-source';
 
 export type QuizQuestion = {
   id: string;

@@ -1,3 +1,5 @@
+import { EpisodeSlugType } from '../episodes/episodes.types';
+
 export type QuizDifficulty = 'easy' | 'medium' | 'hard';
 
 export type QuizCategory =
@@ -32,7 +34,7 @@ export type Quiz = {
   description: string;
   categories: QuizCategory[];
   difficulty: QuizDifficulty;
-  episodeLink?: string;
+  episodeLink?: `/episodes/${EpisodeSlugType}`;
   estimatedTime: number; // in minutes
   questions: QuizQuestion[];
 };

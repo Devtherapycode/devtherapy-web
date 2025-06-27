@@ -5,6 +5,7 @@ import { QuizRunner } from '@/components/quiz/QuizRunner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { quizCategories } from '@/server/data/quizzes/quiz-categories';
 import { allQuizzes } from '@/server/data/quizzes/quizzes.data';
 import { Quiz, QuizCategory } from '@/server/data/quizzes/quizzes.types';
@@ -106,13 +107,17 @@ const Quizzes = () => {
                     className="hover-lift flex flex-col justify-between border-brand-mint/20 bg-card/50 transition-all hover:border-brand-mint/40"
                   >
                     <CardHeader>
-                      <div className="mb-2 flex items-start justify-between">
-                        <Badge className={getDifficultyColor(quiz.difficulty)} variant="outline">
+                      <div className="mb-2">
+                        <Badge className={cn(getDifficultyColor(quiz.difficulty), 'mb-3 text-nowrap')} variant="outline">
                           {quiz.difficulty}
                         </Badge>
-                        <Badge variant="outline" className="border-brand-mint/40 text-brand-mint">
-                          {quiz.categories.slice(1)}
-                        </Badge>
+                        <div className="flex flex-wrap items-center gap-2">
+                          {quiz.categories.map((category) => (
+                            <Badge key={category} variant="outline" className="text-nowrap border-brand-mint/40 text-xs text-brand-mint">
+                              {category}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
                       <CardTitle className="text-xl text-foreground">{quiz.title}</CardTitle>
                       <CardDescription className="text-muted-foreground">{quiz.description}</CardDescription>

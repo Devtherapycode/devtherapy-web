@@ -17,12 +17,27 @@ const Episodes = () => {
   const [sortOrder, setSortOrder] = useState('newest');
   const episodesPerPage = 9;
 
-  // Get all unique tags
-  const allTags = Array.from(new Set(allEpisodes.flatMap((episode) => episode.tags)));
+  // Get top 20 most frequently used tags
+  const allTags = useMemo(() => {
+    const tagCounts = new Map<string, number>();
+    
+    // Count tag occurrences
+    allEpisodes.forEach((episode) => {
+      episode.tags.forEach((tag) => {
+        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+      });
+    });
+    
+    // Sort by frequency (descending) and take top 20
+    return Array.from(tagCounts.entries())
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 20)
+      .map(([tag]) => tag);
+  }, []);
 
   // Filter and sort episodes
   const filteredEpisodes = useMemo(() => {
-    let filtered = allEpisodes.filter((episode) => {
+    const filtered = allEpisodes.filter((episode) => {
       const matchesSearch =
         episode.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         episode.description.toLowerCase().includes(searchTerm.toLowerCase()) ||

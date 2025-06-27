@@ -20,6 +20,7 @@ export type QuizCategory =
   | 'web-development'
   | 'mobile-development'
   | 'software-architecture'
+  | 'software-engineering'
   | 'open-source';
 
 export type QuizQuestion = {

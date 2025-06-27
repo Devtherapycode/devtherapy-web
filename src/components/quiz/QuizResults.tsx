@@ -110,7 +110,7 @@ export const QuizResults = ({ quiz, score, totalQuestions, timeSpent, onRetry, o
                 <p className="mb-3 text-sm text-muted-foreground">
                   Take your learning further with this full conversation about the topics covered in this quiz.
                 </p>
-                <Link to={quiz.episodeLink}>
+                <Link to={quiz.episodeLink} target="_black">
                   <Button variant="outline" size="sm" className="w-full border-brand-mint/40 hover:bg-brand-mint/10">
                     <Headphones className="mr-2 h-4 w-4" />
                     🎧 Listen Now

@@ -1,4 +1,3 @@
-
 import { GlobalShortcuts } from '@/components/GlobalShortcuts';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { Toaster } from '@/components/ui/toaster';
@@ -17,6 +16,7 @@ import Guests from './pages/Guests';
 import { HomePage } from './pages/home-page';
 import Memes from './pages/memes/Memes.page';
 import NotFound from './pages/NotFound';
+import Quizzes from './pages/Quizzes';
 import Shop from './pages/Shop';
 
 const queryClient = new QueryClient();
@@ -36,6 +36,7 @@ const App = () => (
           <Route path="/guests/:guestId" element={<GuestDetail />} />
           <Route path="/events" element={<Events />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
+          <Route path="/quizzes" element={<Quizzes />} />
           <Route path="/gamejam-2025" element={<GameJam2025 />} />
           <Route path="/wrapped" element={<DevWrapped />} />
           <Route path="/memes" element={<Memes />} />

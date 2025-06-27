@@ -1,3 +1,5 @@
+import { Quiz } from '../quizzes/quizzes.types';
+
 export type EpisodeSlugType =
   | 'dae-iyos-nateli'
   | 'levan-lotuashvili'
@@ -34,4 +36,5 @@ export type EpisodeBasicInfo = {
 
 export type Episode = EpisodeBasicInfo & {
   fullDescription: string;
+  quizzes: Quiz[];
 };

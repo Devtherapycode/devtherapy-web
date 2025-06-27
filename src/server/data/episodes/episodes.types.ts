@@ -18,7 +18,9 @@ export enum EpisodeIdEnum {
   IRAKLI_KOKRASHVILI = 'irakli-kokrashvili',
   LEVAN_MAMULASHVILI = 'levan-mamulashvili',
   IRAKLI_KOIAVA = 'irakli-koiava',
+  IRAKLI_GABISONIA = 'irakli-gabisonia',
 }
+
 
 export type EpisodeBasicInfo = {
   id: string;

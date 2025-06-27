@@ -9,6 +9,7 @@ import { sixteenthEpisodeBasicInfo, sixteenthEpisodeData } from './16';
 import { seventeenthEpisodeBasicInfo, seventeenthEpisodeData } from './17';
 import { eighteenthEpisodeBasicInfo, eighteenthEpisodeData } from './18';
 import { nineteenthEpisodeBasicInfo, nineteenthEpisodeData } from './19';
+import { twentiethEpisodeBasicInfo, twentiethEpisodeData } from './20';
 import { secondEpisodeBasicInfo, secondEpisodeData } from './2';
 import { thirdEpisodeBasicInfo, thirdEpisodeData } from './3';
 import { fourthEpisodeBasicInfo, fourthEpisodeData } from './4';
@@ -39,6 +40,7 @@ export const allEpisodes: EpisodeBasicInfo[] = [
   seventeenthEpisodeBasicInfo,
   eighteenthEpisodeBasicInfo,
   nineteenthEpisodeBasicInfo,
+  twentiethEpisodeBasicInfo
 ];
 
 export const episodes: Record<EpisodeIdEnum, Episode> = {
@@ -61,4 +63,5 @@ export const episodes: Record<EpisodeIdEnum, Episode> = {
   [EpisodeIdEnum.IRAKLI_KOKRASHVILI]: seventeenthEpisodeData,
   [EpisodeIdEnum.LEVAN_MAMULASHVILI]: eighteenthEpisodeData,
   [EpisodeIdEnum.IRAKLI_KOIAVA]: nineteenthEpisodeData,
+  [EpisodeIdEnum.IRAKLI_GABISONIA]: twentiethEpisodeData,
 };

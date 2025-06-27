@@ -233,7 +233,34 @@ function generateSlugFromTitle(title: string): string {
     .replace(/\s+/g, '-') // Replace spaces with hyphens
     .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
     .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
-    .substring(0, 100); // Limit length
+    .substring(0, 50); // Limit length to avoid too long slugs
+}
+
+// Validate and clean episode data
+function validateEpisodeData(episode: CustomEpisodeData): CustomEpisodeData {
+  // Ensure slug is not empty and is valid
+  if (!episode.slug || episode.slug.trim() === '') {
+    episode.slug = `episode-${episode.episodeNumber || 'unknown'}`;
+  }
+  
+  // Clean slug to ensure it's URL-safe
+  episode.slug = episode.slug
+    .toLowerCase()
+    .replace(/[^a-z0-9-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  
+  // Ensure tags array exists
+  if (!Array.isArray(episode.tags)) {
+    episode.tags = [];
+  }
+  
+  // Ensure guest is a string
+  if (typeof episode.guest !== 'string') {
+    episode.guest = '';
+  }
+  
+  return episode;
 }
 
 // Fetch all episodes from YouTube
@@ -257,7 +284,7 @@ export async function batchFetchEpisodes(): Promise<CustomEpisodeData[]> {
       const generatedTags = generateTags(video.snippet.title, video.snippet.description);
       const slug = generateSlugFromTitle(video.snippet.title);
       
-      return {
+      const episode: CustomEpisodeData = {
         id: video.id,
         title: video.snippet.title,
         description: video.snippet.description,
@@ -275,6 +302,8 @@ export async function batchFetchEpisodes(): Promise<CustomEpisodeData[]> {
         featured: false,
         episodeNumber,
       };
+      
+      return validateEpisodeData(episode);
     })
     .sort((a, b) => (a.episodeNumber || 0) - (b.episodeNumber || 0));
 
@@ -363,21 +392,6 @@ export const ${ordinalWord}EpisodeData: Episode = {
   return true;
 }
 
-// Generate enum from episode slugs
-function generateEpisodeIdEnum(episodes: CustomEpisodeData[]): string {
-  const enumEntries = episodes
-    .map((episode) => {
-      // Convert slug to UPPER_SNAKE_CASE for enum key
-      const enumKey = episode.slug.replace(/[^a-zA-Z0-9]/g, '_').toUpperCase();
-      return `  ${enumKey} = '${episode.slug}',`;
-    })
-    .join('\n');
-
-  return `export enum EpisodeIdEnum {
-${enumEntries}
-}`;
-}
-
 // Update episodes.types.ts with the generated enum
 function updateEpisodesTypesFile(episodes: CustomEpisodeData[]): void {
   const typesFilePath = path.join(EPISODES_DATA_DIR, 'episodes.types.ts');
@@ -388,79 +402,180 @@ function updateEpisodesTypesFile(episodes: CustomEpisodeData[]): void {
     typesContent = fs.readFileSync(typesFilePath, 'utf8');
   }
   
-  // Generate the new enum
-  const episodeIdEnum = generateEpisodeIdEnum(episodes);
+  // Extract existing enum entries
+  const existingEnumMatch = typesContent.match(/export enum EpisodeIdEnum \{([\s\S]*?)\}/);
+  const existingEntries = existingEnumMatch ? existingEnumMatch[1] : '';
   
-  // Replace or add the EpisodeIdEnum
-  if (typesContent.includes('export enum EpisodeIdEnum')) {
-    // Replace existing enum
-    typesContent = typesContent.replace(
-      /export enum EpisodeIdEnum \{[\s\S]*?\}/,
-      episodeIdEnum
-    );
-  } else {
-    // Add enum at the beginning of the file
-    typesContent = `${episodeIdEnum}\n\n${typesContent}`;
+  // Get existing enum keys
+  const existingKeys = new Set<string>();
+  if (existingEntries) {
+    const keyMatches = existingEntries.matchAll(/(\w+)\s*=\s*'[^']+',?/g);
+    for (const match of keyMatches) {
+      existingKeys.add(match[1]);
+    }
   }
   
-  fs.writeFileSync(typesFilePath, typesContent, 'utf8');
-  console.log(`💾 Updated episodes.types.ts with EpisodeIdEnum`);
+  // Generate new enum entries only for episodes that don't exist
+  const newEntries = episodes
+    .map((episode) => {
+      const enumKey = episode.slug
+        .replace(/[^a-zA-Z0-9]/g, '_')
+        .replace(/_+/g, '_')
+        .replace(/^_|_$/g, '')
+        .toUpperCase();
+      
+      const validEnumKey = enumKey || `EPISODE_${episode.episodeNumber || 'UNKNOWN'}`;
+      
+      // Only add if this enum key doesn't already exist
+      if (!existingKeys.has(validEnumKey)) {
+        return `  ${validEnumKey} = '${episode.slug}',`;
+      }
+      return null;
+    })
+    .filter(Boolean)
+    .join('\n');
+  
+  if (newEntries) {
+    // Add new entries to existing enum
+    if (existingEnumMatch) {
+      // Insert new entries before the closing brace
+      const updatedEnum = `export enum EpisodeIdEnum {${existingEntries}${newEntries}
+}`;
+      typesContent = typesContent.replace(existingEnumMatch[0], updatedEnum);
+    } else {
+      // Create new enum if it doesn't exist
+      const newEnum = `export enum EpisodeIdEnum {
+${newEntries}
+}`;
+      typesContent = `${newEnum}\n\n${typesContent}`;
+    }
+    
+    fs.writeFileSync(typesFilePath, typesContent, 'utf8');
+    console.log(`💾 Added new episodes to episodes.types.ts`);
+  } else {
+    console.log(`⏭️  No new episodes to add to episodes.types.ts`);
+  }
 }
 
 // Save all episodes data and update episodes.data.ts
 export function saveAllEpisodesData(episodes: CustomEpisodeData[]): void {
   let newEpisodesCount = 0;
+  const newEpisodes: CustomEpisodeData[] = [];
 
-  // Save individual episode files
+  // Check which episodes are actually new and save them
   episodes.forEach((episode, index) => {
     const wasSaved = saveEpisodeData(episode, index + 1);
     if (wasSaved) {
       newEpisodesCount++;
+      newEpisodes.push(episode);
     }
   });
 
   console.log(`📊 Created ${newEpisodesCount} new episode files, skipped ${episodes.length - newEpisodesCount} existing files`);
 
-  // Always update episodes.data.ts to include all episodes (including existing ones)
-  // Create episodes data index file
-  const imports = episodes
-    .map((_, index) => {
-      const ordinalWord = getOrdinalWord(index + 1);
-      return `import { ${ordinalWord}EpisodeBasicInfo, ${ordinalWord}EpisodeData } from './${index + 1}';`;
-    })
-    .join('\n');
-
-  const basicInfoArray = episodes
-    .map((_, index) => {
-      const ordinalWord = getOrdinalWord(index + 1);
-      return `${ordinalWord}EpisodeBasicInfo`;
-    })
-    .join(', ');
-
-  const episodesRecord = episodes
-    .map((episode) => {
-      const ordinalWord = getOrdinalWord(episodes.findIndex((e) => e.slug === episode.slug) + 1);
-      const enumKey = episode.slug.replace(/[^a-zA-Z0-9]/g, '_').toUpperCase();
-      return `  [EpisodeIdEnum.${enumKey}]: ${ordinalWord}EpisodeData`;
-    })
-    .join(',\n');
-
-  const indexContent = `${imports}
+  // Only update episodes.data.ts if we have new episodes
+  if (newEpisodesCount > 0) {
+    // Read existing episodes.data.ts to get current imports and data
+    const dataFilePath = path.join(EPISODES_DATA_DIR, 'episodes.data.ts');
+    let existingContent = '';
+    let existingImports = '';
+    let existingAllEpisodes = '';
+    let existingEpisodesRecord = '';
+    
+    if (fs.existsSync(dataFilePath)) {
+      existingContent = fs.readFileSync(dataFilePath, 'utf8');
+      
+      // Extract existing imports - get all import statements
+      const importMatches = existingContent.matchAll(/import.*?from.*?;/g);
+      const existingImportsArray = Array.from(importMatches, match => match[0]);
+      existingImports = existingImportsArray.join('\n');
+      
+      // Extract existing allEpisodes array
+      const allEpisodesMatch = existingContent.match(/export const allEpisodes: EpisodeBasicInfo\[\] = \[([\s\S]*?)\];/);
+      existingAllEpisodes = allEpisodesMatch ? allEpisodesMatch[1] : '';
+      
+      // Extract existing episodes record
+      const episodesMatch = existingContent.match(/export const episodes: Record<EpisodeIdEnum, Episode> = \{([\s\S]*?)\};/);
+      existingEpisodesRecord = episodesMatch ? episodesMatch[1] : '';
+    }
+    
+    // Generate new imports only for new episodes, avoiding duplicates
+    const newImports = newEpisodes
+      .map((episode, index) => {
+        const episodeIndex = episodes.findIndex(e => e.id === episode.id) + 1;
+        const ordinalWord = getOrdinalWord(episodeIndex);
+        const importStatement = `import { ${ordinalWord}EpisodeBasicInfo, ${ordinalWord}EpisodeData } from './${episodeIndex}';`;
+        
+        // Check if this import already exists
+        if (existingImports.includes(importStatement)) {
+          return null; // Skip if already exists
+        }
+        
+        return importStatement;
+      })
+      .filter(Boolean) // Remove null entries
+      .join('\n');
+    
+    // Generate new allEpisodes entries
+    const newAllEpisodes = newEpisodes
+      .map((episode, index) => {
+        const episodeIndex = episodes.findIndex(e => e.id === episode.id) + 1;
+        const ordinalWord = getOrdinalWord(episodeIndex);
+        return `${ordinalWord}EpisodeBasicInfo`;
+      })
+      .join(', ');
+    
+    // Generate new episodes record entries
+    const newEpisodesRecord = newEpisodes
+      .map((episode, index) => {
+        const episodeIndex = episodes.findIndex(e => e.id === episode.id) + 1;
+        const ordinalWord = getOrdinalWord(episodeIndex);
+        const enumKey = episode.slug
+          .replace(/[^a-zA-Z0-9]/g, '_')
+          .replace(/_+/g, '_')
+          .replace(/^_|_$/g, '')
+          .toUpperCase();
+        
+        const validEnumKey = enumKey || `EPISODE_${episode.episodeNumber || 'UNKNOWN'}`;
+        
+        return `  [EpisodeIdEnum.${validEnumKey}]: ${ordinalWord}EpisodeData`;
+      })
+      .join(',\n');
+    
+    // Combine existing and new content
+    const combinedImports = existingImports ? `${existingImports}\n${newImports}` : newImports;
+    const combinedAllEpisodes = existingAllEpisodes ? `${existingAllEpisodes}, ${newAllEpisodes}` : newAllEpisodes;
+    
+    // Handle comma placement for episodes record
+    let combinedEpisodesRecord = '';
+    if (existingEpisodesRecord) {
+      // Remove trailing comma from existing record if present
+      const cleanExisting = existingEpisodesRecord.replace(/,\s*$/, '');
+      combinedEpisodesRecord = `${cleanExisting},\n${newEpisodesRecord}`;
+    } else {
+      combinedEpisodesRecord = newEpisodesRecord;
+    }
+    
+    const indexContent = `${combinedImports}
 import { Episode, EpisodeBasicInfo, EpisodeIdEnum } from './episodes.types';
 
-export const allEpisodes: EpisodeBasicInfo[] = [${basicInfoArray}];
+export const allEpisodes: EpisodeBasicInfo[] = [${combinedAllEpisodes}];
 
 export const episodes: Record<EpisodeIdEnum, Episode> = {
-${episodesRecord},
+${combinedEpisodesRecord},
 };
 `;
 
-  const indexPath = path.join(EPISODES_DATA_DIR, 'episodes.data.ts');
-  fs.writeFileSync(indexPath, indexContent, 'utf8');
-  console.log(`💾 Updated episodes index to episodes.data.ts with EpisodeIdEnum`);
+    fs.writeFileSync(dataFilePath, indexContent, 'utf8');
+    console.log(`💾 Added ${newEpisodesCount} new episodes to episodes.data.ts`);
+  } else {
+    console.log(`⏭️  No new episodes to add to episodes.data.ts`);
+  }
   
-  // Update episodes.types.ts with the enum
-  updateEpisodesTypesFile(episodes);
+  // Update episodes.types.ts with only new episodes
+  if (newEpisodesCount > 0) {
+    updateEpisodesTypesFile(newEpisodes);
+  }
 }
 
 // Main function to run the script

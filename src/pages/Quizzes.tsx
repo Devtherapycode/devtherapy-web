@@ -5,6 +5,7 @@ import { QuizRunner } from '@/components/quiz/QuizRunner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { quizCategories } from '@/server/data/quizzes/quiz-categories';
 import { allQuizzes } from '@/server/data/quizzes/quizzes.data';
 import { Quiz, QuizCategory } from '@/server/data/quizzes/quizzes.types';
 import { Brain, Clock, Play, Trophy } from 'lucide-react';
@@ -17,17 +18,7 @@ const Quizzes = () => {
   const [quizScore, setQuizScore] = useState(0);
   const [quizTimeSpent, setQuizTimeSpent] = useState(0);
 
-  const categories: Array<{ key: QuizCategory | 'all'; label: string; emoji: string }> = [
-    { key: 'all', label: 'All', emoji: '🎯' },
-    { key: 'episode', label: 'Episodes', emoji: '🎧' },
-    { key: 'frontend', label: 'Frontend', emoji: '🌐' },
-    { key: 'backend', label: 'Backend', emoji: '⚙️' },
-    { key: 'ai', label: 'AI', emoji: '🤖' },
-    { key: 'gpu', label: 'GPU', emoji: '🎮' },
-    { key: 'general', label: 'General', emoji: '💻' },
-  ];
-
-  const filteredQuizzes = selectedCategory === 'all' ? allQuizzes : allQuizzes.filter((quiz) => quiz.category === selectedCategory);
+  const filteredQuizzes = selectedCategory === 'all' ? allQuizzes : allQuizzes.filter((quiz) => quiz.categories.includes(selectedCategory));
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -87,7 +78,7 @@ const Quizzes = () => {
         <section className="px-4 pb-8">
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
+              {quizCategories.map((category) => (
                 <Button
                   key={category.key}
                   variant={selectedCategory === category.key ? 'default' : 'outline'}
@@ -120,7 +111,7 @@ const Quizzes = () => {
                           {quiz.difficulty}
                         </Badge>
                         <Badge variant="outline" className="border-brand-mint/40 text-brand-mint">
-                          {quiz.category}
+                          {quiz.categories.slice(1)}
                         </Badge>
                       </div>
                       <CardTitle className="text-xl text-foreground">{quiz.title}</CardTitle>

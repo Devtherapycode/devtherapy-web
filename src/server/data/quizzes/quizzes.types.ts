@@ -1,7 +1,22 @@
-
 export type QuizDifficulty = 'easy' | 'medium' | 'hard';
 
-export type QuizCategory = 'episode' | 'frontend' | 'backend' | 'ai' | 'general' | 'gpu';
+export type QuizCategory =
+  | 'episode'
+  | 'frontend'
+  | 'backend'
+  | 'ai'
+  | 'general'
+  | 'gpu'
+  | 'graphics-engineering'
+  | 'game-development'
+  | 'system-administration'
+  | 'security'
+  | 'data-visualization'
+  | 'career-development'
+  | 'leadership'
+  | 'freelancing'
+  | 'web-development'
+  | 'mobile-development';
 
 export type QuizQuestion = {
   id: string;
@@ -15,7 +30,7 @@ export type Quiz = {
   id: string;
   title: string;
   description: string;
-  category: QuizCategory;
+  categories: QuizCategory[];
   difficulty: QuizDifficulty;
   episodeLink?: string;
   estimatedTime: number; // in minutes

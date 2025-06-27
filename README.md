@@ -114,7 +114,7 @@ We welcome contributions! Here's how you can help:
 1. Create a new file in `src/server/data/episodes/`
 2. Follow the existing episode structure
 3. Add the episode to `episodes.data.ts`
-4. Update the `EpisodeIdEnum` in `episodes.types.ts`
+4. Update the `EpisodeSlugType` in `episodes.types.ts`
 
 ### Adding New Guests
 

@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Quiz } from '@/server/data/quizzes/quizzes.types';
-import { Clock, Download, RotateCcw, Share2, Trophy } from 'lucide-react';
+import { Clock, Download, Headphones, RotateCcw, Share2, Trophy } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { QuizResultCard } from './QuizResultCard';
 import { useRef, useState } from 'react';
@@ -115,12 +115,17 @@ export const QuizResults = ({ quiz, score, totalQuestions, timeSpent, onRetry, o
 
             {quiz.episodeLink && (
               <div className="p-4 bg-brand-mint/10 border border-brand-mint/20 rounded-lg">
-                <p className="text-sm text-muted-foreground mb-2">
-                  Want to learn more? Check out the related episode:
+                <div className="flex items-center gap-2 mb-2">
+                  <Headphones className="h-4 w-4 text-brand-mint" />
+                  <span className="text-sm font-semibold text-brand-mint">📢 Recommended Episode</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Take your learning further with this full conversation about the topics covered in this quiz.
                 </p>
                 <Link to={quiz.episodeLink}>
-                  <Button variant="outline" size="sm" className="border-brand-mint/40 hover:bg-brand-mint/10">
-                    Listen to Episode
+                  <Button variant="outline" size="sm" className="w-full border-brand-mint/40 hover:bg-brand-mint/10">
+                    <Headphones className="h-4 w-4 mr-2" />
+                    🎧 Listen Now
                   </Button>
                 </Link>
               </div>

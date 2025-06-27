@@ -1,11 +1,10 @@
-
 import { BackToHomeHeader } from '@/components/back-to-home-header';
+import MatrixBackground from '@/components/MatrixBackground';
 import { QuizResults } from '@/components/quiz/QuizResults';
 import { QuizRunner } from '@/components/quiz/QuizRunner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import MatrixBackground from '@/components/MatrixBackground';
 import { allQuizzes } from '@/server/data/quizzes/quizzes.data';
 import { Quiz, QuizCategory } from '@/server/data/quizzes/quizzes.types';
 import { Brain, Clock, Play, Trophy } from 'lucide-react';
@@ -28,16 +27,18 @@ const Quizzes = () => {
     { key: 'general', label: 'General', emoji: '💻' },
   ];
 
-  const filteredQuizzes = selectedCategory === 'all' 
-    ? allQuizzes 
-    : allQuizzes.filter(quiz => quiz.category === selectedCategory);
+  const filteredQuizzes = selectedCategory === 'all' ? allQuizzes : allQuizzes.filter((quiz) => quiz.category === selectedCategory);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'easy': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'medium': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'hard': return 'bg-red-500/20 text-red-400 border-red-500/30';
-      default: return 'bg-muted text-muted-foreground';
+      case 'easy':
+        return 'bg-green-500/20 text-green-400 border-green-500/30';
+      case 'medium':
+        return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+      case 'hard':
+        return 'bg-red-500/20 text-red-400 border-red-500/30';
+      default:
+        return 'bg-muted text-muted-foreground';
     }
   };
 
@@ -72,13 +73,11 @@ const Quizzes = () => {
         {/* Hero Section */}
         <section className="px-4 py-12">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center justify-center p-4 rounded-full bg-brand-mint/10">
+            <div className="mb-6 inline-flex items-center justify-center rounded-full bg-brand-mint/10 p-4">
               <Brain className="h-12 w-12 text-brand-mint" />
             </div>
-            <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">
-              Dev Quizzes 🧠
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">Dev Quizzes 🧠</h1>
+            <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
               Test your dev skills, episode knowledge, or just have fun. Challenge yourself with quizzes covering everything from frontend to AI.
             </p>
           </div>
@@ -87,15 +86,14 @@ const Quizzes = () => {
         {/* Category Filter */}
         <section className="px-4 pb-8">
           <div className="mx-auto max-w-6xl">
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
+            <div className="mb-8 flex flex-wrap justify-center gap-3">
               {categories.map((category) => (
                 <Button
                   key={category.key}
-                  variant={selectedCategory === category.key ? "default" : "outline"}
+                  variant={selectedCategory === category.key ? 'default' : 'outline'}
                   onClick={() => setSelectedCategory(category.key)}
-                  className={selectedCategory === category.key 
-                    ? "bg-brand-mint text-black hover:bg-brand-mint-dark" 
-                    : "border-brand-mint/40 hover:bg-brand-mint/10"
+                  className={
+                    selectedCategory === category.key ? 'bg-brand-mint text-black hover:bg-brand-mint-dark' : 'border-brand-mint/40 hover:bg-brand-mint/10'
                   }
                 >
                   <span className="mr-2">{category.emoji}</span>
@@ -110,11 +108,14 @@ const Quizzes = () => {
         <section className="px-4 pb-16">
           <div className="mx-auto max-w-6xl">
             {filteredQuizzes.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {filteredQuizzes.map((quiz) => (
-                  <Card key={quiz.id} className="bg-card/50 border-brand-mint/20 hover:border-brand-mint/40 transition-all hover-lift">
+                  <Card
+                    key={quiz.id}
+                    className="hover-lift flex flex-col justify-between border-brand-mint/20 bg-card/50 transition-all hover:border-brand-mint/40"
+                  >
                     <CardHeader>
-                      <div className="flex items-start justify-between mb-2">
+                      <div className="mb-2 flex items-start justify-between">
                         <Badge className={getDifficultyColor(quiz.difficulty)} variant="outline">
                           {quiz.difficulty}
                         </Badge>
@@ -123,27 +124,21 @@ const Quizzes = () => {
                         </Badge>
                       </div>
                       <CardTitle className="text-xl text-foreground">{quiz.title}</CardTitle>
-                      <CardDescription className="text-muted-foreground">
-                        {quiz.description}
-                      </CardDescription>
+                      <CardDescription className="text-muted-foreground">{quiz.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="mb-4 flex items-center justify-between text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Trophy className="h-4 w-4" />
                           {quiz.questions.length} questions
                         </div>
                         <div className="flex items-center gap-1">
-                          <Clock className="h-4 w-4" />
-                          ~{quiz.estimatedTime} min
+                          <Clock className="h-4 w-4" />~{quiz.estimatedTime} min
                         </div>
                       </div>
-                      
-                      <Button 
-                        onClick={() => startQuiz(quiz)}
-                        className="w-full bg-brand-mint text-black hover:bg-brand-mint-dark"
-                      >
-                        <Play className="h-4 w-4 mr-2" />
+
+                      <Button onClick={() => startQuiz(quiz)} className="w-full bg-brand-mint text-black hover:bg-brand-mint-dark">
+                        <Play className="mr-2 h-4 w-4" />
                         Take Quiz
                       </Button>
                     </CardContent>
@@ -151,16 +146,11 @@ const Quizzes = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16">
+              <div className="py-16 text-center">
                 <div className="mb-4 text-6xl">🔍</div>
                 <h3 className="mb-2 text-xl font-semibold">No quizzes found</h3>
-                <p className="text-muted-foreground mb-4">
-                  Try selecting a different category or check back later for new quizzes.
-                </p>
-                <Button 
-                  onClick={() => setSelectedCategory('all')}
-                  className="bg-brand-mint text-black hover:bg-brand-mint-dark"
-                >
+                <p className="mb-4 text-muted-foreground">Try selecting a different category or check back later for new quizzes.</p>
+                <Button onClick={() => setSelectedCategory('all')} className="bg-brand-mint text-black hover:bg-brand-mint-dark">
                   Show All Quizzes
                 </Button>
               </div>
@@ -170,13 +160,7 @@ const Quizzes = () => {
       </div>
 
       {/* Quiz Runner Modal */}
-      {currentQuiz && !showResults && (
-        <QuizRunner
-          quiz={currentQuiz}
-          onComplete={handleQuizComplete}
-          onClose={closeQuiz}
-        />
-      )}
+      {currentQuiz && !showResults && <QuizRunner quiz={currentQuiz} onComplete={handleQuizComplete} onClose={closeQuiz} />}
 
       {/* Quiz Results Modal */}
       {currentQuiz && showResults && (

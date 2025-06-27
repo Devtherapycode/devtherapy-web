@@ -60,7 +60,7 @@ const Quizzes = () => {
       <MatrixBackground fullScreen />
 
       <div className="relative z-10">
-        <BackToHomeHeader title="Dev Quizzes" />
+        <BackToHomeHeader title="Dev Therapy Quizzes" />
 
         {/* Hero Section */}
         <section className="px-4 py-12">
@@ -68,7 +68,7 @@ const Quizzes = () => {
             <div className="mb-6 inline-flex items-center justify-center rounded-full bg-brand-mint/10 p-4">
               <Brain className="h-12 w-12 text-brand-mint" />
             </div>
-            <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">Dev Quizzes 🧠</h1>
+            <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">Dev Therapy Quizzes 🧠</h1>
             <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
               Test your dev skills, episode knowledge, or just have fun. Challenge yourself with quizzes covering everything from frontend to AI.
             </p>

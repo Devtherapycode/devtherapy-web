@@ -4,7 +4,6 @@ import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { allEpisodes } from '@/server/data/episodes/episodes.data';
 import { Filter, Search } from 'lucide-react';
@@ -13,16 +12,29 @@ import { useMemo, useState } from 'react';
 const Episodes = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState('newest');
-  const episodesPerPage = 9;
 
-  // Get all unique tags
-  const allTags = Array.from(new Set(allEpisodes.flatMap((episode) => episode.tags)));
+  // Get top 20 most frequently used tags
+  const allTags = useMemo(() => {
+    const tagCounts = new Map<string, number>();
+
+    // Count tag occurrences
+    allEpisodes.forEach((episode) => {
+      episode.tags.forEach((tag) => {
+        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+      });
+    });
+
+    // Sort by frequency (descending) and take top 20
+    return Array.from(tagCounts.entries())
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 40)
+      .map(([tag]) => tag);
+  }, []);
 
   // Filter and sort episodes
   const filteredEpisodes = useMemo(() => {
-    let filtered = allEpisodes.filter((episode) => {
+    const filtered = allEpisodes.filter((episode) => {
       const matchesSearch =
         episode.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         episode.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -43,20 +55,13 @@ const Episodes = () => {
     return filtered;
   }, [searchTerm, selectedTags, sortOrder]);
 
-  // Pagination
-  const totalPages = Math.ceil(filteredEpisodes.length / episodesPerPage);
-  const startIndex = (currentPage - 1) * episodesPerPage;
-  const currentEpisodes = filteredEpisodes.slice(startIndex, startIndex + episodesPerPage);
-
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
-    setCurrentPage(1);
   };
 
   const clearFilters = () => {
     setSearchTerm('');
     setSelectedTags([]);
-    setCurrentPage(1);
   };
 
   return (
@@ -78,7 +83,6 @@ const Episodes = () => {
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
-                  setCurrentPage(1);
                 }}
                 className="h-12 border-brand-mint/20 bg-card/50 pl-10 focus:border-brand-mint"
               />
@@ -142,45 +146,13 @@ const Episodes = () => {
         {/* Episodes Grid */}
         <section className="px-4 pb-16">
           <div className="mx-auto max-w-7xl">
-            {currentEpisodes.length > 0 ? (
+            {filteredEpisodes.length > 0 ? (
               <>
                 <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {currentEpisodes.map((episode) => (
+                  {filteredEpisodes.map((episode) => (
                     <EpisodeCard key={episode.id} episode={episode} tagsOn />
                   ))}
                 </div>
-
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="flex justify-center">
-                    <Pagination>
-                      <PaginationContent>
-                        {currentPage > 1 && (
-                          <PaginationItem>
-                            <PaginationPrevious onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} className="cursor-pointer" />
-                          </PaginationItem>
-                        )}
-
-                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                          const page = i + 1;
-                          return (
-                            <PaginationItem key={page}>
-                              <PaginationLink onClick={() => setCurrentPage(page)} isActive={currentPage === page} className="cursor-pointer">
-                                {page}
-                              </PaginationLink>
-                            </PaginationItem>
-                          );
-                        })}
-
-                        {currentPage < totalPages && (
-                          <PaginationItem>
-                            <PaginationNext onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))} className="cursor-pointer" />
-                          </PaginationItem>
-                        )}
-                      </PaginationContent>
-                    </Pagination>
-                  </div>
-                )}
               </>
             ) : (
               <div className="py-16 text-center">

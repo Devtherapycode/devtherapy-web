@@ -7,10 +7,90 @@ import { YOUTUBE_URL } from '@/utils/const';
 import { ArrowLeft, Calendar, Clock, Play, Share2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 
+// Helper to convert timestamp string to seconds
+function timestampToSeconds(ts: string): number {
+  const parts = ts.split(':').map(Number);
+  if (parts.length === 3) {
+    return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  } else if (parts.length === 2) {
+    return parts[0] * 60 + parts[1];
+  } else if (parts.length === 1) {
+    return parts[0];
+  }
+  return 0;
+}
+
 const EpisodeDetail = () => {
   const { episodeSlug } = useParams();
 
   const episode = episodes[episodeSlug as keyof typeof episodes];
+
+  function renderDescription(desc: string) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const timeRegex = /\b(\d{1,2}:\d{2}(?::\d{2})?)\b/g;
+    return desc.split(/\n\n+/).map((paragraph, idx) => (
+      <p key={idx} className="mb-6 last:mb-0">
+        {paragraph.split(/\n/).map((line, i, arr) => {
+          // Split line into parts: URLs, timestamps, and text
+          const parts = [];
+          let lastIndex = 0;
+          let matchArr: RegExpExecArray | null;
+          const regex = new RegExp(`${urlRegex.source}|${timeRegex.source}`, 'g');
+          while ((matchArr = regex.exec(line)) !== null) {
+            if (matchArr.index > lastIndex) {
+              parts.push(line.slice(lastIndex, matchArr.index));
+            }
+            if (matchArr[0].match(urlRegex)) {
+              parts.push({ type: 'url', value: matchArr[0] });
+            } else if (matchArr[0].match(timeRegex)) {
+              parts.push({ type: 'time', value: matchArr[0] });
+            }
+            lastIndex = regex.lastIndex;
+          }
+          if (lastIndex < line.length) {
+            parts.push(line.slice(lastIndex));
+          }
+          return parts
+            .map((part, j) => {
+              if (typeof part === 'string') return <span key={j}>{part}</span>;
+              if (part.type === 'url') {
+                return (
+                  <a
+                    key={j}
+                    href={part.value}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mx-1 break-all font-semibold text-brand-mint underline transition-colors hover:text-brand-mint-dark"
+                    style={{ wordBreak: 'break-all', padding: '0 0.15em' }}
+                  >
+                    {part.value}
+                  </a>
+                );
+              }
+              if (part.type === 'time') {
+                const seconds = timestampToSeconds(part.value);
+                const youtubeUrl = `https://www.youtube.com/watch?v=${episode.youtubeId}&t=${seconds}`;
+                return (
+                  <a
+                    key={j}
+                    href={youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Open YouTube at ${part.value}`}
+                    className="mx-1 cursor-pointer font-semibold text-brand-mint underline transition-colors hover:text-brand-mint-dark"
+                    style={{ padding: '0 0.15em' }}
+                  >
+                    {part.value}
+                  </a>
+                );
+              }
+              return null;
+            })
+            .concat(i < arr.length - 1 ? <br key={`br-${i}`} /> : null);
+        })}
+      </p>
+    ));
+  }
 
   if (!episode) {
     return (
@@ -96,7 +176,7 @@ const EpisodeDetail = () => {
             <CardContent className="p-6">
               <h2 className="mb-4 text-2xl font-semibold text-brand-mint">About This Episode</h2>
               <div className="prose prose-invert max-w-none">
-                <p className="whitespace-pre-line leading-relaxed text-muted-foreground">{episode.fullDescription}</p>
+                <div className="prose prose-invert max-w-none text-xl text-muted-foreground">{renderDescription(episode.fullDescription)}</div>
               </div>
             </CardContent>
           </Card>

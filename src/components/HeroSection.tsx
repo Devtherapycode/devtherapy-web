@@ -2,7 +2,7 @@ import logo from '@/assets/common/logo.png';
 import { Discord, Youtube } from '@/assets/icons/svgs';
 import { Button } from '@/components/ui/button';
 import { DISCORD_URL, YOUTUBE_URL } from '@/utils/const';
-import { Archive, Image, Play, Users } from 'lucide-react';
+import { Archive, Brain, Image, Play, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MatrixBackground from './MatrixBackground';
 
@@ -12,20 +12,20 @@ const HeroSection = () => {
       <MatrixBackground />
       <div className="relative z-20 mx-auto max-w-4xl text-center">
         {/* Logo */}
-        <div className="mb-14 flex items-center justify-center">
+        <div className="mb-8 flex items-center justify-center">
           <div className="overflow-hidden rounded-lg">
             <img src={logo} alt="Devtherapy Logo" className="mx-auto h-32 md:h-40" />
           </div>
         </div>
 
         {/* Main Heading */}
-        <h1 className="glow-text mb-6 text-4xl font-bold md:text-6xl lg:text-7xl">DevTherapy</h1>
+        <h1 className="glow-text mb-2 text-4xl font-bold md:text-6xl lg:text-7xl">DevTherapy</h1>
 
         {/* Tagline */}
-        <p className="mb-12 text-xl font-light text-muted-foreground md:text-2xl lg:text-3xl">Therapy for developers, one bug at a time</p>
+        <p className="mb-5 text-xl font-light text-muted-foreground md:text-2xl lg:text-3xl">Therapy for developers, one bug at a time</p>
 
         {/* CTA Buttons */}
-        <div className="mb-16 flex flex-col gap-4 p-4">
+        <div className="mb-16 flex flex-col gap-2 p-4">
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="hover-lift bg-brand-mint px-8 py-4 text-lg font-semibold text-black hover:bg-brand-mint-dark">
@@ -80,6 +80,14 @@ const HeroSection = () => {
               <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
                 <Image className="mr-2 h-5 w-5" />
                 Events
+              </Button>
+            </Link>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link to="/quizzes">
+              <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+                <Brain className="mr-2 h-5 w-5" />
+                Quizzes
               </Button>
             </Link>
           </div>

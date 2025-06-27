@@ -1,7 +1,26 @@
-export enum EpisodeIdEnum {
-  DAE_IYOS_NATELI = 'dae-iyos-nateli',
-  WEB_EVOLUTION_TOPTAL_ENTUZI_JOB_MARKET = 'web-evolution-toptal-entuzi-job-market',
-}
+import { Quiz } from '../quizzes/quizzes.types';
+
+export type EpisodeSlugType =
+  | 'dae-iyos-nateli'
+  | 'levan-lotuashvili'
+  | 'archil-varshanidze'
+  | 'tato-kutalia'
+  | 'giorgi-abelashvili'
+  | 'nika-otiashvili'
+  | 'zura-abelashvili'
+  | 'q-a'
+  | 'giorgi-dalakishvili'
+  | 'oto-lolua'
+  | 'giorgi-machitidze'
+  | 'tornike-razmadze'
+  | 'nika-gigashvili'
+  | 'natia-kukhilava'
+  | 'giorgi-bagdavadze'
+  | 'david-bumbeishvili'
+  | 'irakli-kokrashvili'
+  | 'levan-mamulashvili'
+  | 'irakli-koiava'
+  | 'irakli-gabisonia';
 
 export type EpisodeBasicInfo = {
   id: string;
@@ -10,11 +29,12 @@ export type EpisodeBasicInfo = {
   date: string;
   duration: number;
   tags: string[];
-  slug: EpisodeIdEnum;
+  slug: EpisodeSlugType;
   youtubeId: string;
   guest?: string;
 };
 
 export type Episode = EpisodeBasicInfo & {
   fullDescription: string;
+  quizzes: Quiz[];
 };

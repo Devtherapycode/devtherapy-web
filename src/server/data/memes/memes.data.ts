@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import c_sharp_is_slow from '@/assets/memes/c_sharp_is_slow.png';
 import website_will_be_dotnet from '@/assets/memes/website_will_be_dotnet.jpg';
 import needtherapy from '@/assets/memes/needtherapy.mp4';
 import avto_draw_25 from '@/assets/memes/avto_draw_25.png';
@@ -86,6 +87,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  c_sharp_is_slow,
   website_will_be_dotnet,
   needtherapy,
   avto_draw_25,

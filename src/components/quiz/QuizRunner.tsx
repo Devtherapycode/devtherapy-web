@@ -4,6 +4,7 @@ import { Progress } from '@/components/ui/progress';
 import { Quiz, QuizQuestion } from '@/server/data/quizzes/quizzes.types';
 import { CheckCircle, Trophy, XCircle } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
+import { shuffleOptions } from './quiz.utils';
 
 type QuizRunnerProps = {
   quiz: Quiz;
@@ -14,22 +15,6 @@ type QuizRunnerProps = {
 type ShuffledQuestion = QuizQuestion & {
   shuffledOptions: string[];
   shuffledCorrectAnswerIndex: number;
-};
-
-// Function to shuffle array and return new correct answer index
-const shuffleOptions = (options: string[], correctAnswerIndex: number): { shuffledOptions: string[]; shuffledCorrectAnswerIndex: number } => {
-  const optionsWithIndex = options.map((option, index) => ({ option, index }));
-
-  // Fisher-Yates shuffle
-  for (let i = optionsWithIndex.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [optionsWithIndex[i], optionsWithIndex[j]] = [optionsWithIndex[j], optionsWithIndex[i]];
-  }
-
-  const shuffledOptions = optionsWithIndex.map((item) => item.option);
-  const shuffledCorrectAnswerIndex = optionsWithIndex.findIndex((item) => item.index === correctAnswerIndex);
-
-  return { shuffledOptions, shuffledCorrectAnswerIndex };
 };
 
 export const QuizRunner = ({ quiz, onComplete, onClose }: QuizRunnerProps) => {

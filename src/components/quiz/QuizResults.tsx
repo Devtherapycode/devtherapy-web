@@ -7,6 +7,7 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { QuizResultCard } from './QuizResultCard';
+import { formatTime, getScoreColor, getScoreMessage } from './quiz.utils';
 
 type QuizResultsProps = {
   quiz: Quiz;
@@ -22,27 +23,6 @@ export const QuizResults = ({ quiz, score, totalQuestions, timeSpent, onRetry, o
   const cardRef = useRef<HTMLDivElement>(null);
 
   const percentage = Math.round((score / totalQuestions) * 100);
-
-  const getScoreMessage = () => {
-    if (percentage === 100) return 'Perfect! 🎉';
-    if (percentage >= 80) return 'Excellent! 🌟';
-    if (percentage >= 60) return 'Good job! 👍';
-    if (percentage >= 40) return 'Not bad! 📚';
-    return 'Keep learning! 💪';
-  };
-
-  const getScoreColor = () => {
-    if (percentage >= 80) return 'text-green-400';
-    if (percentage >= 60) return 'text-brand-mint';
-    if (percentage >= 40) return 'text-yellow-500';
-    return 'text-orange-500';
-  };
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return minutes > 0 ? `${minutes}m ${remainingSeconds}s` : `${remainingSeconds}s`;
-  };
 
   const exportAsImage = async () => {
     if (!cardRef.current) return;
@@ -83,11 +63,11 @@ export const QuizResults = ({ quiz, score, totalQuestions, timeSpent, onRetry, o
 
           <CardContent className="space-y-6 p-8 text-center">
             <div>
-              <div className={`mb-2 text-4xl font-bold ${getScoreColor()}`}>
+              <div className={`mb-2 text-4xl font-bold ${getScoreColor(percentage)}`}>
                 {score}/{totalQuestions}
               </div>
-              <div className={`mb-1 text-2xl font-semibold ${getScoreColor()}`}>{percentage}%</div>
-              <p className="text-lg text-muted-foreground">{getScoreMessage()}</p>
+              <div className={`mb-1 text-2xl font-semibold ${getScoreColor(percentage)}`}>{percentage}%</div>
+              <p className="text-lg text-muted-foreground">{getScoreMessage(percentage)}</p>
             </div>
 
             <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">

@@ -1,5 +1,6 @@
 import { Quiz } from '@/server/data/quizzes/quizzes.types';
 import { forwardRef } from 'react';
+import { formatTime, getScoreBadge } from './quiz.utils';
 
 type QuizResultCardProps = {
   quiz: Quiz;
@@ -10,20 +11,6 @@ type QuizResultCardProps = {
 
 export const QuizResultCard = forwardRef<HTMLDivElement, QuizResultCardProps>(({ quiz, score, totalQuestions, timeSpent }, ref) => {
   const percentage = Math.round((score / totalQuestions) * 100);
-
-  const getScoreBadge = () => {
-    if (percentage === 100) return '🧠 Dev Genius';
-    if (percentage >= 80) return '🌟 Code Master';
-    if (percentage >= 60) return '⚡ Solid Debugger';
-    if (percentage >= 40) return '📚 Keep Learning';
-    return '💪 Keep Compiling';
-  };
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return minutes > 0 ? `${minutes}m ${remainingSeconds}s` : `${remainingSeconds}s`;
-  };
 
   return (
     <div
@@ -49,7 +36,7 @@ export const QuizResultCard = forwardRef<HTMLDivElement, QuizResultCardProps>(({
           {score}/{totalQuestions}
         </div>
         <div className="mb-2 text-xl text-white">{percentage}% Correct</div>
-        <div className="mx-auto px-4 py-2 text-lg font-bold text-brand-mint">{getScoreBadge()}</div>
+        <div className="mx-auto px-4 py-2 text-lg font-bold text-brand-mint">{getScoreBadge(percentage)}</div>
       </div>
 
       {/* Stats */}

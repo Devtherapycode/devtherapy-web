@@ -44,7 +44,7 @@ const Header = () => {
       <div className="flex items-center gap-3">
         <div className="flex items-center justify-center">
           <div className="overflow-hidden rounded-lg">
-            <img src={logo} alt="Devtherapy Logo" className="mx-auto h-10 md:h-12" />
+            <img src={logo} alt="Devtherapy Logo" className="mx-auto h-10 md:h-10" />
           </div>
         </div>
         <h1 className="text-xl font-extrabold text-[#50FEC1] drop-shadow-[0_0_8px_#50FEC1] md:text-2xl">
@@ -69,7 +69,7 @@ const Header = () => {
       {/* Listen Button */}
       <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
         <div className="hidden md:block">
-          <Button variant="outline" size="lg" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
+          <Button variant="outline" size="default" className="hover-lift border-brand-mint/40 px-8 py-4 text-lg hover:border-brand-mint hover:bg-brand-mint/10">
             <Discord className="mr-2 h-5 w-5" />
             Join Now
           </Button>

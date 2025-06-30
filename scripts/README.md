@@ -59,4 +59,4 @@ VITE_YOUTUBE_API_KEY=your_youtube_api_key_here
 - **Guest Integration**: Link episodes to guest profiles
 - **Resource Efficiency**: Reduces YouTube API usage
 - **Offline Capability**: Works without internet connection
-- **Safe Updates**: Preserves existing customizations when re-running 
+- **Safe Updates**: Preserves existing customizations when re-running

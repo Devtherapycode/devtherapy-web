@@ -1,7 +1,6 @@
-
 import { EpisodeBasicInfo } from '@/server/data/episodes/episodes.types';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
-import { Calendar, Clock, Heart, Play, Check } from 'lucide-react';
+import { Calendar, Check, Clock, Heart, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -43,7 +42,7 @@ export const EpisodeCard = ({ episode, tagsOn = false }: EpisodeCardProps) => {
               </Button>
               <h3 className="line-clamp-2 cursor-pointer text-lg font-semibold transition-colors group-hover:text-brand-mint">{episode.title}</h3>
             </Link>
-            
+
             <div className="flex gap-1">
               <Button
                 size="sm"
@@ -85,11 +84,7 @@ export const EpisodeCard = ({ episode, tagsOn = false }: EpisodeCardProps) => {
               <Clock className="h-3 w-3" />
               {episode.duration} min
             </div>
-            {stats?.playCount && (
-              <div className="text-brand-mint">
-                Played {stats.playCount}x
-              </div>
-            )}
+            {stats?.playCount && <div className="text-brand-mint">Played {stats.playCount}x</div>}
           </div>
 
           {tagsOn && (

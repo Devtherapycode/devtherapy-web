@@ -54,7 +54,7 @@ const MatrixBackground = ({ fullScreen = false }: MatrixBackgroundProps) => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className={cn('inset-0 z-10 w-full opacity-20', fullScreen ? 'fixed' : 'absolute')} style={{ pointerEvents: 'none' }} />;
+  return <canvas ref={canvasRef} className={cn('inset-0 z-10 w-full opacity-20 bg-cover object-fill', fullScreen ? 'fixed' : 'absolute')} style={{ pointerEvents: 'none' }} />;
 };
 
 export default MatrixBackground;

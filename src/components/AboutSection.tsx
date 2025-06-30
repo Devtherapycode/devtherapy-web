@@ -20,7 +20,7 @@ const AboutSection = () => {
     },
   ];
   return (
-    <section className="px-4 py-20">
+    <section className="px-4 py-20" id="about-the-podcast">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
           <h2 className="mb-6 text-4xl font-bold text-brand-mint md:text-5xl">About the Podcast</h2>
@@ -58,7 +58,7 @@ const AboutSection = () => {
           </Card>
         </div>
 
-        <div className="rounded-xl border border-brand-mint/10 bg-card/30 p-8">
+        <div className="rounded-xl border border-brand-mint/10 bg-card/30 p-8" id="hosts">
           <h3 className="mb-6 text-center text-2xl font-semibold">Meet Your Hosts</h3>
           <div className="grid gap-8 md:grid-cols-2">
             {hosts.map((host, index) => (

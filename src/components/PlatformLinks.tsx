@@ -37,7 +37,7 @@ const PlatformLinks = () => {
   ];
 
   return (
-    <section className="px-4 py-20">
+    <section className="px-4 py-20" id="listen-everywhere">
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="mb-6 text-4xl font-bold text-brand-mint md:text-5xl">Listen Everywhere</h2>
         <p className="mb-12 text-xl text-muted-foreground">Choose your preferred platform and never miss an episode.</p>

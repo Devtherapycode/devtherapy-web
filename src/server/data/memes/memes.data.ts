@@ -2,6 +2,9 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import tornike_gasaubrebas_atarebs from '@/assets/memes/tornike_gasaubrebas_atarebs.jpg';
+import zuba_roca_gaigo_rom from '@/assets/memes/zuba_roca_gaigo_rom.jpg';
+import zuba_x_dotnet_sastavi from '@/assets/memes/zuba_x_dotnet_sastavi.jpg';
 import c_sharp_is_slow from '@/assets/memes/c_sharp_is_slow.png';
 import website_will_be_dotnet from '@/assets/memes/website_will_be_dotnet.jpg';
 import needtherapy from '@/assets/memes/needtherapy.mp4';
@@ -87,6 +90,9 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  tornike_gasaubrebas_atarebs,
+  zuba_roca_gaigo_rom,
+  zuba_x_dotnet_sastavi,
   c_sharp_is_slow,
   website_will_be_dotnet,
   needtherapy,

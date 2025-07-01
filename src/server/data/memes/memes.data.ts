@@ -2,6 +2,11 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import mezoblis_bavshvma_gta_chaiwera from '@/assets/memes/mezoblis_bavshvma_gta_chaiwera.jpg';
+import gta_developer_vs_of_model from '@/assets/memes/gta_developer_vs_of_model.jpg';
+import uxilavi_folderiani_dzmakaci from '@/assets/memes/uxilavi_folderiani_dzmakaci.jpg';
+import dotneteri from '@/assets/memes/dotneteri.png';
+import avto_loves_hs from '@/assets/memes/avto_loves_hs.png';
 import tornike_gasaubrebas_atarebs from '@/assets/memes/tornike_gasaubrebas_atarebs.jpg';
 import zuba_roca_gaigo_rom from '@/assets/memes/zuba_roca_gaigo_rom.jpg';
 import zuba_x_dotnet_sastavi from '@/assets/memes/zuba_x_dotnet_sastavi.jpg';
@@ -90,6 +95,11 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  mezoblis_bavshvma_gta_chaiwera,
+  gta_developer_vs_of_model,
+  uxilavi_folderiani_dzmakaci,
+  dotneteri,
+  avto_loves_hs,
   tornike_gasaubrebas_atarebs,
   zuba_roca_gaigo_rom,
   zuba_x_dotnet_sastavi,

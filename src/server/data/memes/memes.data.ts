@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import tornike_looks_soso from '@/assets/memes/tornike_looks_soso.png';
 import male from '@/assets/memes/male.jpg'
 import biznes_idea from '@/assets/memes/biznes_idea.mp4';
 import dotnet_vs_gta from '@/assets/memes/dotnet_vs_gta.jpg';
@@ -98,6 +99,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  tornike_looks_soso,
   male,
   biznes_idea,
   dotnet_vs_gta,

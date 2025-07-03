@@ -1,4 +1,5 @@
 import MatrixBackground from '@/components/MatrixBackground';
+import { getDifficultyColor } from '@/components/quiz/quiz.utils';
 import { QuizResults } from '@/components/quiz/QuizResults';
 import { QuizRunner } from '@/components/quiz/QuizRunner';
 import { Badge } from '@/components/ui/badge';
@@ -100,19 +101,6 @@ const EpisodeDetail = () => {
       </p>
     ));
   }
-
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'easy':
-        return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'medium':
-        return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'hard':
-        return 'bg-red-500/20 text-red-400 border-red-500/30';
-      default:
-        return 'bg-muted text-muted-foreground';
-    }
-  };
 
   const startQuiz = (quiz: Quiz) => {
     setCurrentQuiz(quiz);

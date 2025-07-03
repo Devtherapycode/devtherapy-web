@@ -1,7 +1,6 @@
 import logo from '@/assets/common/logo.png';
-import { Discord, Youtube } from '@/assets/icons/svgs';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
-import { DISCORD_URL, YOUTUBE_URL } from '@/utils/const';
+import { SOCIALS } from '@/utils/const';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -16,12 +15,11 @@ const Footer = () => {
           </Link>
 
           <div className="flex items-center gap-6">
-            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-brand-mint">
-              <Youtube className="h-6 w-6" />
-            </a>
-            <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-brand-mint">
-              <Discord className="h-6 w-6" />
-            </a>
+            {SOCIALS.map((social) => (
+              <a href={social.url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-brand-mint">
+                <social.icon className="h-6 w-6" />
+              </a>
+            ))}
           </div>
         </div>
 

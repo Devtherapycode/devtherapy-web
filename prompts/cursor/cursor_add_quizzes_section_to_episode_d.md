@@ -1,4 +1,5 @@
 # Add quizzes section to episode details
+
 _Exported on 6/28/2025 at 22:56:54 GMT+4 from Cursor (1.1.6)_
 
 ---
@@ -186,17 +187,20 @@ Perfect! I've successfully added a quizzes section to the episode detail page. H
 ### **Key Features:**
 
 1. **Quiz Display Section** - Added a "Test Your Knowledge 🧠" section that:
+
    - Only appears if the episode has related quizzes
    - Shows quizzes in a responsive grid (1 column on mobile, 2 on desktop)
    - Displays difficulty badges with color coding (green/yellow/red)
    - Shows estimated time, number of questions, and categories
 
 2. **Full Quiz Integration** - Reused existing quiz components:
+
    - `QuizRunner` - For taking the quiz
    - `QuizResults` - For showing results and sharing
    - `QuizResultCard` - For generating shareable result images
 
 3. **State Management** - Added proper state handling for:
+
    - Current active quiz
    - Quiz completion scores
    - Time tracking
@@ -216,4 +220,3 @@ Perfect! I've successfully added a quizzes section to the episode detail page. H
 - The section appears contextually only when quizzes exist for that episode
 
 The implementation leverages the existing relationship between episodes and quizzes (through the `episode.quizzes` property) and provides a smooth, integrated experience for users to test their knowledge right after watching/listening to an episode.
-

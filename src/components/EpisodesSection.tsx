@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { EpisodeCard } from './basic/episode-card';
 
 const EpisodesSection = () => (
-  <section className="bg-card/20 px-4 py-20">
+  <section className="bg-card/20 px-4 py-20" id="episodes">
     <div className="mx-auto max-w-4xl">
       <div className="mb-16 text-center">
         <h2 className="mb-6 text-4xl font-bold text-brand-mint md:text-5xl">Latest Episodes</h2>

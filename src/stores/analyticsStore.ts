@@ -1,4 +1,3 @@
-
 import { allEpisodes } from '@/server/data/episodes/episodes.data';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
@@ -25,7 +24,7 @@ export interface ListeningStats {
 interface AnalyticsState {
   episodeStats: Record<string, EpisodeStats>;
   lastActiveDate: string | null;
-  
+
   // Actions
   trackEpisodePlay: (episodeId: string) => void;
   markEpisodeCompleted: (episodeId: string) => void;
@@ -120,7 +119,7 @@ export const useAnalyticsStore = create<AnalyticsState>()(
       getWrappedStats: (): ListeningStats => {
         const state = get();
         const stats = state.episodeStats;
-        
+
         // Calculate completed episodes
         const completedEpisodes = Object.entries(stats).filter(([, stat]) => stat.isCompleted);
         const episodesCompleted = completedEpisodes.length;
@@ -137,17 +136,17 @@ export const useAnalyticsStore = create<AnalyticsState>()(
           }
         });
 
-        const mostListenedGuest = Object.keys(guestCounts).length > 0
-          ? Object.keys(guestCounts).reduce((a, b) => (guestCounts[a] > guestCounts[b] ? a : b))
-          : null;
+        const mostListenedGuest =
+          Object.keys(guestCounts).length > 0 ? Object.keys(guestCounts).reduce((a, b) => (guestCounts[a] > guestCounts[b] ? a : b)) : null;
 
         // Find favorite episode
         const favoriteEpisodes = Object.entries(stats).filter(([, stat]) => stat.isFavorite);
-        const favoriteEpisode = favoriteEpisodes.length > 0
-          ? allEpisodes.find((ep) => ep.id === favoriteEpisodes[0][0])
-          : completedEpisodes.length > 0
-            ? allEpisodes.find((ep) => ep.id === completedEpisodes[completedEpisodes.length - 1][0])
-            : null;
+        const favoriteEpisode =
+          favoriteEpisodes.length > 0
+            ? allEpisodes.find((ep) => ep.id === favoriteEpisodes[0][0])
+            : completedEpisodes.length > 0
+              ? allEpisodes.find((ep) => ep.id === completedEpisodes[completedEpisodes.length - 1][0])
+              : null;
 
         // Calculate top tags
         const tagCounts: Record<string, number> = {};
@@ -171,8 +170,8 @@ export const useAnalyticsStore = create<AnalyticsState>()(
         // Calculate actual active days based on unique dates
         const uniqueDates = new Set(
           Object.values(stats)
-            .filter(stat => stat.lastPlayedAt)
-            .map(stat => new Date(stat.lastPlayedAt!).toDateString())
+            .filter((stat) => stat.lastPlayedAt)
+            .map((stat) => new Date(stat.lastPlayedAt!).toDateString()),
         );
         const streakDays = uniqueDates.size;
 
@@ -196,6 +195,6 @@ export const useAnalyticsStore = create<AnalyticsState>()(
     }),
     {
       name: 'devtherapy-analytics',
-    }
-  )
+    },
+  ),
 );

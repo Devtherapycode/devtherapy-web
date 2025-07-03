@@ -2,6 +2,19 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import zuba_is_typing from '@/assets/memes/zuba_is_typing.jpg';
+import tornike_looks_soso from '@/assets/memes/tornike_looks_soso.png';
+import male from '@/assets/memes/male.jpg'
+import biznes_idea from '@/assets/memes/biznes_idea.mp4';
+import dotnet_vs_gta from '@/assets/memes/dotnet_vs_gta.jpg';
+import mezoblis_bavshvma_gta_chaiwera from '@/assets/memes/mezoblis_bavshvma_gta_chaiwera.jpg';
+import gta_developer_vs_of_model from '@/assets/memes/gta_developer_vs_of_model.jpg';
+import uxilavi_folderiani_dzmakaci from '@/assets/memes/uxilavi_folderiani_dzmakaci.jpg';
+import dotneteri from '@/assets/memes/dotneteri.png';
+import avto_loves_hs from '@/assets/memes/avto_loves_hs.png';
+import tornike_gasaubrebas_atarebs from '@/assets/memes/tornike_gasaubrebas_atarebs.jpg';
+import zuba_roca_gaigo_rom from '@/assets/memes/zuba_roca_gaigo_rom.jpg';
+import zuba_x_dotnet_sastavi from '@/assets/memes/zuba_x_dotnet_sastavi.jpg';
 import c_sharp_is_slow from '@/assets/memes/c_sharp_is_slow.png';
 import website_will_be_dotnet from '@/assets/memes/website_will_be_dotnet.jpg';
 import needtherapy from '@/assets/memes/needtherapy.mp4';
@@ -87,6 +100,19 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  zuba_is_typing,
+  tornike_looks_soso,
+  male,
+  biznes_idea,
+  dotnet_vs_gta,
+  mezoblis_bavshvma_gta_chaiwera,
+  gta_developer_vs_of_model,
+  uxilavi_folderiani_dzmakaci,
+  dotneteri,
+  avto_loves_hs,
+  tornike_gasaubrebas_atarebs,
+  zuba_roca_gaigo_rom,
+  zuba_x_dotnet_sastavi,
   c_sharp_is_slow,
   website_will_be_dotnet,
   needtherapy,

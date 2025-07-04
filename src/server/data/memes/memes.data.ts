@@ -2,6 +2,8 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import zuba_giyvarvar_tu_gkidivar from '@/assets/memes/zuba_giyvarvar_tu_gkidivar.png'
+import c_vs_java_juniors from '@/assets/memes/c_vs_java_juniors.jpg'
 import zuba_is_typing from '@/assets/memes/zuba_is_typing.jpg';
 import tornike_looks_soso from '@/assets/memes/tornike_looks_soso.png';
 import male from '@/assets/memes/male.jpg'
@@ -100,6 +102,8 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  zuba_giyvarvar_tu_gkidivar,
+  c_vs_java_juniors,
   zuba_is_typing,
   tornike_looks_soso,
   male,

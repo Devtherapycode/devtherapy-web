@@ -18,6 +18,7 @@ import { sixthEpisodeBasicInfo, sixthEpisodeData } from './6';
 import { seventhEpisodeBasicInfo, seventhEpisodeData } from './7';
 import { eighthEpisodeBasicInfo, eighthEpisodeData } from './8';
 import { ninthEpisodeBasicInfo, ninthEpisodeData } from './9';
+import { twentyFirstEpisodeBasicInfo, twentyFirstEpisodeData } from './21';
 import { Episode, EpisodeBasicInfo, EpisodeSlugType } from './episodes.types';
 
 export const allEpisodes: EpisodeBasicInfo[] = [
@@ -41,6 +42,7 @@ export const allEpisodes: EpisodeBasicInfo[] = [
   eighteenthEpisodeBasicInfo,
   nineteenthEpisodeBasicInfo,
   twentiethEpisodeBasicInfo,
+  twentyFirstEpisodeBasicInfo,
 ];
 
 export const episodes: Record<EpisodeSlugType, Episode> = {
@@ -64,4 +66,5 @@ export const episodes: Record<EpisodeSlugType, Episode> = {
   'levan-mamulashvili': eighteenthEpisodeData,
   'irakli-koiava': nineteenthEpisodeData,
   'irakli-gabisonia': twentiethEpisodeData,
+  'ioseb-dzmanashvili': twentyFirstEpisodeData,
 };

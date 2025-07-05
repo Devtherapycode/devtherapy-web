@@ -20,7 +20,8 @@ export type EpisodeSlugType =
   | 'irakli-kokrashvili'
   | 'levan-mamulashvili'
   | 'irakli-koiava'
-  | 'irakli-gabisonia';
+  | 'irakli-gabisonia'
+  | 'ioseb-dzmanashvili';
 
 export type EpisodeBasicInfo = {
   id: string;

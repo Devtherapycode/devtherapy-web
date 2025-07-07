@@ -2,7 +2,6 @@ import abela from '@/assets/game-jam-2025/abela.jpg';
 import abelix from '@/assets/game-jam-2025/abelix.jpg';
 import abula_1 from '@/assets/game-jam-2025/abula_1.mov';
 import abula_2 from '@/assets/game-jam-2025/abula_2.jpg';
-import abula_3 from '@/assets/game-jam-2025/abula_3.jpg';
 import abula_4 from '@/assets/game-jam-2025/abula_4.jpg';
 import aliens_1 from '@/assets/game-jam-2025/aliens_1.jpg';
 import amiranis_cuga_1 from '@/assets/game-jam-2025/amiranis_cuga_1.jpg';
@@ -50,6 +49,7 @@ import jiuri_7 from '@/assets/game-jam-2025/jiuri_7.jpg';
 import lovers from '@/assets/game-jam-2025/lovers.jpg';
 import martha from '@/assets/game-jam-2025/martha.jpg';
 import monawile_1 from '@/assets/game-jam-2025/monawile_1.jpg';
+import monawile_10 from '@/assets/game-jam-2025/monawile_10.jpg';
 import monawile_2 from '@/assets/game-jam-2025/monawile_2.jpg';
 import monawile_3 from '@/assets/game-jam-2025/monawile_3.jpg';
 import monawile_4 from '@/assets/game-jam-2025/monawile_4.jpg';
@@ -79,7 +79,6 @@ export const gameJam2025ImagesData = [
   abelix,
   abula_1,
   abula_2,
-  abula_3,
   abula_4,
   aliens_1,
   amiranis_cuga_1,
@@ -135,6 +134,7 @@ export const gameJam2025ImagesData = [
   monawile_7,
   monawile_8,
   monawile_9,
+  monawile_10,
   mouse_knight,
   radiacia,
   rkinigza,

@@ -6,6 +6,7 @@ import abula_4 from '@/assets/game-jam-2025/abula_4.jpg';
 import aliens_1 from '@/assets/game-jam-2025/aliens_1.jpg';
 import amiranis_cuga_1 from '@/assets/game-jam-2025/amiranis_cuga_1.jpg';
 import audience_1 from '@/assets/game-jam-2025/audience_1.jpg';
+import audience_10 from '@/assets/game-jam-2025/audience_10.jpg';
 import audience_2 from '@/assets/game-jam-2025/audience_2.jpg';
 import audience_3 from '@/assets/game-jam-2025/audience_3.jpg';
 import audience_4 from '@/assets/game-jam-2025/audience_4.jpg';
@@ -14,7 +15,6 @@ import audience_6 from '@/assets/game-jam-2025/audience_6.jpg';
 import audience_7 from '@/assets/game-jam-2025/audience_7.jpg';
 import audience_8 from '@/assets/game-jam-2025/audience_8.jpg';
 import audience_9 from '@/assets/game-jam-2025/audience_9.jpg';
-import bevri from '@/assets/game-jam-2025/bevri.jpg';
 import chanchqeri from '@/assets/game-jam-2025/chanchqeri.jpg';
 import donsky_1 from '@/assets/game-jam-2025/donsky_1.jpg';
 import donsky_2 from '@/assets/game-jam-2025/donsky_2.jpg';
@@ -91,7 +91,7 @@ export const gameJam2025ImagesData = [
   audience_7,
   audience_8,
   audience_9,
-  bevri,
+  audience_10,
   chanchqeri,
   donsky_1,
   donsky_2,

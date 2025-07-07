@@ -2,6 +2,15 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import tornikes_multiverse from '@/assets/memes/tornikes_multiverse.png';
+import abela_usulo_tamashi from '@/assets/memes/abela_usulo_tamashi.jpg';
+import zuba_deleting_videos from '@/assets/memes/zuba_deleting_videos.png';
+import three_devs_one_bug_infinite_theories from '@/assets/memes/three_devs_one_bug_infinite_theories.png';
+import abelix_x_zuba from '@/assets/memes/abelix_x_zuba.png';
+import three_babies from '@/assets/memes/three_babies.png';
+import tornike_shaurma from '@/assets/memes/tornike_shaurma.mp4';
+import excel_bug from '@/assets/memes/excel_bug.png';
+import ese_ambavi_martali from '@/assets/memes/ese_ambavi_martali.png';
 import zuba_giyvarvar_tu_gkidivar from '@/assets/memes/zuba_giyvarvar_tu_gkidivar.png'
 import c_vs_java_juniors from '@/assets/memes/c_vs_java_juniors.jpg'
 import zuba_is_typing from '@/assets/memes/zuba_is_typing.jpg';
@@ -102,6 +111,15 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  tornikes_multiverse,
+  abela_usulo_tamashi,
+  zuba_deleting_videos,
+  three_devs_one_bug_infinite_theories,
+  abelix_x_zuba,
+  three_babies,
+  tornike_shaurma,
+  excel_bug,
+  ese_ambavi_martali,
   zuba_giyvarvar_tu_gkidivar,
   c_vs_java_juniors,
   zuba_is_typing,

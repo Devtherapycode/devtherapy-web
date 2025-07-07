@@ -10,6 +10,7 @@ import EpisodeDetail from './pages/EpisodeDetail';
 import Episodes from './pages/Episodes';
 import EventDetail from './pages/EventDetail';
 import Events from './pages/Events';
+import { GameJam2025Gallery } from './pages/game-jam-2025-gallery';
 import GameJam2025 from './pages/GameJam2025';
 import GuestDetail from './pages/GuestDetail';
 import Guests from './pages/Guests';
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/events/:eventId" element={<EventDetail />} />
           <Route path="/quizzes" element={<Quizzes />} />
           <Route path="/gamejam-2025" element={<GameJam2025 />} />
+          <Route path="/gamejam-2025-gallery" element={<GameJam2025Gallery />} />
           <Route path="/wrapped" element={<DevWrapped />} />
           <Route path="/memes" element={<Memes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

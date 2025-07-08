@@ -2,6 +2,8 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import zuba_car_story from '@/assets/memes/zuba_car_story.mp4';
+import ai_es_c_sharp from '@/assets/memes/ai_es_c_sharp.jpg';
 import tornikes_multiverse from '@/assets/memes/tornikes_multiverse.png';
 import abela_usulo_tamashi from '@/assets/memes/abela_usulo_tamashi.jpg';
 import zuba_deleting_videos from '@/assets/memes/zuba_deleting_videos.png';
@@ -111,6 +113,8 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  zuba_car_story,
+  ai_es_c_sharp,
   tornikes_multiverse,
   abela_usulo_tamashi,
   zuba_deleting_videos,

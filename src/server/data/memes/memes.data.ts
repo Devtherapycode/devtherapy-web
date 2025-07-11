@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import dotneteri_neli_kodi from '@/assets/memes/dotneteri_neli_kodi.png';
 import xari_xartan from '@/assets/memes/xari_xartan.png';
 import grdzeli_meme from '@/assets/memes/grdzeli_meme.png';
 import tornike_everyone from '@/assets/memes/tornike_everyone.mov';
@@ -118,6 +119,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  dotneteri_neli_kodi,
   xari_xartan,
   grdzeli_meme,
   tornike_everyone,

@@ -2,6 +2,7 @@
  README: Data of memes are sorted by date, `ukan_daixie_js_developero` is the first meme
 */
 
+import zuba_nina_avto from '@/assets/memes/zuba_nina_avto.png';
 import avto_runaway from '@/assets/memes/avto_runaway.mp4';
 import avto_toreto_rav4 from '@/assets/memes/avto_toreto_rav4.png';
 import avto_toreto from '@/assets/memes/avto_toreto.png';
@@ -123,6 +124,7 @@ import ts_developeri_moemarteba from '@/assets/memes/ts_developeri_moemarteba.pn
 import ukan_daixie_js_developero from '@/assets/memes/ukan_daixie_js_developero.jpg';
 
 export const memes = [
+  zuba_nina_avto,
   avto_runaway,
   avto_toreto,
   avto_toreto_rav4,

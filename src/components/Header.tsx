@@ -77,8 +77,8 @@ const Header = () => {
       </a>
 
       {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="absolute left-0 top-full z-40 w-full bg-black/30 px-6 py-4 shadow-md backdrop-blur md:hidden">
+      {mobileMenuOpen && visible && (
+        <div className="absolute left-0 top-full z-40 w-full bg-black/80 px-6 py-4 shadow-md backdrop-blur md:hidden">
           <nav className="flex flex-col gap-4">
             {navLinks.map(({ label, href }) => (
               <a key={label} href={href} className="w-fit text-base font-semibold text-white hover:text-[#50FEC1]" onClick={() => setMobileMenuOpen(false)}>

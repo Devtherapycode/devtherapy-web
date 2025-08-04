@@ -36,7 +36,7 @@ const Header = () => {
         {
           '-translate-y-full': !visible,
           'translate-y-0': visible,
-          'bg-black/30 backdrop-blur': mobileMenuOpen,
+          'bg-black/80 backdrop-blur': mobileMenuOpen,
           'bg-black/25': !mobileMenuOpen,
         },
       )}

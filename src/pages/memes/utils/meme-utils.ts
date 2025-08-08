@@ -27,7 +27,7 @@ export const processMemeUrl = (memeUrl: string): MemeItem => {
 };
 
 export const processMemesData = (memeUrls: string[]): MemeItem[] => {
-  return memeUrls.map(processMemeUrl);
+  return memeUrls.map((memeUrl) => processMemeUrl(`/memes/${memeUrl}`));
 };
 
 export const buildShareableUrl = (baseUrl: string, existingParams: string, filename: string): string => {

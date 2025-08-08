@@ -3,6 +3,8 @@
 */
 
 export const memes = [
+  '/memes/dotnetevski.png',
+  '/memes/avto_multiverse.jpg',
   '/memes/zuba_nina_avto.png',
   '/memes/avto_runaway.mp4',
   '/memes/avto_toreto_rav4.png',

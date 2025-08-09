@@ -20,4 +20,5 @@ In our conversation, Zura shares insights into the technical challenges of creat
     "The most rewarding part of graphics engineering is seeing players get completely immersed in worlds we've helped create. Every optimization, every shader, every lighting effect contributes to that magic moment when reality and virtuality blend.",
   youtubeUrl: 'https://www.youtube.com/embed/ptPHTbQk_sA',
   linkedin: 'https://www.linkedin.com/in/zurab-abelashvili',
+  easterEgg: '/easter-eggs/mini-zuba.png',
 };

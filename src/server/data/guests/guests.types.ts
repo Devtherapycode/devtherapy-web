@@ -16,4 +16,5 @@ export type GuestData = {
   quote?: string;
   youtubeUrl?: string;
   linkedin: string;
+  easterEgg?: string;
 } & GuestBasicInfo;

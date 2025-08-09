@@ -1,3 +1,4 @@
+import { EasterEgg } from '@/components/basic/easter-egg';
 import MatrixBackground from '@/components/MatrixBackground';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -26,6 +27,7 @@ const GuestDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <MatrixBackground fullScreen />
+      {guest.easterEgg && <EasterEgg easterEgg={guest.easterEgg} />}
       <div className="relative z-10 pb-16 pt-20">
         <div className="mx-auto max-w-4xl px-4">
           {/* Back Button */}

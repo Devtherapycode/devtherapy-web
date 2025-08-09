@@ -18,23 +18,22 @@ export const EasterEgg = ({ easterEgg }: EasterEggProps) => {
     setPosition({
       topPercent: randomBetween(5, 95),
       leftPercent: randomBetween(5, 95),
-      sizePx: randomBetween(12, 50),
+      sizePx: randomBetween(12, 25),
     });
   }, []);
 
   return (
-    <div onClick={handleFireworksClick} className="absolute inset-0 z-20 cursor-pointer">
-      <img
-        src={easterEgg}
-        alt="Easter Egg"
-        className="absolute -translate-x-1/2 -translate-y-1/2 object-contain"
-        style={{
-          top: `${position.topPercent}%`,
-          left: `${position.leftPercent}%`,
-          width: position.sizePx,
-          height: position.sizePx,
-        }}
-      />
+    <div
+      onClick={handleFireworksClick}
+      className="absolute z-20 cursor-pointer"
+      style={{
+        top: `${position.topPercent}%`,
+        left: `${position.leftPercent}%`,
+        width: position.sizePx,
+        height: position.sizePx,
+      }}
+    >
+      <img src={easterEgg} alt="Easter Egg" className="absolute -translate-x-1/2 -translate-y-1/2 object-contain" />
     </div>
   );
 };

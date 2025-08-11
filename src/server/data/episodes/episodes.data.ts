@@ -11,6 +11,8 @@ import { eighteenthEpisodeBasicInfo, eighteenthEpisodeData } from './18';
 import { nineteenthEpisodeBasicInfo, nineteenthEpisodeData } from './19';
 import { secondEpisodeBasicInfo, secondEpisodeData } from './2';
 import { twentiethEpisodeBasicInfo, twentiethEpisodeData } from './20';
+import { twentyFirstEpisodeBasicInfo, twentyFirstEpisodeData } from './21';
+import { twentySecondEpisodeBasicInfo, twentySecondEpisodeData } from './22';
 import { thirdEpisodeBasicInfo, thirdEpisodeData } from './3';
 import { fourthEpisodeBasicInfo, fourthEpisodeData } from './4';
 import { fifthEpisodeBasicInfo, fifthEpisodeData } from './5';
@@ -18,7 +20,6 @@ import { sixthEpisodeBasicInfo, sixthEpisodeData } from './6';
 import { seventhEpisodeBasicInfo, seventhEpisodeData } from './7';
 import { eighthEpisodeBasicInfo, eighthEpisodeData } from './8';
 import { ninthEpisodeBasicInfo, ninthEpisodeData } from './9';
-import { twentyFirstEpisodeBasicInfo, twentyFirstEpisodeData } from './21';
 import { Episode, EpisodeBasicInfo, EpisodeSlugType } from './episodes.types';
 
 export const allEpisodes: EpisodeBasicInfo[] = [
@@ -43,6 +44,7 @@ export const allEpisodes: EpisodeBasicInfo[] = [
   nineteenthEpisodeBasicInfo,
   twentiethEpisodeBasicInfo,
   twentyFirstEpisodeBasicInfo,
+  twentySecondEpisodeBasicInfo,
 ];
 
 export const episodes: Record<EpisodeSlugType, Episode> = {
@@ -67,4 +69,5 @@ export const episodes: Record<EpisodeSlugType, Episode> = {
   'irakli-koiava': nineteenthEpisodeData,
   'irakli-gabisonia': twentiethEpisodeData,
   'ioseb-dzmanashvili': twentyFirstEpisodeData,
+  'irakli-safareli': twentySecondEpisodeData,
 };

@@ -583,8 +583,12 @@ async function main() {
   try {
     console.log('🚀 Starting episode fetch script...');
 
-    const episodes = await batchFetchEpisodes();
-    saveAllEpisodesData(episodes);
+    // const episodes = await batchFetchEpisodes();
+    // saveAllEpisodesData(episodes);
+
+    const episode = await fetchEpisodeById('3RJZ_N6h_sk');
+
+    console.log(episode);
 
     console.log('✅ Episode fetch script completed successfully!');
   } catch (error) {

@@ -23,7 +23,8 @@ export type EpisodeSlugType =
   | 'irakli-gabisonia'
   | 'ioseb-dzmanashvili'
   | 'irakli-safareli'
-  | 'beka-modebadze';
+  | 'beka-modebadze'
+  | 'giorgi-mamaladze';
 
 export type EpisodeBasicInfo = {
   id: string;

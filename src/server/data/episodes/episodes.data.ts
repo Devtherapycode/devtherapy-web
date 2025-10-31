@@ -15,6 +15,8 @@ import { twentyFirstEpisodeBasicInfo, twentyFirstEpisodeData } from './21';
 import { twentySecondEpisodeBasicInfo, twentySecondEpisodeData } from './22';
 import { twentyThirdEpisodeBasicInfo, twentyThirdEpisodeData } from './23';
 import { twentyFourthEpisodeBasicInfo, twentyFourthEpisodeData } from './24';
+import { twentyFifthEpisodeBasicInfo, twentyFifthEpisodeData } from './25';
+import { twentySixthEpisodeBasicInfo, twentySixthEpisodeData } from './26';
 import { thirdEpisodeBasicInfo, thirdEpisodeData } from './3';
 import { fourthEpisodeBasicInfo, fourthEpisodeData } from './4';
 import { fifthEpisodeBasicInfo, fifthEpisodeData } from './5';
@@ -49,6 +51,8 @@ export const allEpisodes: EpisodeBasicInfo[] = [
   twentySecondEpisodeBasicInfo,
   twentyThirdEpisodeBasicInfo,
   twentyFourthEpisodeBasicInfo,
+  twentyFifthEpisodeBasicInfo,
+  twentySixthEpisodeBasicInfo,
 ];
 
 export const episodes: Record<EpisodeSlugType, Episode> = {
@@ -76,4 +80,6 @@ export const episodes: Record<EpisodeSlugType, Episode> = {
   'irakli-safareli': twentySecondEpisodeData,
   'beka-modebadze': twentyThirdEpisodeData,
   'giorgi-mamaladze': twentyFourthEpisodeData,
+  'devtherapy-25-qa': twentyFifthEpisodeData,
+  'nika-nikabadze': twentySixthEpisodeData,
 };

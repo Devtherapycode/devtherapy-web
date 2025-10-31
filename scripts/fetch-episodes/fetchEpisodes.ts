@@ -586,9 +586,12 @@ async function main() {
     // const episodes = await batchFetchEpisodes();
     // saveAllEpisodesData(episodes);
 
-    const episode = await fetchEpisodeById('-2fy_GHb_ag');
+    const episode = await fetchEpisodeById('08aph3oUDCo');
 
-    console.log(episode);
+    // Assuming 'episode' has useful data, and we want to write it to a file.
+    const output = JSON.stringify(episode, null, 2);
+    fs.writeFileSync('fetched-episode.json', output, 'utf-8');
+    console.log('📝 Episode written to fetched-episode.json');
 
     console.log('✅ Episode fetch script completed successfully!');
   } catch (error) {

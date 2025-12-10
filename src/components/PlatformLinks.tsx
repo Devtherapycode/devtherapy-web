@@ -1,39 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { YOUTUBE_URL } from '@/utils/const';
-import { Youtube } from 'lucide-react';
+import { Spotify, ApplePodcasts, Buzzsprout, Pocketcasts, Deezer, Youtube } from '@/assets/icons/svgs';
 
 const PlatformLinks = () => {
   const platforms = [
-    {
-      name: 'Spotify',
-      icon: '🟢',
-      url: 'https://open.spotify.com/show/6fF0duVCFxXKIOFagc1ovJ',
-      color: 'bg-green-600 hover:bg-green-700',
-    },
-    {
-      name: 'Apple Podcasts',
-      icon: '🍎',
-      url: 'https://podcasts.apple.com/us/podcast/devtherapy/id1774788149',
-      color: 'bg-purple-600 hover:bg-purple-700',
-    },
-    {
-      name: 'Buzzsprout',
-      icon: '🌀',
-      url: 'https://www.buzzsprout.com/2415161',
-      color: 'bg-blue-600 hover:bg-blue-700',
-    },
-    {
-      name: 'Pocketcast',
-      icon: '🎧',
-      url: 'https://pocketcasts.com/podcasts/0f623c60-6fb8-013d-bd8d-02e325935ba3',
-      color: 'bg-blue-600 hover:bg-blue-700',
-    },
-    {
-      name: 'Deezer',
-      icon: '🎶',
-      url: 'https://www.deezer.com/en/show/1001333811',
-      color: 'bg-blue-600 hover:bg-blue-700',
-    },
+    { name: 'Spotify', Icon: Spotify, url: 'https://open.spotify.com/show/6fF0duVCFxXKIOFagc1ovJ', borderClass: 'border-spotify', textClass: 'text-spotify' },
+    { name: 'Apple Podcasts', Icon: ApplePodcasts, url: 'https://podcasts.apple.com/us/podcast/devtherapy/id1774788149', borderClass: 'border-apple', textClass: 'text-apple' },
+    { name: 'Buzzsprout', Icon: Buzzsprout, url: 'https://www.buzzsprout.com/2415161', borderClass: 'border-buzzsprout', textClass: 'text-buzzsprout' },
+    { name: 'Pocketcast', Icon: Pocketcasts, url: 'https://pocketcasts.com/podcasts/0f623c60-6fb8-013d-bd8d-02e325935ba3', borderClass: 'border-pocketcast', textClass: 'text-pocketcast' },
+    { name: 'Deezer', Icon: Deezer, url: 'https://www.deezer.com/en/show/1001333811', borderClass: 'border-deezer', textClass: 'text-deezer' },
   ];
 
   return (
@@ -42,23 +17,25 @@ const PlatformLinks = () => {
         <h2 className="mb-6 text-4xl font-bold text-brand-mint md:text-5xl">Listen Everywhere</h2>
         <p className="mb-12 text-xl text-muted-foreground">Choose your preferred platform and never miss an episode.</p>
 
-        <div className="mb-12 grid grid-cols-2 gap-6 md:grid-cols-3">
-          <Button variant="outline" size="lg" className="hover-lift h-20 flex-col gap-2 border-none bg-red-600 text-white hover:bg-red-700" asChild>
-            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
-              <Youtube className="h-6 w-6" />
+        <div className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {/* YouTube button (matches visual sample) */}
+          <Button variant="ghost" size="lg" className="hover-lift h-14 w-full rounded-lg border-youtube bg-[#0b0b0b] text-white px-3" asChild>
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+              <Youtube className="h-6 w-6 text-youtube" />
               <span className="text-sm font-medium">YouTube</span>
             </a>
           </Button>
+
           {platforms.map((platform) => (
             <Button
               key={platform.name}
-              variant="outline"
+              variant="ghost"
               size="lg"
-              className={`${platform.color} hover-lift h-20 flex-col gap-2 border-none text-white`}
+              className={`hover-lift h-14 w-full rounded-lg bg-[#0b0b0b] text-white px-3 ${platform.borderClass ?? 'border-white/5'}`}
               asChild
             >
-              <a href={platform.url} target="_blank" rel="noopener noreferrer">
-                <span className="text-2xl">{platform.icon}</span>
+              <a href={platform.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+                <platform.Icon className={`h-6 w-6 ${platform.textClass ?? 'text-white'}`} />
                 <span className="text-sm font-medium">{platform.name}</span>
               </a>
             </Button>

@@ -75,6 +75,27 @@
   }
 }
 
+@layer components {
+  /* Brand outline and icon color utilities used by PlatformLinks */
+  .border-spotify { border: 1px solid rgba(29,185,84,0.16); }
+  .text-spotify { color: rgb(29,185,84); }
+
+  .border-apple { border: 1px solid rgba(170,46,230,0.16); }
+  .text-apple { color: rgb(170,46,230); }
+
+  .border-buzzsprout { border: 1px solid rgba(47,128,237,0.16); }
+  .text-buzzsprout { color: rgb(47,128,237); }
+
+  .border-pocketcast { border: 1px solid rgba(255,90,90,0.12); }
+  .text-pocketcast { color: rgb(255,90,90); }
+
+  .border-deezer { border: 1px solid rgba(0,114,188,0.12); }
+  .text-deezer { color: rgb(0,114,188); }
+
+  .border-youtube { border: 1px solid rgba(255,0,0,0.16); }
+  .text-youtube { color: rgb(255,0,0); }
+}
+
 html {
   scroll-behavior: smooth;
 }

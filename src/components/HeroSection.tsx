@@ -9,7 +9,7 @@ import MatrixBackground from './MatrixBackground';
 const HeroSection = () => {
   return (
     <section className="relative z-10 flex min-h-screen items-center justify-center py-16">
-      <MatrixBackground />
+      <MatrixBackground fullScreen />
       <div className="relative z-20 mx-auto max-w-4xl text-center p-8">
         {/* Logo */}
         <div className="mb-8 flex items-center justify-center">

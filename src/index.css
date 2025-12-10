@@ -94,6 +94,14 @@
 
   .border-youtube { border: 1px solid rgba(255,0,0,0.16); }
   .text-youtube { color: rgb(255,0,0); }
+
+  /* Hover glow effects that light up outline and add soft colored glow */
+  .hover-glow-spotify:hover { border-color: rgba(29,185,84,0.7); box-shadow: 0 4px 18px rgba(29,185,84,0.18); }
+  .hover-glow-apple:hover { border-color: rgba(170,46,230,0.7); box-shadow: 0 4px 18px rgba(170,46,230,0.14); }
+  .hover-glow-buzzsprout:hover { border-color: rgba(47,128,237,0.7); box-shadow: 0 4px 18px rgba(47,128,237,0.14); }
+  .hover-glow-pocketcast:hover { border-color: rgba(255,90,90,0.6); box-shadow: 0 4px 18px rgba(255,90,90,0.12); }
+  .hover-glow-deezer:hover { border-color: rgba(0,114,188,0.6); box-shadow: 0 4px 18px rgba(0,114,188,0.12); }
+  .hover-glow-youtube:hover { border-color: rgba(255,0,0,0.7); box-shadow: 0 4px 18px rgba(255,0,0,0.18); }
 }
 
 html {

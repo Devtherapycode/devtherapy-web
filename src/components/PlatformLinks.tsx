@@ -4,11 +4,11 @@ import { Spotify, ApplePodcasts, Buzzsprout, Pocketcasts, Deezer, Youtube } from
 
 const PlatformLinks = () => {
   const platforms = [
-    { name: 'Spotify', Icon: Spotify, url: 'https://open.spotify.com/show/6fF0duVCFxXKIOFagc1ovJ', borderClass: 'border-spotify', textClass: 'text-spotify' },
-    { name: 'Apple Podcasts', Icon: ApplePodcasts, url: 'https://podcasts.apple.com/us/podcast/devtherapy/id1774788149', borderClass: 'border-apple', textClass: 'text-apple' },
-    { name: 'Buzzsprout', Icon: Buzzsprout, url: 'https://www.buzzsprout.com/2415161', borderClass: 'border-buzzsprout', textClass: 'text-buzzsprout' },
-    { name: 'Pocketcast', Icon: Pocketcasts, url: 'https://pocketcasts.com/podcasts/0f623c60-6fb8-013d-bd8d-02e325935ba3', borderClass: 'border-pocketcast', textClass: 'text-pocketcast' },
-    { name: 'Deezer', Icon: Deezer, url: 'https://www.deezer.com/en/show/1001333811', borderClass: 'border-deezer', textClass: 'text-deezer' },
+    { name: 'Spotify', Icon: Spotify, url: 'https://open.spotify.com/show/6fF0duVCFxXKIOFagc1ovJ', borderClass: 'border-spotify', hoverClass: 'hover-glow-spotify', textClass: 'text-spotify' },
+    { name: 'Apple Podcasts', Icon: ApplePodcasts, url: 'https://podcasts.apple.com/us/podcast/devtherapy/id1774788149', borderClass: 'border-apple', hoverClass: 'hover-glow-apple', textClass: 'text-apple' },
+    { name: 'Buzzsprout', Icon: Buzzsprout, url: 'https://www.buzzsprout.com/2415161', borderClass: 'border-buzzsprout', hoverClass: 'hover-glow-buzzsprout', textClass: 'text-buzzsprout' },
+    { name: 'Pocketcast', Icon: Pocketcasts, url: 'https://pocketcasts.com/podcasts/0f623c60-6fb8-013d-bd8d-02e325935ba3', borderClass: 'border-pocketcast', hoverClass: 'hover-glow-pocketcast', textClass: 'text-pocketcast' },
+    { name: 'Deezer', Icon: Deezer, url: 'https://www.deezer.com/en/show/1001333811', borderClass: 'border-deezer', hoverClass: 'hover-glow-deezer', textClass: 'text-deezer' },
   ];
 
   return (
@@ -19,7 +19,7 @@ const PlatformLinks = () => {
 
         <div className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {/* YouTube button (matches visual sample) */}
-          <Button variant="ghost" size="lg" className="hover-lift h-14 w-full rounded-lg border-youtube bg-[#0b0b0b] text-white px-3" asChild>
+          <Button variant="ghost" size="lg" className="hover-lift h-14 w-full rounded-lg border-youtube hover-glow-youtube bg-[#0b0b0b] text-white px-3" asChild>
             <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
               <Youtube className="h-6 w-6 text-youtube" />
               <span className="text-sm font-medium">YouTube</span>
@@ -31,7 +31,7 @@ const PlatformLinks = () => {
               key={platform.name}
               variant="ghost"
               size="lg"
-              className={`hover-lift h-14 w-full rounded-lg bg-[#0b0b0b] text-white px-3 ${platform.borderClass ?? 'border-white/5'}`}
+              className={`hover-lift h-14 w-full rounded-lg bg-[#0b0b0b] text-white px-3 ${platform.borderClass ?? 'border-white/5'} ${platform.hoverClass ?? ''}`}
               asChild
             >
               <a href={platform.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">

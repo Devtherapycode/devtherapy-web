@@ -17,7 +17,7 @@ const MatrixBackground = ({ fullScreen = false }: MatrixBackgroundProps) => {
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = fullScreen ? window.innerHeight : Math.max(window.innerHeight, document.documentElement.scrollHeight);
     };
 
     resizeCanvas();

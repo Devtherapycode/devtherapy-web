@@ -26,7 +26,16 @@ export type EpisodeSlugType =
   | 'beka-modebadze'
   | 'giorgi-mamaladze'
   | 'devtherapy-25-qa'
-  | 'nika-nikabadze';
+  | 'nika-nikabadze'
+  | 'levan-velijanashvili'
+  | 'giorgi-keratishvili'
+  | 'tata-imnaishvili'
+  | 'yuri-semenikhin'
+  | 'devtherapy-31-review'
+  | 'irakli-butskhrikidze'
+  | 'tako-abramashvili'
+  | 'waska-chaduneli'
+  | 'we-back';
 
 export type EpisodeBasicInfo = {
   id: string;
@@ -38,6 +47,8 @@ export type EpisodeBasicInfo = {
   slug: EpisodeSlugType;
   youtubeId: string;
   guest?: string;
+  /** Season 1 when left out. */
+  season?: 1 | 2;
 };
 
 export type Episode = EpisodeBasicInfo & {

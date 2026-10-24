@@ -3,6 +3,8 @@ import { Discord, Github, Youtube } from '@/assets/icons/svgs';
 export const YOUTUBE_URL = 'https://www.youtube.com/@Devtherapy';
 export const DISCORD_URL = 'https://discord.gg/j7wya3FanY';
 export const GITHUB_URL = 'https://github.com/Devtherapycode';
+export const SPOTIFY_URL = 'https://open.spotify.com/show/6fF0duVCFxXKIOFagc1ovJ';
+export const APPLE_PODCASTS_URL = 'https://podcasts.apple.com/us/podcast/devtherapy/id1774788149';
 
 export const SOCIALS = [
   {

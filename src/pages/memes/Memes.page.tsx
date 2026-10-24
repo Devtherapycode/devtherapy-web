@@ -1,5 +1,4 @@
 import { BackToHomeHeader } from '@/components/back-to-home-header';
-import MatrixBackground from '@/components/MatrixBackground';
 import { memes } from '@/server/data/memes/memes.data';
 import { MemeFilters } from '@/server/data/memes/memes.types';
 import { useMemeStore } from '@/stores/memeStore';
@@ -71,7 +70,6 @@ const Memes = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MatrixBackground fullScreen />
 
       <div className="relative z-10">
         <BackToHomeHeader title="Meme Gallery" />

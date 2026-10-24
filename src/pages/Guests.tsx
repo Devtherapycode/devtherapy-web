@@ -1,5 +1,4 @@
 import { BackToHomeHeader } from '@/components/back-to-home-header';
-import MatrixBackground from '@/components/MatrixBackground';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -20,20 +19,12 @@ const Guests = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <MatrixBackground fullScreen />
 
       <div className="relative z-10">
-        <BackToHomeHeader title="Guests" />
+        <BackToHomeHeader title="Guests" subtitle="A growing list of engineers, creators, and thinkers who've joined us on Devtherapy." />
 
-        <div className="pb-16 pt-20">
+        <div className="pb-16 pt-10">
           <div className="mx-auto max-w-6xl px-4">
-            {/* Intro Section */}
-            <div className="mb-16 text-center">
-              <h1 className="glow-text mb-6 text-4xl font-bold md:text-6xl">Meet the Minds Behind the Mic</h1>
-              <p className="mx-auto max-w-3xl text-xl text-muted-foreground md:text-2xl">
-                A growing list of engineers, creators, and thinkers who've joined us on Devtherapy.
-              </p>
-            </div>
 
             {/* Search Bar */}
             <div className="mx-auto mb-12 max-w-md">

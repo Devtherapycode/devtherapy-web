@@ -1,13 +1,13 @@
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
-import { useState } from 'react';
+import { useCommandPaletteStore } from '@/stores/commandPaletteStore';
 import { CommandPalette } from './CommandPalette';
 
 export const GlobalShortcuts = () => {
-  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const { open, setOpen } = useCommandPaletteStore();
 
   useKeyboardShortcuts({
-    onCommandPaletteOpen: () => setCommandPaletteOpen(true),
+    onCommandPaletteOpen: () => setOpen(true),
   });
 
-  return <CommandPalette open={commandPaletteOpen} onOpenChange={setCommandPaletteOpen} />;
+  return <CommandPalette open={open} onOpenChange={setOpen} />;
 };

@@ -1,5 +1,4 @@
 import { BackToHomeHeader } from '@/components/back-to-home-header';
-import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { eventsData } from '@/server/data/events/events.data';
@@ -39,20 +38,11 @@ const Events = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MatrixBackground fullScreen />
 
       <div className="relative z-10">
-        <BackToHomeHeader title="Events" />
+        <BackToHomeHeader title="Events" subtitle="Live sessions, dev meetups, guest collabs, and community moments." />
 
-        {/* Hero Section */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="text-center">
-            <h1 className="glow-text mb-4 text-4xl font-bold md:text-6xl">Devtherapy Events</h1>
-            <p className="mx-auto max-w-2xl text-xl text-muted-foreground">Live sessions, dev meetups, guest collabs, and community moments.</p>
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 pb-12">
+        <div className="container mx-auto px-4 pb-12 pt-10">
           {/* Featured Event */}
           {featuredEvent && (
             <div className="mb-12">

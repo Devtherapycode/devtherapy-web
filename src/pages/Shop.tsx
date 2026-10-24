@@ -1,4 +1,3 @@
-import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -87,7 +86,6 @@ const Shop = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MatrixBackground fullScreen />
 
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between border-b border-brand-mint/10 p-6">

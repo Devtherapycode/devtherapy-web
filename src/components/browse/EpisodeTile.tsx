@@ -1,8 +1,19 @@
-import { episodeDuration, episodeName, episodeNumber, episodeTopics, episodeViews, formatViews, seasonLabel, thumbnailUrl, youtubeUrl } from '@/lib/episodes';
+import {
+  episodeDuration,
+  episodeName,
+  episodeNumber,
+  episodeTopics,
+  episodeViews,
+  formatViews,
+  seasonLabel,
+  thumbnailUrl,
+  youtubeUrl,
+} from '@/lib/episodes';
 import { cn } from '@/lib/utils';
+import { previewEmbedUrl, usePreviewPlayer } from '@/lib/youtube';
 import { EpisodeBasicInfo } from '@/server/data/episodes/episodes.types';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
-import { Check, ChevronDown, Play, Plus } from 'lucide-react';
+import { Check, ChevronDown, Play, Plus, Volume2, VolumeX } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
@@ -98,9 +109,12 @@ type HoverPreviewProps = {
 };
 
 // The expanded card: centred on the tile it grew from, kept inside the window, scaling up from 0.9 in 200ms
-// (ease-out, from the tile's centre).
+// (ease-out, from the tile's centre). The episode starts playing muted over the picture, as on Netflix.
 const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: HoverPreviewProps) => {
   const [mounted, setMounted] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const iframe = useRef<HTMLIFrameElement>(null);
+  const { player, playing } = usePreviewPlayer(iframe);
   const { episodeStats, trackEpisodePlay, toggleEpisodeFavorite } = useAnalyticsStore();
   const favorite = episodeStats[episode.id]?.isFavorite ?? false;
   const number = episodeNumber(episode);
@@ -110,6 +124,13 @@ const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: Hover
     const frame = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(frame);
   }, []);
+
+  // Browsers only autoplay muted video, so sound is turned on through the player API.
+  const handleToggleMute = () => {
+    if (muted) player.current?.unMute();
+    else player.current?.mute();
+    setMuted(!muted);
+  };
 
   const left = Math.min(Math.max(anchor.left + anchor.width / 2 - PREVIEW_WIDTH / 2, 16), window.innerWidth - PREVIEW_WIDTH - 16);
   const top = Math.max(anchor.top + anchor.height / 2 - PREVIEW_IMAGE_HEIGHT / 2, 8);
@@ -127,6 +148,14 @@ const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: Hover
     >
       <Link to={`/episodes/${episode.slug}`} className="block">
         <CrtImage src={thumbnailUrl(episode)} alt="" className="h-[208px] rounded-xl">
+          <iframe
+            ref={iframe}
+            src={previewEmbedUrl(episode)}
+            title={episode.title}
+            allow="autoplay; encrypted-media"
+            tabIndex={-1}
+            className={cn('pointer-events-none absolute inset-0 h-full w-full transition-opacity duration-300 ease-out', playing ? 'opacity-100' : 'opacity-0')}
+          />
           <div className="absolute inset-x-0 bottom-0 h-[90px] bg-gradient-to-b from-transparent to-crt-ink/70" />
           <div className="absolute bottom-3.5 left-3 flex max-w-[85%] flex-col gap-[3px] border-l-[3px] border-crt-orange bg-crt-ink/85 py-2 pl-3 pr-3.5">
             <span className="font-mono text-[11px] font-semibold tracking-[0.08em] text-brand-mint">PREVIEW</span>
@@ -158,13 +187,23 @@ const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: Hover
               {favorite ? <Check className="h-[18px] w-[18px]" strokeWidth={2.4} /> : <Plus className="h-[18px] w-[18px]" strokeWidth={2.4} />}
             </button>
           </div>
-          <Link
-            to={`/episodes/${episode.slug}`}
-            aria-label="More info"
-            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/50 bg-[#2A2A2A]/60 text-white transition-transform duration-150 ease-out active:scale-[0.97]"
-          >
-            <ChevronDown className="h-[18px] w-[18px]" strokeWidth={2.4} />
-          </Link>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleToggleMute}
+              aria-label={muted ? 'Turn sound on' : 'Turn sound off'}
+              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/50 bg-[#2A2A2A]/60 text-white transition-transform duration-150 ease-out active:scale-[0.97]"
+            >
+              {muted ? <VolumeX className="h-[18px] w-[18px]" strokeWidth={2.4} /> : <Volume2 className="h-[18px] w-[18px]" strokeWidth={2.4} />}
+            </button>
+            <Link
+              to={`/episodes/${episode.slug}`}
+              aria-label="More info"
+              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/50 bg-[#2A2A2A]/60 text-white transition-transform duration-150 ease-out active:scale-[0.97]"
+            >
+              <ChevronDown className="h-[18px] w-[18px]" strokeWidth={2.4} />
+            </Link>
+          </div>
         </div>
         <div className="flex items-center gap-2.5">
           <span className="text-[15px] font-bold leading-[18px] text-brand-mint">{seasonLabel(episode)}</span>

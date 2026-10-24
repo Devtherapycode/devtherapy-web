@@ -42,7 +42,7 @@ const formatDay = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { d
 const EpisodeDetail = () => {
   const { episodeSlug } = useParams();
   const episode = episodes[episodeSlug as keyof typeof episodes];
-  const { episodeStats, trackEpisodePlay, toggleEpisodeFavorite } = useAnalyticsStore();
+  const { episodeStats, trackEpisodePlay, toggleEpisodeFavorite, markEpisodeCompleted } = useAnalyticsStore();
   const [playFrom, setPlayFrom] = useState<number | null>(null);
   const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
   const [showResults, setShowResults] = useState(false);
@@ -67,6 +67,7 @@ const EpisodeDetail = () => {
   const total = durationSeconds(episode);
   const guests = episodeGuests(episode);
   const favorite = episodeStats[episode.id]?.isFavorite ?? false;
+  const watched = episodeStats[episode.id]?.isCompleted ?? false;
   const lead = episode.description.replace('🚀', '').trim().split(/\n\n+/);
   // The rest of the description: the lead is shown above and the chapters have their own list.
   const fullDescription = episode.fullDescription
@@ -175,6 +176,16 @@ const EpisodeDetail = () => {
               <span className="rounded-sm border border-white/40 px-[5px] py-px font-mono text-xs text-[#E5E5E5]">{episodeDuration(episode)}</span>
               <span className="font-mono text-xs text-[#BCBCBC]">{formatViews(episodeViews(episode))}</span>
               <span className="rounded-sm border border-white/40 px-[5px] py-px text-xs text-[#E5E5E5]">Georgian</span>
+              {/* Watched episodes count towards Dev Wrapped. */}
+              <button
+                type="button"
+                onClick={() => markEpisodeCompleted(episode.id)}
+                disabled={watched}
+                className="flex items-center gap-1.5 rounded-full border border-white/20 px-2.5 py-0.5 text-xs font-semibold text-[#E5E5E5] transition-transform duration-150 ease-out active:scale-[0.97] disabled:border-brand-mint/40 disabled:text-brand-mint"
+              >
+                <Check className="h-3.5 w-3.5" strokeWidth={2.6} />
+                {watched ? 'Watched' : 'Mark as watched'}
+              </button>
             </div>
             {lead.map((paragraph, index) => (
               <p key={index} className={cn('leading-7', index === 0 ? 'text-lg text-[#F0F0F0]' : 'text-base text-[#A3A3A3]')}>

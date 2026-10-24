@@ -66,8 +66,7 @@ export const Billboard = () => {
       <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,transparent_0%,rgba(10,10,10,0.55)_45%,#0A0A0A_92%)]" />
       <div aria-hidden className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/75 to-transparent" />
 
-      <div className="relative flex min-h-[640px] flex-col justify-between gap-12 px-4 pb-16 pt-24 md:min-h-[780px] md:px-[60px] md:pb-24">
-        <PlatformButtons buttonClassName="h-10 gap-2 pl-3 pr-4 text-sm" />
+      <div className="relative flex min-h-[640px] flex-col justify-end px-4 pb-16 pt-32 md:min-h-[780px] md:px-[60px] md:pb-24">
         <div className="flex flex-col items-start gap-4">
           <span className="font-mono text-xs font-semibold tracking-[0.3em] text-white">NEWEST EPISODE</span>
           <h1 className="max-w-[760px] text-6xl font-black leading-[0.95] tracking-[-0.045em] text-white md:text-[96px]">{episodeName(featured)}</h1>
@@ -101,6 +100,7 @@ export const Billboard = () => {
               </button>
             )}
           </div>
+          <PlatformButtons className="pt-6" buttonClassName="h-10 gap-2 pl-3 pr-4 text-sm" />
         </div>
       </div>
       <YouTubeDialog episode={featured} start={playFrom} onClose={() => setPlayFrom(null)} />

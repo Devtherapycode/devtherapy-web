@@ -7,7 +7,7 @@ export const TopTenRail = () => (
   <Rail
     title={
       <span className="flex items-center gap-3">
-        <span className="flex h-[30px] w-[30px] flex-col items-center justify-center rounded-sm bg-brand-mint text-[#0A0A0A]">
+        <span aria-hidden className="flex h-[30px] w-[30px] flex-col items-center justify-center rounded-sm bg-brand-mint text-[#0A0A0A]">
           <span className="text-[8px] font-extrabold leading-none">TOP</span>
           <span className="text-[13px] font-black leading-none">10</span>
         </span>

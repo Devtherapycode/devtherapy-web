@@ -14,13 +14,6 @@ export const episodeNumber = (episode: EpisodeBasicInfo): number | null => {
 
 export const episodeSeason = (episode: EpisodeBasicInfo) => episode.season ?? 1;
 
-/** "CH 34" for Season 1, "S2 · CH 01" for Season 2. */
-export const episodeChannel = (episode: EpisodeBasicInfo) => {
-  if (episodeSeason(episode) === 2) return 'S2 · CH 01';
-  const number = episodeNumber(episode);
-  return number === null ? 'CH —' : `CH ${String(number).padStart(2, '0')}`;
-};
-
 /** The part of the title after the number: the guest's name, or the episode's own title. */
 export const episodeName = (episode: EpisodeBasicInfo) => {
   const [head] = episode.title.split('|');

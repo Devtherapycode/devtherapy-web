@@ -3,9 +3,8 @@ import { EpisodeTile } from '@/components/browse/EpisodeTile';
 import { NewsletterBand } from '@/components/browse/NewsletterBand';
 import { PeopleRail } from '@/components/browse/PeopleRail';
 import { Rail } from '@/components/browse/Rail';
-import { SeasonTwoRail } from '@/components/browse/SeasonTwoRail';
 import { TopTenRail } from '@/components/browse/TopTenRail';
-import { episodeSeason, newestFirst, seasonOne, topicRails } from '@/lib/episodes';
+import { newestFirst, seasonOne, topicRails } from '@/lib/episodes';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
 
 // Episodes this browser has played, most recent first (from the local listening history Dev Wrapped uses).
@@ -27,15 +26,14 @@ export const HomePage = () => {
         {continueWatching.length > 0 && (
           <Rail title="Continue watching">
             {continueWatching.map((episode) => (
-              <EpisodeTile key={episode.id} episode={episode} mono={episodeSeason(episode) === 1} watched={episodeStats[episode.id]?.isCompleted} />
+              <EpisodeTile key={episode.id} episode={episode} watched={episodeStats[episode.id]?.isCompleted} />
             ))}
           </Rail>
         )}
-        <SeasonTwoRail />
         <TopTenRail />
         <Rail title="Season 1" subtitle={`All ${seasonOne.length} episodes, oldest first.`}>
           {seasonOne.map((episode) => (
-            <EpisodeTile key={episode.id} episode={episode} mono />
+            <EpisodeTile key={episode.id} episode={episode} />
           ))}
         </Rail>
         {topicRails

@@ -1,10 +1,10 @@
-import { episodeChannel, episodeDuration, episodeName, episodeNumber, episodeTopics, episodeViews, formatViews, thumbnailUrl } from '@/lib/episodes';
+import { episodeDuration, episodeName, episodeNumber, episodeTopics, episodeViews, formatViews, thumbnailUrl } from '@/lib/episodes';
 import { cn } from '@/lib/utils';
 import { EpisodeBasicInfo } from '@/server/data/episodes/episodes.types';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
 import { Check, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CrtImage, Readout } from './CrtImage';
+import { CrtImage } from './CrtImage';
 
 type EpisodeCardProps = {
   episode: EpisodeBasicInfo;
@@ -21,9 +21,7 @@ export const EpisodeCard = ({ episode, mono = false, className }: EpisodeCardPro
   return (
     <article className={cn('flex flex-col overflow-hidden rounded bg-[#181818]', className)}>
       <Link to={`/episodes/${episode.slug}`} tabIndex={-1} aria-hidden className="block transition-transform duration-150 ease-out active:scale-[0.97]">
-        <CrtImage src={thumbnailUrl(episode)} alt="" mono={mono} className="aspect-video w-full">
-          <Readout className="absolute left-2 top-2">{episodeChannel(episode)}</Readout>
-        </CrtImage>
+        <CrtImage src={thumbnailUrl(episode)} alt="" mono={mono} className="aspect-video w-full" />
       </Link>
       <div className="relative px-3 pb-4 pt-3">
         <Link to={`/episodes/${episode.slug}`} className="flex flex-col gap-1.5">

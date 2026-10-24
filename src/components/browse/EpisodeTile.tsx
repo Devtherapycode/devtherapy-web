@@ -1,4 +1,4 @@
-import { episodeChannel, episodeDuration, episodeName, episodeNumber, episodeTopics, episodeViews, formatViews, seasonLabel, thumbnailUrl, youtubeUrl } from '@/lib/episodes';
+import { episodeDuration, episodeName, episodeNumber, episodeTopics, episodeViews, formatViews, seasonLabel, thumbnailUrl, youtubeUrl } from '@/lib/episodes';
 import { cn } from '@/lib/utils';
 import { EpisodeBasicInfo } from '@/server/data/episodes/episodes.types';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
@@ -6,7 +6,7 @@ import { Check, ChevronDown, Play, Plus } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { CrtImage, Readout } from './CrtImage';
+import { CrtImage } from './CrtImage';
 
 const PREVIEW_WIDTH = 392;
 const PREVIEW_IMAGE_HEIGHT = 218; // 10px frame + 208px picture
@@ -15,15 +15,13 @@ const CLOSE_DELAY = 120; // time to move from the tile onto the preview
 
 type EpisodeTileProps = {
   episode: EpisodeBasicInfo;
-  /** Season 1 shows in black and white; hovering tunes it back into colour. */
-  mono?: boolean;
   watched?: boolean;
   className?: string;
   /** Overrides the picture's size (default 200x113, 252x142 from sm). */
   imageClassName?: string;
 };
 
-export const EpisodeTile = ({ episode, mono = false, watched = false, className, imageClassName }: EpisodeTileProps) => {
+export const EpisodeTile = ({ episode, watched = false, className, imageClassName }: EpisodeTileProps) => {
   const tile = useRef<HTMLAnchorElement>(null);
   const openTimer = useRef<number>();
   const closeTimer = useRef<number>();
@@ -69,11 +67,7 @@ export const EpisodeTile = ({ episode, mono = false, watched = false, className,
         className={cn('block shrink-0 snap-start rounded transition-transform duration-150 ease-out active:scale-[0.97]', className)}
         aria-label={episode.title}
       >
-        <CrtImage src={thumbnailUrl(episode)} alt="" mono={mono} className={cn('h-[113px] w-[200px] rounded sm:h-[142px] sm:w-[252px]', imageClassName)}>
-          <div className="absolute inset-x-2 top-2 flex items-center justify-between">
-            <Readout>{episodeChannel(episode)}</Readout>
-            <Readout className="font-semibold tracking-[0.08em] text-white">{episodeDuration(episode)}</Readout>
-          </div>
+        <CrtImage src={thumbnailUrl(episode)} alt="" className={cn('h-[113px] w-[200px] rounded sm:h-[142px] sm:w-[252px]', imageClassName)}>
           {watched && (
             <>
               <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent to-black/70" />
@@ -104,7 +98,7 @@ type HoverPreviewProps = {
 };
 
 // The expanded card: centred on the tile it grew from, kept inside the window, scaling up from 0.9 in 200ms
-// (ease-out, from the tile's centre), always in colour with the "tuned in" readout.
+// (ease-out, from the tile's centre).
 const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: HoverPreviewProps) => {
   const [mounted, setMounted] = useState(false);
   const { episodeStats, trackEpisodePlay, toggleEpisodeFavorite } = useAnalyticsStore();
@@ -134,9 +128,6 @@ const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: Hover
       <Link to={`/episodes/${episode.slug}`} className="block">
         <CrtImage src={thumbnailUrl(episode)} alt="" className="h-[208px] rounded-xl">
           <div className="absolute inset-x-0 bottom-0 h-[90px] bg-gradient-to-b from-transparent to-crt-ink/70" />
-          <div className="absolute left-3 right-3 top-3 flex items-center gap-2.5">
-            <span className="font-mono text-[13px] font-bold tracking-[0.14em] text-brand-mint [text-shadow:0_0_10px_rgba(101,229,177,0.8)]">{episodeChannel(episode)}</span>
-          </div>
           <div className="absolute bottom-3.5 left-3 flex max-w-[85%] flex-col gap-[3px] border-l-[3px] border-crt-orange bg-crt-ink/85 py-2 pl-3 pr-3.5">
             <span className="font-mono text-[11px] font-semibold tracking-[0.08em] text-brand-mint">PREVIEW</span>
             <span className="line-clamp-2 text-[22px] font-extrabold leading-6 tracking-[-0.02em] text-white">{episodeName(episode)}</span>

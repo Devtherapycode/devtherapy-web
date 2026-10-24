@@ -1,20 +1,19 @@
 import logo from '@/assets/common/logo.png';
-import { ApplePodcasts, Discord, Github, Spotify, Youtube } from '@/assets/icons/svgs';
+import { ApplePodcasts, Github, Spotify, Youtube } from '@/assets/icons/svgs';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
+import { cn } from '@/lib/utils';
 import { useCommandPaletteStore } from '@/stores/commandPaletteStore';
 import { APPLE_PODCASTS_URL, DISCORD_URL, GITHUB_URL, SPOTIFY_URL, YOUTUBE_URL } from '@/utils/const';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Wordmark } from './SiteNav';
 
+// Each platform in its own brand colour, a shade darker at the top, with a thin dark ring (the syntax.fm look).
 const PLATFORMS = [
-  { name: 'Spotify', url: SPOTIFY_URL, Icon: Spotify },
-  { name: 'Apple Podcasts', url: APPLE_PODCASTS_URL, Icon: ApplePodcasts },
+  { name: 'Spotify', url: SPOTIFY_URL, Icon: Spotify, colour: 'bg-gradient-to-b from-[#169C45] to-[#1DB954]' },
+  { name: 'Apple Podcasts', url: APPLE_PODCASTS_URL, Icon: ApplePodcasts, colour: 'bg-gradient-to-b from-[#8A2FC6] to-[#A752E8]' },
 ];
-const COMMUNITY = [
-  { name: 'Discord', url: DISCORD_URL, Icon: Discord },
-  { name: 'GitHub', url: GITHUB_URL, Icon: Github },
-];
+const COMMUNITY = [{ name: 'GitHub', url: GITHUB_URL, Icon: Github, colour: 'bg-gradient-to-b from-[#1F2328] to-[#2D333B]' }];
 
 const COLUMNS = [
   [
@@ -36,8 +35,8 @@ const COLUMNS = [
 ];
 
 const linkClass = 'text-sm leading-[18px] text-[#8C8C8C] transition-colors duration-150 hover:text-white';
-const outlineButton =
-  'flex h-12 items-center gap-2.5 rounded border border-white/20 bg-white/[0.04] pl-4 pr-5 text-base font-semibold text-white transition-transform duration-150 ease-out active:scale-[0.97]';
+const brandButton =
+  'flex h-12 items-center gap-2.5 rounded pl-4 pr-5 text-base font-semibold text-white shadow-[inset_0_0_0_1.5px_rgba(0,0,0,0.25)] transition-transform duration-150 ease-out active:scale-[0.97]';
 
 const Footer = () => {
   useScrollToTop();
@@ -55,20 +54,20 @@ const Footer = () => {
             href={YOUTUBE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-12 items-center gap-2.5 rounded bg-white pl-4 pr-5 text-base font-bold text-[#0A0A0A] transition-transform duration-150 ease-out active:scale-[0.97]"
+            className={cn(brandButton, 'bg-gradient-to-b from-[#EDEDED] to-white font-bold text-[#0A0A0A]')}
           >
-            <Youtube className="h-5 w-5" />
+            <Youtube className="h-5 w-5 text-[#FF0000]" />
             YouTube
           </a>
-          {PLATFORMS.map(({ name, url, Icon }) => (
-            <a key={name} href={url} target="_blank" rel="noopener noreferrer" className={outlineButton}>
+          {PLATFORMS.map(({ name, url, Icon, colour }) => (
+            <a key={name} href={url} target="_blank" rel="noopener noreferrer" className={cn(brandButton, colour)}>
               <Icon className="h-5 w-5" />
               {name}
             </a>
           ))}
           <span className="hidden h-7 w-px bg-[#2E2E2E] sm:block" aria-hidden />
-          {COMMUNITY.map(({ name, url, Icon }) => (
-            <a key={name} href={url} target="_blank" rel="noopener noreferrer" className={outlineButton}>
+          {COMMUNITY.map(({ name, url, Icon, colour }) => (
+            <a key={name} href={url} target="_blank" rel="noopener noreferrer" className={cn(brandButton, colour)}>
               <Icon className="h-5 w-5" />
               {name}
             </a>

@@ -1,6 +1,8 @@
 import logo from '@/assets/common/logo.png';
+import { Discord } from '@/assets/icons/svgs';
 import { cn } from '@/lib/utils';
 import { useCommandPaletteStore } from '@/stores/commandPaletteStore';
+import { DISCORD_URL } from '@/utils/const';
 import { Menu, Search, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
@@ -83,12 +85,18 @@ export const SiteNav = () => {
             <Search className="h-[22px] w-[22px]" strokeWidth={2.2} />
             <span className="hidden rounded border border-white/35 bg-black/25 px-2 py-1 font-mono text-xs font-medium leading-4 sm:inline">⌘K</span>
           </button>
-          <Link
-            to="/wrapped"
-            className="hidden h-8 w-8 items-center justify-center rounded bg-brand-mint font-mono text-[13px] font-bold text-[#0A0A0A] sm:flex"
-            aria-label="Your Dev Wrapped"
+          <a
+            href={DISCORD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Join Discord"
+            className="flex h-9 items-center gap-2 rounded bg-gradient-to-b from-[#4752C4] to-[#5865F2] px-2.5 text-sm font-semibold text-white shadow-[inset_0_0_0_1.5px_rgba(0,0,0,0.25)] transition-transform duration-150 ease-out active:scale-[0.97] sm:px-3.5"
           >
-            {'{ }'}
+            <Discord className="h-5 w-5" />
+            <span className="hidden sm:inline">Join Discord</span>
+          </a>
+          <Link to="/wrapped" className="hidden shrink-0 transition-transform duration-150 ease-out active:scale-[0.97] sm:block" aria-label="Your Dev Wrapped">
+            <img src={logo} alt="" className="h-8 w-8 rounded" />
           </Link>
           <button type="button" className="text-white lg:hidden" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle menu" aria-expanded={menuOpen}>
             {menuOpen ? <X size={26} /> : <Menu size={26} />}

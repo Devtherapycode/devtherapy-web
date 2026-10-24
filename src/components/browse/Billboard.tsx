@@ -3,9 +3,8 @@ import { episodeName, frameUrl, newestFirst } from '@/lib/episodes';
 import { cn } from '@/lib/utils';
 import { previewEmbedUrl, usePreviewPlayer } from '@/lib/youtube';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
-import { Info, Play, Volume2, VolumeX } from 'lucide-react';
+import { Play, Volume2, VolumeX } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { CrtImage } from './CrtImage';
 import { YouTubeDialog } from './YouTubeDialog';
 
@@ -71,8 +70,8 @@ export const Billboard = () => {
           <span className="font-mono text-xs font-semibold tracking-[0.3em] text-white">NEWEST EPISODE</span>
           <h1 className="max-w-[760px] text-6xl font-black leading-[0.95] tracking-[-0.045em] text-white md:text-[96px]">{episodeName(featured)}</h1>
           <p className="line-clamp-3 w-full max-w-[560px] text-lg leading-7 text-[#E5E5E5]">{featured.description}</p>
-          <div className="flex w-full items-center justify-between gap-3 pt-2">
-            <div className="flex items-center gap-3">
+          <div className="flex w-full items-end justify-between gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-3">
               <button
                 type="button"
                 onClick={handlePlay}
@@ -81,13 +80,7 @@ export const Billboard = () => {
                 <Play className="h-6 w-6 fill-[#0A0A0A]" />
                 Play
               </button>
-              <Link
-                to={`/episodes/${featured.slug}`}
-                className="flex h-12 items-center gap-3 rounded-[5px] bg-[#6D6D6E]/70 pl-5 pr-6 text-lg font-bold text-white transition-transform duration-150 ease-out active:scale-[0.97] md:h-14 md:pl-[22px] md:pr-[30px] md:text-[21px]"
-              >
-                <Info className="h-6 w-6" />
-                More info
-              </Link>
+              <PlatformButtons className="gap-3" buttonClassName="md:h-14 md:text-lg" />
             </div>
             {showVideo && (
               <button
@@ -100,7 +93,6 @@ export const Billboard = () => {
               </button>
             )}
           </div>
-          <PlatformButtons className="pt-6" buttonClassName="h-10 gap-2 pl-3 pr-4 text-sm" />
         </div>
       </div>
       <YouTubeDialog episode={featured} start={playFrom} onClose={() => setPlayFrom(null)} />

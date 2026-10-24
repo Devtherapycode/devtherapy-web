@@ -11,6 +11,7 @@ const LINKS = [
   { label: 'Guests', to: '/guests' },
   { label: 'Events', to: '/events' },
   { label: 'Quizzes', to: '/quizzes' },
+  { label: 'Memes', to: '/memes' },
   { label: 'Wrapped', to: '/wrapped' },
 ];
 

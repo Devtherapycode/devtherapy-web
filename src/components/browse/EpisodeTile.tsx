@@ -1,4 +1,4 @@
-import { episodeChannel, episodeDuration, episodeName, episodeNumber, episodeSeason, episodeTopics, episodeViews, formatViews, thumbnailUrl, youtubeUrl } from '@/lib/episodes';
+import { episodeChannel, episodeDuration, episodeName, episodeNumber, episodeTopics, episodeViews, formatViews, seasonLabel, thumbnailUrl, youtubeUrl } from '@/lib/episodes';
 import { cn } from '@/lib/utils';
 import { EpisodeBasicInfo } from '@/server/data/episodes/episodes.types';
 import { useAnalyticsStore } from '@/stores/analyticsStore';
@@ -110,7 +110,6 @@ const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: Hover
   const { episodeStats, trackEpisodePlay, toggleEpisodeFavorite } = useAnalyticsStore();
   const favorite = episodeStats[episode.id]?.isFavorite ?? false;
   const number = episodeNumber(episode);
-  const season = episodeSeason(episode);
   const topics = episodeTopics(episode).slice(0, 3);
 
   useEffect(() => {
@@ -181,7 +180,7 @@ const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: Hover
           </Link>
         </div>
         <div className="flex items-center gap-2.5">
-          <span className="text-[15px] font-bold leading-[18px] text-brand-mint">{season === 2 ? 'Season 2 premiere' : 'Season 1'}</span>
+          <span className="text-[15px] font-bold leading-[18px] text-brand-mint">{seasonLabel(episode)}</span>
           <span className="rounded-sm border border-white/40 px-[5px] py-px font-mono text-[11px] leading-[15px] text-[#E5E5E5]">{episodeDuration(episode)}</span>
           {number !== null && <span className="font-mono text-xs text-[#BCBCBC]">EP {number}</span>}
           <span className="font-mono text-xs text-[#BCBCBC]">{formatViews(episodeViews(episode))}</span>

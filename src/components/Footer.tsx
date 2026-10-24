@@ -4,7 +4,6 @@ import { useCommandPaletteStore } from '@/stores/commandPaletteStore';
 import { DISCORD_URL, GITHUB_URL } from '@/utils/const';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PlatformButtons } from './PlatformButtons';
 import { Wordmark } from './SiteNav';
 
 const COLUMNS = [
@@ -34,14 +33,6 @@ const Footer = () => {
 
   return (
     <footer className="relative z-10 flex flex-col gap-11 px-4 pb-14 pt-10 md:px-[60px]">
-      <div className="flex flex-col gap-6 border-b border-[#222222] pb-10 xl:flex-row xl:items-center xl:justify-between">
-        <div className="flex flex-col gap-1.5">
-          <p className="text-[22px] font-bold leading-[26px] tracking-[-0.01em] text-[#E5E5E5]">Watch and listen anywhere</p>
-          <p className="text-[15px] leading-5 text-[#8C8C8C]">Full episodes on YouTube. Audio on Spotify and Apple Podcasts.</p>
-        </div>
-        <PlatformButtons />
-      </div>
-
       <div className="flex flex-col gap-10 lg:flex-row">
         <div className="flex shrink-0 flex-col gap-3.5 lg:w-[420px]">
           <p className="text-lg font-bold leading-6 text-[#E5E5E5]">Got a story worth an episode?</p>

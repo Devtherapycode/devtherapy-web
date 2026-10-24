@@ -1,5 +1,4 @@
 import { BackToHomeHeader } from '@/components/back-to-home-header';
-import MatrixBackground from '@/components/MatrixBackground';
 import { QuizResults } from '@/components/quiz/QuizResults';
 import { QuizRunner } from '@/components/quiz/QuizRunner';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { quizCategories } from '@/server/data/quizzes/quiz-categories';
 import { allQuizzes } from '@/server/data/quizzes/quizzes.data';
 import { Quiz, QuizCategory } from '@/server/data/quizzes/quizzes.types';
-import { Brain, Clock, Play, Trophy } from 'lucide-react';
+import { Clock, Play, Trophy } from 'lucide-react';
 import { useState } from 'react';
 
 const Quizzes = () => {
@@ -57,26 +56,15 @@ const Quizzes = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MatrixBackground fullScreen />
 
       <div className="relative z-10">
-        <BackToHomeHeader title="Dev Therapy Quizzes" />
-
-        {/* Hero Section */}
-        <section className="px-4 py-12">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center justify-center rounded-full bg-brand-mint/10 p-4">
-              <Brain className="h-12 w-12 text-brand-mint" />
-            </div>
-            <h1 className="mb-4 text-4xl font-bold text-brand-mint md:text-5xl">Dev Therapy Quizzes 🧠</h1>
-            <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
-              Test your dev skills, episode knowledge, or just have fun. Challenge yourself with quizzes covering everything from frontend to AI.
-            </p>
-          </div>
-        </section>
+        <BackToHomeHeader
+          title="Quizzes"
+          subtitle="Test your dev skills, episode knowledge, or just have fun. Challenge yourself with quizzes covering everything from frontend to AI."
+        />
 
         {/* Category Filter */}
-        <section className="px-4 pb-8">
+        <section className="px-4 pb-8 pt-10">
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 flex flex-wrap justify-center gap-3">
               {quizCategories.map((category) => (

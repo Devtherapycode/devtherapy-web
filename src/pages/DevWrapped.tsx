@@ -1,4 +1,3 @@
-import MatrixBackground from '@/components/MatrixBackground';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -32,11 +31,10 @@ const DevWrapped = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MatrixBackground fullScreen />
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="sticky top-0 z-20 border-b border-border/40 bg-background/80 backdrop-blur-sm">
+        <header className="border-b border-border/40">
           <div className="mx-auto max-w-4xl px-4 py-4">
             <div className="flex items-center justify-between">
               <Link to="/" className="flex items-center gap-2 transition-colors hover:text-brand-mint">

@@ -58,9 +58,15 @@ export default {
           ring: 'hsl(var(--sidebar-ring))',
         },
         brand: {
-          mint: '#3CE6B0',
-          'mint-dark': '#2dd4a3',
-          'mint-light': '#5febb9',
+          mint: '#65E5B1',
+          'mint-dark': '#4FD39C',
+          'mint-light': '#86EEC4',
+        },
+        crt: {
+          ink: '#050507',
+          orange: '#FF7A2F',
+          cream: '#EFE8DA',
+          muted: '#C9C4B9',
         },
       },
       borderRadius: {
@@ -108,8 +114,12 @@ export default {
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
       },
       fontFamily: {
-        space: ['Space Grotesk', 'sans-serif'],
-        fira: ['Fira Code', 'monospace'],
+        sans: ['Inter Tight', 'Noto Sans Georgian', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+      },
+      transitionTimingFunction: {
+        out: 'var(--ease-out)',
+        'in-out': 'var(--ease-in-out)',
       },
     },
   },

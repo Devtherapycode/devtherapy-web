@@ -136,10 +136,6 @@ const HoverPreview = ({ episode, anchor, onPointerEnter, onPointerLeave }: Hover
           <div className="absolute inset-x-0 bottom-0 h-[90px] bg-gradient-to-b from-transparent to-crt-ink/70" />
           <div className="absolute left-3 right-3 top-3 flex items-center gap-2.5">
             <span className="font-mono text-[13px] font-bold tracking-[0.14em] text-brand-mint [text-shadow:0_0_10px_rgba(101,229,177,0.8)]">{episodeChannel(episode)}</span>
-            <span className="flex items-center gap-1.5 rounded bg-crt-orange px-2 py-1 font-mono text-[10px] font-bold leading-[13px] tracking-[0.14em] text-crt-ink">
-              <span className="h-1.5 w-1.5 rounded-full bg-crt-ink" />
-              TUNED IN · COLOUR
-            </span>
           </div>
           <div className="absolute bottom-3.5 left-3 flex max-w-[85%] flex-col gap-[3px] border-l-[3px] border-crt-orange bg-crt-ink/85 py-2 pl-3 pr-3.5">
             <span className="font-mono text-[11px] font-semibold tracking-[0.08em] text-brand-mint">PREVIEW</span>

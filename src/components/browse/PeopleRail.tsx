@@ -24,7 +24,7 @@ const PersonCard = ({ name, role, image, badge }: { name: string; role: string; 
 
 /** The hosts, then every guest with a profile, in black and white. */
 export const PeopleRail = () => (
-  <Rail title="The people at the table" subtitle="Two hosts, and the guests who sat across from them.">
+  <Rail title="Hosts and guests">
     {HOSTS.map((host) => (
       <div key={host.name} className="shrink-0 snap-start">
         <PersonCard name={host.name} role={host.role} image={host.image} badge="HOST" />

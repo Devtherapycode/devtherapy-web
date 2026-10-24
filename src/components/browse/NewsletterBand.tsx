@@ -13,8 +13,8 @@ export const NewsletterBand = () => (
     <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
 
     <div className="relative mx-auto flex max-w-[820px] flex-col items-center gap-[18px] text-center">
-      <span className="font-mono text-xs font-semibold leading-4 tracking-[0.24em] text-brand-mint">NEWSLETTER · COMING SOON</span>
-      <h2 className="text-[40px] font-black leading-[1] tracking-[-0.045em] text-white md:text-[64px]">Ready for your next session?</h2>
+      <span className="font-mono text-xs font-semibold leading-4 tracking-[0.24em] text-brand-mint">NEWSLETTER COMING SOON</span>
+      <h2 className="text-[40px] font-black leading-[1] tracking-[-0.045em] text-white md:text-[64px]">Hear about new episodes first</h2>
       <p className="max-w-[640px] text-lg leading-7 text-[#D0D0D0] md:text-xl">New episodes, events and Game Jam news. Until the newsletter launches, we announce everything on Discord.</p>
       <a
         href={DISCORD_URL}

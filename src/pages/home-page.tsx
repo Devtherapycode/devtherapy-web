@@ -25,7 +25,7 @@ export const HomePage = () => {
       <Billboard />
       <div className="relative z-10 -mt-12 flex flex-col pb-4 md:-mt-20">
         {continueWatching.length > 0 && (
-          <Rail title="Continue watching for you">
+          <Rail title="Continue watching">
             {continueWatching.map((episode) => (
               <EpisodeTile key={episode.id} episode={episode} mono={episodeSeason(episode) === 1} watched={episodeStats[episode.id]?.isCompleted} />
             ))}
@@ -33,7 +33,7 @@ export const HomePage = () => {
         )}
         <SeasonTwoRail />
         <TopTenRail />
-        <Rail title="Season 1 — the archive" subtitle={`${seasonOne.length} episodes, from the very first. Shown in black and white.`}>
+        <Rail title="Season 1" subtitle={`All ${seasonOne.length} episodes, oldest first.`}>
           {seasonOne.map((episode) => (
             <EpisodeTile key={episode.id} episode={episode} mono />
           ))}

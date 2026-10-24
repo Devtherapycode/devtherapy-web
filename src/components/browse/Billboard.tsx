@@ -34,16 +34,12 @@ export const Billboard = () => {
         <div className="flex flex-col gap-3.5 pt-1.5">
           <div className="flex items-center gap-3">
             <span className="rounded-[3px] bg-brand-mint px-2 pb-1 pt-[5px] text-[13px] font-extrabold leading-[15px] tracking-[0.06em] text-[#0A0A0A]">SEASON 2</span>
-            <span className="text-lg font-semibold leading-[22px] text-white">Now streaming in colour</span>
+            <span className="text-lg font-semibold leading-[22px] text-white">Recorded in our new studio</span>
           </div>
           <p className="text-2xl font-medium leading-9 tracking-[-0.02em] text-white md:text-[30px]">Every conversation led here.</p>
-          <div className="flex flex-wrap items-center gap-4 font-mono text-[13px] leading-[18px]">
-            <span className="font-semibold text-brand-mint">NEW STUDIO</span>
-            <span className="text-[#BDBDBD]">2026</span>
-            <span className="text-[#BDBDBD]">{allEpisodes.length} episodes</span>
-            <span className="text-[#BDBDBD]">{formatViews(totalViews)}</span>
-            <span className="text-[#BDBDBD]">Georgian</span>
-          </div>
+          <p className="text-[15px] leading-5 text-[#BDBDBD]">
+            {allEpisodes.length} episodes, {formatViews(totalViews)} on YouTube, in Georgian.
+          </p>
         </div>
         <div className="flex items-center gap-3 pt-1.5">
           <button

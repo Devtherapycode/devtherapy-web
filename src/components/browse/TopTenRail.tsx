@@ -14,7 +14,7 @@ export const TopTenRail = () => (
         Top 10 on Devtherapy
       </span>
     }
-    subtitle="by YouTube views"
+    subtitle="Ranked by YouTube views"
   >
     {topByViews.slice(0, 10).map((episode, index) => (
       <div key={episode.id} className="relative flex h-[170px] w-[280px] shrink-0 snap-start sm:h-[200px] sm:w-[326px]">

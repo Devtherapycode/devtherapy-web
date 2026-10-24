@@ -128,10 +128,6 @@ const EpisodeDetail = () => {
         <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-4 px-4 pb-10 md:px-[60px] md:pb-14">
           <div className="flex items-center gap-2.5">
             <span className="font-mono text-[13px] font-bold tracking-[0.14em] text-brand-mint [text-shadow:0_0_10px_rgba(101,229,177,0.8)]">{episodeChannel(episode)}</span>
-            <span className="flex items-center gap-1.5 rounded bg-crt-orange px-2 py-1 font-mono text-[10px] font-bold leading-[13px] tracking-[0.14em] text-crt-ink">
-              <span className="h-1.5 w-1.5 rounded-full bg-crt-ink" />
-              TUNED IN · COLOUR
-            </span>
           </div>
           {number !== null && <span className="font-mono text-xs font-semibold tracking-[0.3em] text-white">EPISODE {number}</span>}
           <h1 className="max-w-[760px] text-5xl font-black leading-[0.95] tracking-[-0.045em] text-white md:text-[88px]">{episodeName(episode)}</h1>

@@ -90,8 +90,8 @@ export const durationSeconds = (episode: EpisodeBasicInfo) => youtubeStats[episo
 
 export const toSeconds = (timestamp: string) => timestamp.split(':').reduce((total, part) => total * 60 + Number(part), 0);
 
-// Chapter lines in descriptions: "0:00 – 1:14 — title", "00:00 – 01:29 – title", "0:00–3:31 – title", "6:29 title".
-export const CHAPTER_LINE = /^\s*(\d{1,2}:\d{2}(?::\d{2})?)\s*(?:[–—-]\s*\d{1,2}:\d{2}(?::\d{2})?\s*)?(?:[–—-]\s*)?(\S.*)$/;
+// Chapter lines in descriptions: "0:00 – 1:14 — title", "00:00 – 01:29 – title", "00:00 – 01:04 | title", "0:00–3:31 – title", "6:29 title".
+export const CHAPTER_LINE = /^\s*(\d{1,2}:\d{2}(?::\d{2})?)\s*(?:[–—-]\s*\d{1,2}:\d{2}(?::\d{2})?\s*)?(?:[–—|-]\s*)?(\S.*)$/;
 
 export type Chapter = { start: number; length: number; title: string };
 

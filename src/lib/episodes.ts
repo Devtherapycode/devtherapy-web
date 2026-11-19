@@ -14,11 +14,11 @@ export const episodeNumber = (episode: EpisodeBasicInfo): number | null => {
 
 export const episodeSeason = (episode: EpisodeBasicInfo) => episode.season ?? 1;
 
-/** The part of the title after the number: the guest's name, or the episode's own title. */
+/** The part of the title after the number: the guest's name, or the episode's own title. "Don't Look Up! - <subtitle>" has no number, so it keeps the part before the dash. */
 export const episodeName = (episode: EpisodeBasicInfo) => {
   const [head] = episode.title.split('|');
-  const parts = head.split(SEPARATOR);
-  return (parts.length > 1 ? parts.slice(1).join(' – ') : head).replace('🚀', '').trim();
+  const [first, ...rest] = head.split(SEPARATOR);
+  return (rest.length && NUMBER.test(first) ? rest.join(' – ') : first).replace('🚀', '').trim();
 };
 
 /** The topics listed after "|" in the title. */

@@ -37,7 +37,9 @@ export type EpisodeSlugType =
   | 'waska-chaduneli'
   | 'we-back'
   | 'devtherapy-35-aimaxxing'
-  | 'tengiz-tutisani';
+  | 'tengiz-tutisani'
+  | 'devtherapy-37-dont-look-up'
+  | 'sophia-shinjikashvili';
 
 export type EpisodeBasicInfo = {
   id: string;

@@ -26,6 +26,10 @@ import { thirtyFirstEpisodeBasicInfo, thirtyFirstEpisodeData } from './31';
 import { thirtySecondEpisodeBasicInfo, thirtySecondEpisodeData } from './32';
 import { thirtyThirdEpisodeBasicInfo, thirtyThirdEpisodeData } from './33';
 import { thirtyFourthEpisodeBasicInfo, thirtyFourthEpisodeData } from './34';
+import { thirtyFifthEpisodeBasicInfo, thirtyFifthEpisodeData } from './35';
+import { thirtySixthEpisodeBasicInfo, thirtySixthEpisodeData } from './36';
+import { thirtySeventhEpisodeBasicInfo, thirtySeventhEpisodeData } from './37';
+import { thirtyEighthEpisodeBasicInfo, thirtyEighthEpisodeData } from './38';
 import { fourthEpisodeBasicInfo, fourthEpisodeData } from './4';
 import { fifthEpisodeBasicInfo, fifthEpisodeData } from './5';
 import { sixthEpisodeBasicInfo, sixthEpisodeData } from './6';
@@ -71,6 +75,10 @@ export const allEpisodes: EpisodeBasicInfo[] = [
   thirtyThirdEpisodeBasicInfo,
   thirtyFourthEpisodeBasicInfo,
   seasonTwoPremiereEpisodeBasicInfo,
+  thirtyFifthEpisodeBasicInfo,
+  thirtySixthEpisodeBasicInfo,
+  thirtySeventhEpisodeBasicInfo,
+  thirtyEighthEpisodeBasicInfo,
 ];
 
 export const episodes: Record<EpisodeSlugType, Episode> = {
@@ -109,4 +117,8 @@ export const episodes: Record<EpisodeSlugType, Episode> = {
   'tako-abramashvili': thirtyThirdEpisodeData,
   'waska-chaduneli': thirtyFourthEpisodeData,
   'we-back': seasonTwoPremiereEpisodeData,
+  'devtherapy-35-aimaxxing': thirtyFifthEpisodeData,
+  'tengiz-tutisani': thirtySixthEpisodeData,
+  'devtherapy-37-dont-look-up': thirtySeventhEpisodeData,
+  'sophia-shinjikashvili': thirtyEighthEpisodeData,
 };

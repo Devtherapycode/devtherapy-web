@@ -35,7 +35,11 @@ export type EpisodeSlugType =
   | 'irakli-butskhrikidze'
   | 'tako-abramashvili'
   | 'waska-chaduneli'
-  | 'we-back';
+  | 'we-back'
+  | 'devtherapy-35-aimaxxing'
+  | 'tengiz-tutisani'
+  | 'devtherapy-37-dont-look-up'
+  | 'sophia-shinjikashvili';
 
 export type EpisodeBasicInfo = {
   id: string;
